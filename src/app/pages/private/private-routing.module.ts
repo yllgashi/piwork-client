@@ -9,23 +9,41 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'tab1',
+        redirectTo: 'overview',
         pathMatch: 'full',
       },
       {
-        path: 'tab1',
+        path: 'overview',
         loadChildren: () =>
-          import('./tab1/tab1.module').then((m) => m.Tab1PageModule),
+          import('./overview/overview.module').then(
+            (m) => m.OverviewPageModule
+          ),
       },
       {
-        path: 'tab2',
+        path: 'search',
         loadChildren: () =>
-          import('./tab2/tab2.module').then((m) => m.Tab2PageModule),
+          import('./search/search.module').then((m) => m.SearchPageModule),
       },
       {
-        path: 'tab3',
+        path: 'announce-job',
         loadChildren: () =>
-          import('./tab3/tab3.module').then((m) => m.Tab3PageModule),
+          import('./announce-job/announce-job.module').then(
+            (m) => m.AnnounceJobPageModule
+          ),
+      },
+      {
+        path: 'notifications',
+        loadChildren: () =>
+          import('./notifications/notifications.module').then(
+            (m) => m.NotificationsPageModule
+          ),
+      },
+      {
+        path: 'my-account',
+        loadChildren: () =>
+          import('./my-account/my-account.module').then(
+            (m) => m.MyAccountPageModule
+          ),
       },
     ],
   },
