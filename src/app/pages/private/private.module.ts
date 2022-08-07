@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { PrivateComponent } from './private.component';
+import { PrivatePage } from './private.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PrivateRoutingModule } from './private-routing.module';
 
 @NgModule({
-  declarations: [PrivateComponent],
+  declarations: [PrivatePage],
   imports: [SharedModule, PrivateRoutingModule],
 })
 export class PrivateModule {}

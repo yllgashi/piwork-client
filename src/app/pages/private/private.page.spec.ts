@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PrivateComponent } from './private.component';
+import { PrivatePage } from './private.page';
 
 describe('PrivateComponent', () => {
-  let component: PrivateComponent;
-  let fixture: ComponentFixture<PrivateComponent>;
+  let component: PrivatePage;
+  let fixture: ComponentFixture<PrivatePage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrivateComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [PrivatePage],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PrivateComponent);
+    fixture = TestBed.createComponent(PrivatePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
