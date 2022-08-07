@@ -1,0 +1,7 @@
+{
+  "name": "piwork-client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
