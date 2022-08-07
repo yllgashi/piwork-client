@@ -1,0 +1,11 @@
+<app-item [lines]="'none'">
+  <ion-icon *ngIf="icon" slot="start" [name]="icon"></ion-icon>
+  <ion-label class="description">{{ label }}</ion-label>
+  <ion-datetime
+    displayFormat="HH:mm"
+    pickerFormat="HH mm"
+    [formControl]="control"
+    [cancelText]="'Cancel'"
+    [doneText]="'Save'"
+  ></ion-datetime>
+</app-item>

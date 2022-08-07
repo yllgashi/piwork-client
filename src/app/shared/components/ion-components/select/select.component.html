@@ -1,0 +1,36 @@
+<ion-item lines="none">
+  <!-- icon -->
+  <ion-icon *ngIf="icon" slot="start" [name]="icon"></ion-icon>
+
+  <ion-label *ngIf="description" class="description">{{
+    description
+  }}</ion-label>
+  <!-- if formControl is sent -->
+  <ion-select
+    *ngIf="control"
+    [formControl]="control"
+    [class]="description ? 'ion-text-end' : 'ion-text-start'"
+  >
+    <ion-select-option
+      class="data"
+      *ngFor="let item of data"
+      [value]="item.id"
+      >{{ item.value }}</ion-select-option
+    >
+  </ion-select>
+
+  <!-- if formControl is not sent -->
+  <ion-select
+    *ngIf="!control"
+    (ngModelChange)="onSelect($event)"
+    [class]="description ? 'ion-text-end' : 'ion-text-start'"
+    [ngModel]="data[0].id"
+  >
+    <ion-select-option
+      class="data"
+      *ngFor="let item of data"
+      [value]="item.id"
+      >{{ item.value }}</ion-select-option
+    >
+  </ion-select>
+</ion-item>

@@ -1,0 +1,16 @@
+<div>
+  <ion-radio-group [ngModel]="data[0].id" *ngIf="data && data.length > 0">
+    <ion-list-header *ngIf="label">
+      <p class="list-title">{{ label }}</p>
+    </ion-list-header>
+
+    <app-item *ngFor="let item of data">
+      <app-label>{{ item.value }}</app-label>
+      <ion-radio
+        slot="start"
+        [value]="item.id"
+        (click)="onChange(item.id)"
+      ></ion-radio>
+    </app-item>
+  </ion-radio-group>
+</div>

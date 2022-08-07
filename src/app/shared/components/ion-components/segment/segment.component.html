@@ -1,0 +1,11 @@
+<ion-segment
+  swipeGesture="true"
+  (ionChange)="onSegmentChanged($event)"
+  [value]="initialValue"
+>
+  <ion-segment-button *ngFor="let segment of segments" [value]="segment.value">
+    <ion-label style="font-size: smaller; font-weight: bold">{{
+      segment.label
+    }}</ion-label>
+  </ion-segment-button>
+</ion-segment>
