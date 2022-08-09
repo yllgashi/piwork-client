@@ -1,0 +1,34 @@
+<app-card [cardHeader]="true" [cardSubtitle]="'Register'" [cardContent]="true">
+  <form card-content [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <app-input
+      [startIcon]="'cloudy-night-outline'"
+      [type]="'email'"
+      [label]="'Email'"
+      [labelPosition]="'stacked'"
+      [placeholder]="'email@email.com'"
+      [control]="getControl('email')"
+    >
+    </app-input>
+
+    <app-input
+      [startIcon]="'cloudy-night-outline'"
+      [type]="'password'"
+      [label]="'Password'"
+      [labelPosition]="'stacked'"
+      [placeholder]="'************'"
+      [control]="getControl('password')"
+    >
+    </app-input>
+
+    <app-button
+      [disabled]="loginForm.invalid"
+      *ngIf="!isLoading"
+      [type]="'submit'"
+      [text]="'Login'"
+      [color]="'primary'"
+      [expand]="'block'"
+    >
+    </app-button>
+    <app-loading *ngIf="isLoading"></app-loading>
+  </form>
+</app-card>

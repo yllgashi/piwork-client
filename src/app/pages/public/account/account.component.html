@@ -1,3 +1,27 @@
-<ion-content>
-  <ion-label color="success">Testtt</ion-label>
+<ion-content class="register-container">
+  <app-login-form *ngIf="authenticationMethod === 'login'"></app-login-form>
+
+  <app-register-form
+    *ngIf="authenticationMethod === 'register'"
+  ></app-register-form>
+
+  <app-button
+    *ngIf="authenticationMethod === 'login'"
+    [type]="'button'"
+    [text]="'Register instead'"
+    [color]="'light'"
+    [expand]="'block'"
+    (clickOut)="setRegisterAuthenticationMethod()"
+  >
+  </app-button>
+
+  <app-button
+    *ngIf="authenticationMethod === 'register'"
+    [type]="'button'"
+    [text]="'Register instead'"
+    [color]="'light'"
+    [expand]="'block'"
+    (clickOut)="setLoginAuthenticationMethod()"
+  >
+  </app-button>
 </ion-content>

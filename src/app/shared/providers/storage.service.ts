@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Preferences } from '@capacitor/preferences';
-import { defer, Observable } from 'rxjs';
+import { defer, forkJoin, Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 @Injectable({

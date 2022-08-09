@@ -6,9 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
+  authenticationMethod: string;
 
-  constructor() { }
+  ngOnInit(): void {
+    this.setDefaultAuthenticationMethod();
+  }
 
-  ngOnInit() {}
+  setDefaultAuthenticationMethod(): void {
+    this.setLoginAuthenticationMethod();
+  }
 
+  setLoginAuthenticationMethod(): void {
+    this.authenticationMethod = 'login';
+  }
+
+  setRegisterAuthenticationMethod(): void {
+    this.authenticationMethod = 'register';
+  }
 }

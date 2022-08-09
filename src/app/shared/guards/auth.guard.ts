@@ -6,14 +6,20 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from '../providers/auth.service';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { JwtService } from '../providers/jwt.service';
+import { StorageService } from '../providers/storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private storageService: StorageService,
+    private jwtService: JwtService
+  ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,6 +29,19 @@ export class AuthGuard implements CanActivate {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    return true ? true : this.router.navigateByUrl('/account');
+    return this.storageService.get('accessToken').pipe(
+      map((accessToken) => this.onCheckForAuthorization(accessToken)),
+      catchError(() => this.onError())
+    );
+  }
+
+  onCheckForAuthorization(accessToken: string): boolean {
+    if (!accessToken) this.onError();
+    const isExpired: boolean = this.jwtService.isTokenExpired(accessToken);
+    return !isExpired;
+  }
+
+  onError(): Observable<any> {
+    return of(this.router.navigateByUrl('/account'));
   }
 }
