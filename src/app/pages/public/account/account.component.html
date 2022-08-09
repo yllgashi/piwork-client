@@ -1,27 +1,18 @@
 <ion-content class="register-container">
-  <app-login-form *ngIf="authenticationMethod === 'login'"></app-login-form>
+  <div class="form-container">
+    <app-login-form *ngIf="authenticationMethod === 'login'"></app-login-form>
 
-  <app-register-form
-    *ngIf="authenticationMethod === 'register'"
-  ></app-register-form>
+    <app-register-form
+      *ngIf="authenticationMethod === 'register'"
+    ></app-register-form>
 
-  <app-button
-    *ngIf="authenticationMethod === 'login'"
-    [type]="'button'"
-    [text]="'Register instead'"
-    [color]="'light'"
-    [expand]="'block'"
-    (clickOut)="setRegisterAuthenticationMethod()"
-  >
-  </app-button>
-
-  <app-button
-    *ngIf="authenticationMethod === 'register'"
-    [type]="'button'"
-    [text]="'Register instead'"
-    [color]="'light'"
-    [expand]="'block'"
-    (clickOut)="setLoginAuthenticationMethod()"
-  >
-  </app-button>
+    <app-button
+      [type]="'button'"
+      [text]="authenticationMethod === 'login' ? 'Register instead' : 'Login instead'"
+      [color]="'light'"
+      [expand]="'block'"
+      (clickOut)="onChangeAuthenticationMethod()"
+    >
+    </app-button>
+  </div>
 </ion-content>

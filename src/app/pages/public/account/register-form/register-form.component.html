@@ -1,71 +1,69 @@
-<app-card [cardHeader]="true" [cardSubtitle]="'Register'" [cardContent]="true">
-  <form card-content [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <app-input
-      [startIcon]="'cloudy-night-outline'"
-      [type]="'text'"
-      [label]="'First name'"
-      [labelPosition]="'stacked'"
-      [placeholder]="'John'"
-      [control]="getControl('firstName')"
-    >
-    </app-input>
+<form card-content [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <app-input
+    [startIcon]="'person-outline'"
+    [type]="'text'"
+    [label]="'First name'"
+    [labelPosition]="'stacked'"
+    [placeholder]="'John'"
+    [control]="getControl('firstName')"
+  >
+  </app-input>
 
-    <app-input
-      [startIcon]="'cloudy-night-outline'"
-      [type]="'text'"
-      [label]="'Last name'"
-      [labelPosition]="'stacked'"
-      [placeholder]="'Doe'"
-      [control]="getControl('lastName')"
-    >
-    </app-input>
+  <app-input
+    [startIcon]="'person-outline'"
+    [type]="'text'"
+    [label]="'Last name'"
+    [labelPosition]="'stacked'"
+    [placeholder]="'Doe'"
+    [control]="getControl('lastName')"
+  >
+  </app-input>
 
-    <app-input
-      [startIcon]="'cloudy-night-outline'"
-      [type]="'email'"
-      [label]="'Email'"
-      [labelPosition]="'stacked'"
-      [placeholder]="'email@email.com'"
-      [control]="getControl('email')"
-    >
-    </app-input>
+  <app-input
+    [startIcon]="'mail-outline'"
+    [type]="'email'"
+    [label]="'Email'"
+    [labelPosition]="'stacked'"
+    [placeholder]="'email@email.com'"
+    [control]="getControl('email')"
+  >
+  </app-input>
 
-    <app-input
-      [startIcon]="'cloudy-night-outline'"
-      [type]="'password'"
-      [label]="'Password'"
-      [labelPosition]="'stacked'"
-      [placeholder]="'************'"
-      [control]="getControl('password')"
-    >
-    </app-input>
+  <app-input
+    [startIcon]="'shield-checkmark-outline'"
+    [type]="'password'"
+    [label]="'Password'"
+    [labelPosition]="'stacked'"
+    [placeholder]="'************'"
+    [control]="getControl('password')"
+  >
+  </app-input>
 
-    <app-textarea
-      card-content
-      [startIcon]="'chatbox-outline'"
-      [control]="getControl('description')"
-      [placeholder]="'Description'"
-    ></app-textarea>
+  <app-textarea
+    card-content
+    [startIcon]="'chatbox-outline'"
+    [control]="getControl('description')"
+    [placeholder]="'Description'"
+  ></app-textarea>
 
-    <app-input
-      [startIcon]="'cloudy-night-outline'"
-      [type]="'number'"
-      [label]="'Role id'"
-      [labelPosition]="'stacked'"
-      [placeholder]="'1 or 2'"
-      [control]="getControl('roleId')"
-    >
-    </app-input>
+  <app-input
+    [startIcon]="'game-controller-outline'"
+    [type]="'number'"
+    [label]="'Role id'"
+    [labelPosition]="'stacked'"
+    [placeholder]="'1 or 2'"
+    [control]="getControl('roleId')"
+  >
+  </app-input>
 
-    <app-button
-      [disabled]="registerForm.invalid"
-      *ngIf="!isLoading"
-      [type]="'submit'"
-      [text]="'Register'"
-      [color]="'primary'"
-      [expand]="'block'"
-    >
-    </app-button>
-    <app-loading *ngIf="isLoading"></app-loading>
-  </form>
-</app-card>
+  <app-button
+    [disabled]="registerForm.invalid"
+    *ngIf="!isLoading"
+    [type]="'submit'"
+    [text]="'Register'"
+    [color]="'primary'"
+    [expand]="'block'"
+  >
+  </app-button>
+  <app-loading *ngIf="isLoading"></app-loading>
+</form>

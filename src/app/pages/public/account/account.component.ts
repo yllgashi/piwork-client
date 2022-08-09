@@ -16,6 +16,12 @@ export class AccountComponent implements OnInit {
     this.setLoginAuthenticationMethod();
   }
 
+  onChangeAuthenticationMethod(): void {
+    if (this.authenticationMethod === 'login')
+      this.setRegisterAuthenticationMethod();
+    else this.setLoginAuthenticationMethod();
+  }
+
   setLoginAuthenticationMethod(): void {
     this.authenticationMethod = 'login';
   }
