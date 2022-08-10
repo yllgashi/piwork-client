@@ -51,7 +51,7 @@ export class RegisterFormComponent implements OnInit {
 
   isFormValid(): boolean {
     const validForm: boolean = this.registerForm.valid;
-    if (!validForm) this.onShowError('Invalid form');
+    if (!validForm) this.onShowError('ERROR.ERR_10');
     return validForm;
   }
 
@@ -97,7 +97,7 @@ export class RegisterFormComponent implements OnInit {
   //#region helpers
   onShowError(errorMsg: any): void {
     this.onDismissLoading();
-    this.dynamicComponentsService.showToast(errorMsg);
+    this.dynamicComponentsService.showTranslatedToast(errorMsg);
   }
 
   onShowLoading(): void {

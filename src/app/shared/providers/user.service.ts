@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { User } from '../model/user.model';
 
-import { HttpService } from './common/http.service';
+import { User } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +9,7 @@ import { HttpService } from './common/http.service';
 export class UserService {
   user$ = new BehaviorSubject<User>(null);
 
-  constructor(private httpService: HttpService) {}
+  constructor() {}
 
   initializeUser(user: User): void {
     this.user$.next(user);

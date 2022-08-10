@@ -27,6 +27,7 @@
         "ERR_06":"Job does not exists",
         "ERR_07":"An error occurred while inserting this job",
         "ERR_08":"Incorrect password",
-        "ERR_09":"No data found"
+        "ERR_09":"No data found",
+        "ERR_10": "Input fields are invalid!"
     }
 }

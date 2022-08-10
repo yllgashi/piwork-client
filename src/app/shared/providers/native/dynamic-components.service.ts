@@ -12,6 +12,7 @@ import {
   PopoverOptions,
   ToastController,
 } from '@ionic/angular';
+import { LanguagesService } from '../common/languages.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,8 @@ export class DynamicComponentsService {
     private loadingCtrl: LoadingController,
     private modalCtrl: ModalController,
     private popoverCtrl: PopoverController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private languagesService: LanguagesService
   ) {}
   loader: HTMLIonLoadingElement;
 
@@ -98,5 +100,12 @@ export class DynamicComponentsService {
 
   async dismissPopover(): Promise<void> {
     await this.popoverCtrl.dismiss();
+  }
+
+  async showTranslatedToast(key: string): Promise<void> {
+    const message: string = this.languagesService.instant(key);
+    console.log(message)
+    console.log(key)
+    await this.showToast(message);
   }
 }
