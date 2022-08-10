@@ -10,7 +10,7 @@ export class LanguagesService {
   currentLang$ = new BehaviorSubject<string>(null);
 
   constructor(private translateService: TranslateService) {
-    translateService.addLangs(['en', 'al']);
+    translateService.addLangs(['en']);
     this.initializeBehaviorSubject(translateService.currentLang);
   }
 

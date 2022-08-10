@@ -17,5 +17,16 @@
         "PASSWORD": "Password",
         "DESCRIPTION": "Description",
         "ROLE": "RoleID"
+    },
+    "ERROR": {
+        "ERR_01":"Something went wrong",
+        "ERR_02":"Failed to delete item",
+        "ERR_03":"Technology is already registered for this user",
+        "ERR_04":"User already exists",
+        "ERR_05":"User does not exists",
+        "ERR_06":"Job does not exists",
+        "ERR_07":"An error occurred while inserting this job",
+        "ERR_08":"Incorrect password",
+        "ERR_09":"No data found"
     }
 }

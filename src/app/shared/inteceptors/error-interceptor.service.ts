@@ -24,17 +24,19 @@ export class ErrorCatchingInterceptor implements HttpInterceptor {
   }
 
   onCatchError(error: HttpErrorResponse) {
-    let errorMsg = this.onGenerateDefaultErrorMsg();
-    errorMsg = error.error.message ?? errorMsg;
+    let errorMsg: string;
+    // server-side error
+    if (error.error.message) errorMsg = 'ERROR.' + error.error.message;
+    else errorMsg = this.onGenerateDefaultErrorMsg();
     // client-side error
     if (error.error instanceof ErrorEvent) this.showErrorToast(errorMsg);
-    // server-side error
+    // throw
     else this.showErrorToast(errorMsg);
     return throwError(errorMsg);
   }
 
   private onGenerateDefaultErrorMsg(): string {
-    return 'Something went wrong, please try again later!';
+    return 'ERROR.ERR_01';
   }
 
   async showErrorToast(message: string): Promise<void> {

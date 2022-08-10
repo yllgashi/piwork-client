@@ -14,6 +14,6 @@ export class AppComponent implements OnInit {
   }
 
   setDefaultLanguage(): void {
-    this.languagesService.changeLanguage('sq');
+    this.languagesService.changeLanguage('en');
   }
 }

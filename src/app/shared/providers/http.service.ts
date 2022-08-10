@@ -109,7 +109,6 @@ export class HttpService {
   }
 
   private extractDataFromResponseModel(response: ResponseModel) {
-    if (response.error) throw new Error(response.message);
     return response.results;
   }
 }
