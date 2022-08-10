@@ -8,7 +8,11 @@
 
     <app-button
       [type]="'button'"
-      [text]="authenticationMethod === 'login' ? 'Register instead' : 'Login instead'"
+      [text]="
+        authenticationMethod === 'login'
+          ? ('ACCOUNT.REGISTER_INSTEAD' | translate)
+          : ('ACCOUNT.LOGIN_INSTEAD' | translate)
+      "
       [color]="'light'"
       [expand]="'block'"
       (clickOut)="onChangeAuthenticationMethod()"

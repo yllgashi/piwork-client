@@ -2,7 +2,7 @@
   <app-input
     [startIcon]="'mail-outline'"
     [type]="'email'"
-    [label]="'Email'"
+    [label]="'ACCOUNT.EMAIL' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'email@email.com'"
     [control]="getControl('email')"
@@ -12,7 +12,7 @@
   <app-input
     [startIcon]="'shield-checkmark-outline'"
     [type]="'password'"
-    [label]="'Password'"
+    [label]="'ACCOUNT.PASSWORD' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'************'"
     [control]="getControl('password')"
@@ -23,7 +23,7 @@
     [disabled]="loginForm.invalid"
     *ngIf="!isLoading"
     [type]="'submit'"
-    [text]="'Login'"
+    [text]="'ACCOUNT.LOGIN' | translate"
     [color]="'primary'"
     [expand]="'block'"
   >

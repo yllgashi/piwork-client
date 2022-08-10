@@ -20,6 +20,7 @@ import { TextareaComponent } from './components/ion-components/textarea/textarea
 import { LoadingComponent } from './components/loading/loading.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
 import { HeaderComponent } from './components/header/header.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -39,11 +40,11 @@ import { HeaderComponent } from './components/header/header.component';
     TextareaComponent,
     LoadingComponent,
     NoDataComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
-    // TranslateModule,
+    TranslateModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
@@ -51,6 +52,7 @@ import { HeaderComponent } from './components/header/header.component';
   ],
   exports: [
     CommonModule,
+    TranslateModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
@@ -70,7 +72,7 @@ import { HeaderComponent } from './components/header/header.component';
     TextareaComponent,
     LoadingComponent,
     NoDataComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
 })
 export class SharedModule {}

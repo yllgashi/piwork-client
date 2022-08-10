@@ -2,7 +2,7 @@
   <app-input
     [startIcon]="'person-outline'"
     [type]="'text'"
-    [label]="'First name'"
+    [label]="'ACCOUNT.FIRST_NAME' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'John'"
     [control]="getControl('firstName')"
@@ -12,7 +12,7 @@
   <app-input
     [startIcon]="'person-outline'"
     [type]="'text'"
-    [label]="'Last name'"
+    [label]="'ACCOUNT.LAST_NAME' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'Doe'"
     [control]="getControl('lastName')"
@@ -22,7 +22,7 @@
   <app-input
     [startIcon]="'mail-outline'"
     [type]="'email'"
-    [label]="'Email'"
+    [label]="'ACCOUNT.EMAIL' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'email@email.com'"
     [control]="getControl('email')"
@@ -32,7 +32,7 @@
   <app-input
     [startIcon]="'shield-checkmark-outline'"
     [type]="'password'"
-    [label]="'Password'"
+    [label]="'ACCOUNT.PASSWORD' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'************'"
     [control]="getControl('password')"
@@ -44,12 +44,13 @@
     [startIcon]="'chatbox-outline'"
     [control]="getControl('description')"
     [placeholder]="'Description'"
+    [placeholder]="'ACCOUNT.DESCRIPTION' | translate"
   ></app-textarea>
 
   <app-input
     [startIcon]="'game-controller-outline'"
     [type]="'number'"
-    [label]="'Role id'"
+    [label]="'ACCOUNT.ROLE' | translate"
     [labelPosition]="'stacked'"
     [placeholder]="'1 or 2'"
     [control]="getControl('roleId')"
@@ -59,7 +60,7 @@
   <app-button
     [disabled]="registerForm.invalid"
     *ngIf="!isLoading"
-    [type]="'submit'"
+    [text]="'ACCOUNT.REGISTER' | translate"
     [text]="'Register'"
     [color]="'primary'"
     [expand]="'block'"
