@@ -1,3 +1,9 @@
-<app-header [title]="'overview'"></app-header>
+<ion-content>
+  <app-loading *ngIf="areJobsLoading"></app-loading>
 
-<ion-content> </ion-content>
+  <app-no-data *ngIf="!areJobsLoading && !jobs"></app-no-data>
+
+  <div *ngIf="!areJobsLoading && jobs">
+    <app-job-item *ngFor="let job of jobs" [job]="job"></app-job-item>
+  </div>
+</ion-content>
