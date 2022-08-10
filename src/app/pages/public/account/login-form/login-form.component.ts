@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Login } from 'src/app/shared/model/login.model';
 import { AuthService } from 'src/app/shared/providers/auth.service';
-import { DynamicComponentsService } from 'src/app/shared/providers/dynamic-components.service';
-import { StorageService } from 'src/app/shared/providers/storage.service';
+import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { StorageService } from 'src/app/shared/providers/native/storage.service';
 
 @Component({
   selector: 'app-login-form',

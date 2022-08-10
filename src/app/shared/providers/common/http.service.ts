@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { ResponseModel } from '../model/response.model';
-import { StorageService } from './storage.service';
+import { ResponseModel } from '../../model/response.model';
+import { StorageService } from '../native/storage.service';
 
 @Injectable({
   providedIn: 'root',

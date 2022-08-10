@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/model/user.model';
-import { JwtService } from 'src/app/shared/providers/jwt.service';
-import { StorageService } from 'src/app/shared/providers/storage.service';
+import { JwtService } from 'src/app/shared/providers/common/jwt.service';
+import { StorageService } from 'src/app/shared/providers/native/storage.service';
 import { UserService } from 'src/app/shared/providers/user.service';
 
 @Component({

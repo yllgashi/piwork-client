@@ -8,8 +8,8 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { JwtService } from '../providers/jwt.service';
-import { StorageService } from '../providers/storage.service';
+import { JwtService } from '../providers/common/jwt.service';
+import { StorageService } from '../providers/native/storage.service';
 
 @Injectable({
   providedIn: 'root',
