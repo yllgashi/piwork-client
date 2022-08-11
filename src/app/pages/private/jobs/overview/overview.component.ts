@@ -5,10 +5,10 @@ import { DynamicComponentsService } from 'src/app/shared/providers/native/dynami
 
 @Component({
   selector: 'app-overview',
-  templateUrl: './overview.page.html',
-  styleUrls: ['./overview.page.scss'],
+  templateUrl: './overview.component.html',
+  styleUrls: ['./overview.component.scss'],
 })
-export class OverviewPage implements OnInit {
+export class OverviewComponent implements OnInit {
   areJobsLoading: boolean;
   jobs: Job[];
 

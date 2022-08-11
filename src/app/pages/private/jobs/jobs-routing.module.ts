@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { JobDetailsComponent } from './job-details/job-details.component';
 
-import { OverviewPage } from './overview.page';
+import { JobsPage } from './jobs.page';
+import { OverviewComponent } from './overview/overview.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: OverviewPage,
+    component: JobsPage,
     children: [
+      {
+        path: '',
+        component: OverviewComponent,
+      },
       {
         path: ':id',
         component: JobDetailsComponent,
@@ -21,4 +26,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class OverviewPageRoutingModule {}
+export class JobsPageRoutingModule {}

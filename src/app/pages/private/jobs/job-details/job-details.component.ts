@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { JobDetails } from 'src/app/shared/model/job-details.model';
 import { JobService } from 'src/app/shared/providers/job.service';
 
@@ -34,6 +34,7 @@ export class JobDetailsComponent implements OnInit {
   }
 
   getJobDetails(id: string): void {
+    debugger;
     this.onShowLoading();
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => this.onJobDetailsFetch(res),

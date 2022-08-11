@@ -9,15 +9,13 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'overview',
+        redirectTo: 'jobs',
         pathMatch: 'full',
       },
       {
-        path: 'overview',
+        path: 'jobs',
         loadChildren: () =>
-          import('./overview/overview.module').then(
-            (m) => m.OverviewPageModule
-          ),
+          import('./jobs/jobs.module').then((m) => m.JobsPageModule),
       },
       {
         path: 'search',
