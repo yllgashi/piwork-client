@@ -1,6 +1,33 @@
-<div>
-  <p>{{ job.title }}</p>
-  <p>{{ job.description }}</p>
-  <p>{{ job.estimatedDays }}</p>
-  <p>{{ job.priceAmount }}</p>
-</div>
+<app-card
+  [cardHeader]="true"
+  [cardContent]="true"
+  routerLink="/overview/{{ job.id }}"
+>
+  <div card-header>
+    <app-item [lines]="'none'">
+      <ion-avatar slot="start">
+        <img [src]="'../../../../../assets/images/developer-icon.png'" />
+      </ion-avatar>
+      <app-label>
+        <h2>{{ job.estimatedDays + " days" }}</h2>
+        <p>{{ job.priceAmount.toFixed(2) | currency: "EUR" }}</p>
+      </app-label>
+    </app-item>
+  </div>
+
+  <div card-content>
+    <ion-list lines="none">
+      <app-item>
+        <app-label>
+          <h3>{{ job.title }}</h3>
+        </app-label>
+      </app-item>
+
+      <app-item>
+        <app-label>
+          <h3>{{ job.description }}</h3>
+        </app-label>
+      </app-item>
+    </ion-list>
+  </div>
+</app-card>

@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 
 import { HttpService } from './common/http.service';
 import { Job } from '../model/job.model';
+import { JobDetails } from '../model/job-details.model';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,12 @@ export class JobService {
 
   getAllJobs(): Observable<Job[]> {
     const path = 'jobs';
-    return this.httpService.get<any>({ path });
+    return this.httpService.get<Job[]>({ path });
+  }
+
+  getJobDetails(id: string): Observable<JobDetails> {
+    const path = 'jobs';
+    const params = new HttpParams().append('id', id);
+    return this.httpService.get<JobDetails>({ path, params });
   }
 }
