@@ -1,10 +1,9 @@
-<ion-content>
+<!-- <ion-content>
   <app-loading *ngIf="isLoading"></app-loading>
 
   <app-no-data *ngIf="!isLoading && !jobDetails"></app-no-data>
 
   <div *ngIf="!isLoading && jobDetails">
-    <!--  -->
     <div>
       <p>{{ jobDetails.id }}</p>
       <p>{{ jobDetails.title }}</p>
@@ -16,9 +15,101 @@
       <p>{{ jobDetails.publishedByUserFirstName }}</p>
       <p>{{ jobDetails.publishedByUserLastName }}</p>
       <p>{{ jobDetails.priceAmount }}</p>
-      <p>{{ jobDetails.isActive }}</p>
-      <!-- <p>{{ jobDetails.jobTechnologies}}</p>
+      <p>{{ jobDetails.isActive }}</p> -->
+<!-- <p>{{ jobDetails.jobTechnologies}}</p>
       <p>{{ jobDetails.jobFields }}</p> -->
+<!-- </div>
+  </div>
+</ion-content> -->
+
+<ion-content>
+  <!-- img -->
+  <div class="about-header">
+    <img [src]="'http://localhost:3000/files/' + jobDetails.picture" />
+  </div>
+
+  <div class="about-info">
+    <!-- title -->
+    <h3 class="ion-padding-top ion-padding-start">{{ jobDetails.title }}</h3>
+
+    <!-- description -->
+    <p class="ion-padding-start ion-padding-end">
+      {{ jobDetails.description }}
+    </p>
+
+    <!-- isActive & estimated days & price amount -->
+    <h3 class="ion-padding-top ion-padding-start">Details</h3>
+
+    <app-chip-information-item
+      [icon]="'megaphone-outline'"
+      [chipLabel]="jobDetails.isActive ? 'Active' : 'No active'"
+      [chipBorderColor]="jobDetails.isActive ? 'success' : 'danger'"
+    ></app-chip-information-item>
+
+    <app-chip-information-item
+      [icon]="'hourglass-outline'"
+      [chipLabel]="jobDetails.estimatedDays + ' days'"
+      [chipBorderColor]="'medium'"
+    ></app-chip-information-item>
+
+    <app-chip-information-item
+      [icon]="'cash-outline'"
+      [chipLabel]="jobDetails.priceAmount.toFixed(2) | currency: 'EUR'"
+      [chipBorderColor]="'medium'"
+    ></app-chip-information-item>
+
+    <!-- source code -->
+    <h3 class="ion-padding-top ion-padding-start">Source code</h3>
+
+    <app-information-item
+      [text]="jobDetails.sourceCodeLink"
+      [icon]="'code-slash-outline'"
+      [clickable]="true"
+      (clicked)="onSourceCodeClick()"
+    ></app-information-item>
+
+    <!-- technologies -->
+    <h3 class="ion-padding-top ion-padding-start">Technologies</h3>
+
+    <div class="ion-padding">
+      <ion-chip *ngFor="let t of jobDetails.jobTechnologies" color="medium">
+        <ion-avatar>
+          <img [src]="'http://localhost:3000/files/' + t.technologyIcon" />
+        </ion-avatar>
+        <ion-label>{{ t.technologyName }}</ion-label>
+      </ion-chip>
+    </div>
+
+    <!-- fields -->
+    <h3 class="ion-padding-top ion-padding-start">Fields</h3>
+
+    <div class="ion-padding">
+      <ion-chip *ngFor="let f of jobDetails.jobFields" color="medium">
+        <ion-label>{{ f.fieldName }}</ion-label>
+      </ion-chip>
+    </div>
+
+    <!-- publisher information -->
+    <h3 class="ion-padding-top ion-padding-start">Publisher information</h3>
+
+    <app-information-item
+      [text]="
+        jobDetails.publishedByUserFirstName +
+        ' ' +
+        jobDetails.publishedByUserLastName
+      "
+      [icon]="'person-outline'"
+    ></app-information-item>
+
+    <app-information-item
+      [text]="jobDetails.contactEmail"
+      [icon]="'mail-open-outline'"
+    ></app-information-item>
+
+    <div style="display: flex; justify-content: center">
+      <ion-avatar>
+        <img [src]="'http://localhost:3000/files/' + 'users/1.png'" />
+      </ion-avatar>
     </div>
   </div>
 </ion-content>

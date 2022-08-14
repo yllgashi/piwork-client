@@ -1,4 +1,4 @@
-<app-item [lines]="'none'">
+<app-item [lines]="'none'" [clickable]="clickable" (clickOut)="onItemClick()">
   <ion-icon slot="start" [name]="icon"></ion-icon>
   <app-label
     ><p>

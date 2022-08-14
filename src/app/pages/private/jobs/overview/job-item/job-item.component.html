@@ -15,12 +15,10 @@
       [icon]="'calendar-outline'"
     ></app-information-item>
 
-    <app-item [lines]="'none'">
-      <ion-icon slot="start" name="megaphone-outline"></ion-icon>
-      <app-chip
-        [label]="job.isActive ? 'Active' : 'No active'"
-        [borderColor]="job.isActive ? 'success' : 'danger'"
-      ></app-chip>
-    </app-item>
+    <app-chip-information-item
+      [icon]="'megaphone-outline'"
+      [chipLabel]="job.isActive ? 'Active' : 'No active'"
+      [chipBorderColor]="job.isActive ? 'success' : 'danger'"
+    ></app-chip-information-item>
   </div>
 </app-card>

@@ -22,6 +22,7 @@ import { NoDataComponent } from './components/no-data/no-data.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { InformationItemComponent } from './components/information-item/information-item.component';
+import { ChipInformationItemComponent } from './components/chip-information-item/chip-information-item.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { InformationItemComponent } from './components/information-item/informat
     LoadingComponent,
     NoDataComponent,
     HeaderComponent,
-    InformationItemComponent
+    InformationItemComponent,
+    ChipInformationItemComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +77,8 @@ import { InformationItemComponent } from './components/information-item/informat
     LoadingComponent,
     NoDataComponent,
     HeaderComponent,
-    InformationItemComponent
+    InformationItemComponent,
+    ChipInformationItemComponent
   ],
 })
 export class SharedModule {}

@@ -50,6 +50,10 @@ export class JobDetailsComponent implements OnInit {
     this.onDismissLoading();
   }
 
+  onSourceCodeClick(): void {}
+
+  onPublisherClick(): void {}
+
   //#region helpers
   onShowLoading(): void {
     this.isLoading = true;
