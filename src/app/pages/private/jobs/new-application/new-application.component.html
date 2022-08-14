@@ -1,6 +1,23 @@
+<app-header [isModal]="true" [title]="jobTitle"></app-header>
 <ion-content>
-  <p>
-    new-application works!
-  </p>
-  
+  <form [formGroup]="newApplicationForm" (ngSubmit)="onSubmit()">
+    <app-card>
+      <app-textarea
+        body
+        [startIcon]="'chatbox-outline'"
+        [control]="getControl('comment')"
+        [placeholder]="'Write short description'"
+      ></app-textarea>
+    </app-card>
+
+    <app-button
+      *ngIf="!isLoading"
+      [type]="'submit'"
+      [text]="'ACCOUNT.APPLY' | translate"
+      [color]="'primary'"
+      [expand]="'block'"
+    >
+    </app-button>
+    <app-loading *ngIf="isLoading"></app-loading>
+  </form>
 </ion-content>

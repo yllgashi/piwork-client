@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { HttpService } from './common/http.service';
 import { Job } from '../model/job.model';
 import { JobDetails } from '../model/job-details.model';
-import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',

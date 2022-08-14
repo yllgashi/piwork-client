@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DynamicComponentsService } from '../../providers/native/dynamic-components.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input('title') title: string;
+  @Input('isModal') isModal: boolean;
 
-  constructor() {}
+  constructor(private dynamicComponentsService: DynamicComponentsService) {}
 
   ngOnInit() {}
+
+  onDismissModal(): void {
+    this.dynamicComponentsService.closeModal();
+  }
 }

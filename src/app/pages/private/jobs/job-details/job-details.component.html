@@ -69,31 +69,29 @@
     <!-- publisher information -->
     <h3 class="ion-padding-top ion-padding-start">Publisher information</h3>
 
-    <app-information-item
-      [text]="
-        jobDetails.publishedByUserFirstName +
-        ' ' +
-        jobDetails.publishedByUserLastName
-      "
-      [icon]="'person-outline'"
-    ></app-information-item>
-
-    <app-information-item
-      [text]="jobDetails.contactEmail"
-      [icon]="'mail-open-outline'"
-    ></app-information-item>
-
-    <div
-      style="display: flex; justify-content: center"
-      (click)="onPublisherClick()"
-    >
-      <ion-avatar>
+    <ion-item detail="false" button="true" (click)="onPublisherClick()">
+      <ion-avatar slot="start">
         <img [src]="'http://localhost:3000/files/' + 'users/1.png'" />
       </ion-avatar>
-    </div>
+      <ion-label>
+        <p>
+          {{
+            jobDetails.publishedByUserFirstName +
+              " " +
+              jobDetails.publishedByUserLastName
+          }}
+        </p>
+        <p>{{ jobDetails.contactEmail }}</p>
+      </ion-label>
+    </ion-item>
   </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="onProceedWithApplication()">
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    (click)="onProceedWithApplication()"
+  >
     <ion-fab-button>
       <ion-icon name="arrow-forward-outline"></ion-icon>
     </ion-fab-button>
