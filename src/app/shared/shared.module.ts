@@ -23,6 +23,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { InformationItemComponent } from './components/information-item/information-item.component';
 import { ChipInformationItemComponent } from './components/chip-information-item/chip-information-item.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ChipInformationItemComponent } from './components/chip-information-item
     NoDataComponent,
     HeaderComponent,
     InformationItemComponent,
-    ChipInformationItemComponent
+    ChipInformationItemComponent,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
@@ -78,7 +80,8 @@ import { ChipInformationItemComponent } from './components/chip-information-item
     NoDataComponent,
     HeaderComponent,
     InformationItemComponent,
-    ChipInformationItemComponent
+    ChipInformationItemComponent,
+    TruncatePipe,
   ],
 })
 export class SharedModule {}

@@ -5,11 +5,12 @@
   [cardSubtitle]="job.priceAmount.toFixed(2) | currency: 'EUR'"
   routerLink="/jobs/{{ job.id }}"
 >
-  <div before-header>
-    <img [src]="'http://localhost:3000/files/' + job.picture" />
-  </div>
-
   <div card-content>
+    <app-information-item
+      [text]="job.description | truncate: [30, '...']"
+      [icon]="'information-circle-outline'"
+    ></app-information-item>
+
     <app-information-item
       [text]="job.insertDate | date"
       [icon]="'calendar-outline'"
