@@ -1,8 +1,12 @@
-<ion-card>
+<ion-card [routerLink]="routerLink">
+  <!-- before header -->
+  <ng-content select="[before-header]"></ng-content>
   <!-- card header -->
   <ion-card-header *ngIf="cardHeader">
-    <ion-card-subtitle *ngIf="cardSubtitle">{{cardSubtitle}}</ion-card-subtitle>
-    <ion-card-title *ngIf="cardTitle">{{cardTitle}}</ion-card-title>
+    <ion-card-subtitle *ngIf="cardSubtitle">{{
+      cardSubtitle
+    }}</ion-card-subtitle>
+    <ion-card-title *ngIf="cardTitle">{{ cardTitle }}</ion-card-title>
 
     <ng-content select="[card-header]"></ng-content>
   </ion-card-header>
@@ -14,6 +18,4 @@
   <ion-card-content *ngIf="cardContent">
     <ng-content select="[card-content]"></ng-content>
   </ion-card-content>
-
-
 </ion-card>

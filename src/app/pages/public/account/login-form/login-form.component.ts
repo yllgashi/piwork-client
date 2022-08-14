@@ -73,7 +73,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   navigateToPrivateModule(): void {
-    this.dynamicComponentsService.navigateRoot('/overview');
+    this.dynamicComponentsService.navigateRoot('/jobs');
   }
 
   //#region helpers

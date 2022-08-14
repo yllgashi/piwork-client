@@ -21,6 +21,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NoDataComponent } from './components/no-data/no-data.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { InformationItemComponent } from './components/information-item/information-item.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { TranslateModule } from '@ngx-translate/core';
     LoadingComponent,
     NoDataComponent,
     HeaderComponent,
+    InformationItemComponent
   ],
   imports: [
     CommonModule,
@@ -73,6 +75,7 @@ import { TranslateModule } from '@ngx-translate/core';
     LoadingComponent,
     NoDataComponent,
     HeaderComponent,
+    InformationItemComponent
   ],
 })
 export class SharedModule {}

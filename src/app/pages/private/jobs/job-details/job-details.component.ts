@@ -34,7 +34,6 @@ export class JobDetailsComponent implements OnInit {
   }
 
   getJobDetails(id: string): void {
-    debugger;
     this.onShowLoading();
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => this.onJobDetailsFetch(res),

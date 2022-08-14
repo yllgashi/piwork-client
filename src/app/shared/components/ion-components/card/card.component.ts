@@ -10,6 +10,7 @@ export class CardComponent implements OnInit {
   @Input('cardTitle') cardTitle: string;
   @Input('cardHeader') cardHeader: boolean;
   @Input('cardContent') cardContent: boolean;
+  @Input('routerLink') routerLink: string
   constructor() {}
 
   ngOnInit() {}

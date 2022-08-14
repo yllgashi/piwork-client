@@ -1,33 +1,26 @@
 <app-card
   [cardHeader]="true"
   [cardContent]="true"
+  [cardTitle]="job.title"
+  [cardSubtitle]="job.priceAmount.toFixed(2) | currency: 'EUR'"
   routerLink="/jobs/{{ job.id }}"
 >
-  <div card-header>
-    <app-item [lines]="'none'">
-      <ion-avatar slot="start">
-        <img [src]="'../../../../../assets/images/developer-icon.png'" />
-      </ion-avatar>
-      <app-label>
-        <h2>{{ job.estimatedDays + " days" }}</h2>
-        <p>{{ job.priceAmount.toFixed(2) | currency: "EUR" }}</p>
-      </app-label>
-    </app-item>
+  <div before-header>
+    <img [src]="'http://localhost:3000/files/' + job.picture" />
   </div>
 
   <div card-content>
-    <ion-list lines="none">
-      <app-item>
-        <app-label>
-          <h3>{{ job.title }}</h3>
-        </app-label>
-      </app-item>
+    <app-information-item
+      [text]="job.insertDate | date"
+      [icon]="'calendar-outline'"
+    ></app-information-item>
 
-      <app-item>
-        <app-label>
-          <h3>{{ job.description }}</h3>
-        </app-label>
-      </app-item>
-    </ion-list>
+    <app-item [lines]="'none'">
+      <ion-icon slot="start" name="megaphone-outline"></ion-icon>
+      <app-chip
+        [label]="job.isActive ? 'Active' : 'No active'"
+        [borderColor]="job.isActive ? 'success' : 'danger'"
+      ></app-chip>
+    </app-item>
   </div>
 </app-card>
