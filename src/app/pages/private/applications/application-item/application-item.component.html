@@ -1,0 +1,44 @@
+<app-card
+  [cardHeader]="true"
+  [cardContent]="true"
+  routerLink="/applications/{{ application.id }}"
+>
+  <div card-header>
+    <app-item [lines]="'none'">
+      <app-label>
+        <h2>{{ application.jobTitle }}</h2>
+        <p>{{ application.insertDate | date }}</p>
+      </app-label>
+    </app-item>
+  </div>
+
+  <div card-content>
+    <app-chip-information-item
+      [icon]="'locate-outline'"
+      [chipLabel]="application.jobApplicationPhaseId"
+    ></app-chip-information-item>
+
+    <app-chip-information-item
+      [icon]="'megaphone-outline'"
+      [chipLabel]="application.isActive ? 'Active' : 'No active'"
+      [chipBorderColor]="application.isActive ? 'success' : 'danger'"
+    ></app-chip-information-item>
+
+    <div class="buttons-container">
+      <app-button
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'danger'"
+        (clickOut)="onDeleteJobApplication()"
+        [text]="'APP.DELETE_BTN' | translate"
+      ></app-button>
+      <app-button
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'primary'"
+        (clickOut)="onShowDetails()"
+        [text]="'APP.DELETE_BTN' | translate"
+      ></app-button>
+    </div>
+  </div>
+</app-card>

@@ -18,9 +18,11 @@ const routes: Routes = [
           import('./jobs/jobs.module').then((m) => m.JobsPageModule),
       },
       {
-        path: 'search',
+        path: 'applications',
         loadChildren: () =>
-          import('./search/search.module').then((m) => m.SearchPageModule),
+          import('./applications/applications.module').then(
+            (m) => m.ApplicationsPageModule
+          ),
       },
       {
         path: 'announce-job',
