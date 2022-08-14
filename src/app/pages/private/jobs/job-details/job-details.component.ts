@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { JobDetails } from 'src/app/shared/model/job-details.model';
 import { JobService } from 'src/app/shared/providers/job.service';
+import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { NewApplicationComponent } from '../new-application/new-application.component';
 
 @Component({
   selector: 'app-job-details',
@@ -14,7 +16,11 @@ export class JobDetailsComponent implements OnInit {
   jobDetails: JobDetails;
   isLoading: boolean;
 
-  constructor(private route: ActivatedRoute, private jobService: JobService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private jobService: JobService,
+    private dynamicComponentsService: DynamicComponentsService
+  ) {}
 
   ngOnInit() {
     this.getQueryParams()
@@ -53,6 +59,17 @@ export class JobDetailsComponent implements OnInit {
   onSourceCodeClick(): void {}
 
   onPublisherClick(): void {}
+
+  onProceedWithApplication(): void {
+    const { id, title } = this.jobDetails;
+    this.dynamicComponentsService.showModal({
+      component: NewApplicationComponent,
+      componentProps: {
+        jobId: id,
+        jobTitle: title,
+      },
+    });
+  }
 
   //#region helpers
   onShowLoading(): void {

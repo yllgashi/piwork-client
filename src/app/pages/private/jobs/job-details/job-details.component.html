@@ -1,31 +1,8 @@
-<!-- <ion-content>
-  <app-loading *ngIf="isLoading"></app-loading>
-
-  <app-no-data *ngIf="!isLoading && !jobDetails"></app-no-data>
-
-  <div *ngIf="!isLoading && jobDetails">
-    <div>
-      <p>{{ jobDetails.id }}</p>
-      <p>{{ jobDetails.title }}</p>
-      <p>{{ jobDetails.description }}</p>
-      <p>{{ jobDetails.sourceCodeLink }}</p>
-      <p>{{ jobDetails.estimatedDays }}</p>
-      <p>{{ jobDetails.contactEmail }}</p>
-      <p>{{ jobDetails.publishedByUserId }}</p>
-      <p>{{ jobDetails.publishedByUserFirstName }}</p>
-      <p>{{ jobDetails.publishedByUserLastName }}</p>
-      <p>{{ jobDetails.priceAmount }}</p>
-      <p>{{ jobDetails.isActive }}</p> -->
-<!-- <p>{{ jobDetails.jobTechnologies}}</p>
-      <p>{{ jobDetails.jobFields }}</p> -->
-<!-- </div>
-  </div>
-</ion-content> -->
-
 <ion-content>
   <!-- img -->
   <div class="about-header">
     <img [src]="'http://localhost:3000/files/' + jobDetails.picture" />
+    <app-button></app-button>
   </div>
 
   <div class="about-info">
@@ -106,10 +83,19 @@
       [icon]="'mail-open-outline'"
     ></app-information-item>
 
-    <div style="display: flex; justify-content: center">
+    <div
+      style="display: flex; justify-content: center"
+      (click)="onPublisherClick()"
+    >
       <ion-avatar>
         <img [src]="'http://localhost:3000/files/' + 'users/1.png'" />
       </ion-avatar>
     </div>
   </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="onProceedWithApplication()">
+    <ion-fab-button>
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
