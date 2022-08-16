@@ -38,10 +38,12 @@ export class AuthGuard implements CanActivate {
   onCheckForAuthorization(accessToken: string): boolean {
     if (!accessToken) this.onError();
     const isExpired: boolean = this.jwtService.isTokenExpired(accessToken);
-    return !isExpired;
+    if (isExpired) throw new Error();
+    return true;
   }
 
   onError(): Observable<any> {
+    this.storageService.clear().subscribe();
     return of(this.router.navigateByUrl('/account'));
   }
 }
