@@ -50,7 +50,7 @@ export class NewApplicationComponent implements OnInit {
   onCreateApplication(): void {
     this.onShowLoading();
     const application: CreateApplication = this.mapApplicationFromForm();
-    this.applicationService.createApplications(application).subscribe({
+    this.applicationService.createApplication(application).subscribe({
       next: (_) => this.onCreateApplicationResponse(_),
       error: (e) => this.onShowError(e),
     });

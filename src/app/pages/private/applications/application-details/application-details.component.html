@@ -1,0 +1,63 @@
+<ion-content>
+  <app-loading *ngIf="isLoading"></app-loading>
+
+  <app-no-data *ngIf="!isLoading && !jobApplicationDetails"></app-no-data>
+
+  <div *ngIf="!isLoading && jobApplicationDetails">
+    <!-- img -->
+    <div class="about-header">
+      <img
+        [src]="
+          'http://localhost:3000/files/' + jobApplicationDetails.jobPicture
+        "
+      />
+    </div>
+
+    <div class="about-info">
+      <!-- title -->
+      <h3 class="ion-padding-top ion-padding-start">
+        {{ jobApplicationDetails.jobTitle }}
+      </h3>
+
+      <!-- description -->
+      <p class="ion-padding-start ion-padding-end">
+        {{ jobApplicationDetails.jobDescription }}
+      </p>
+
+      <!-- phase & is active & insertDate -->
+      <h3 class="ion-padding-top ion-padding-start">Application Details</h3>
+      <app-information-item
+        [text]="jobApplicationDetails.insertDate | date"
+        [icon]="'calendar-outline'"
+      ></app-information-item>
+
+      <app-chip-information-item
+        [icon]="'locate-outline'"
+        [chipLabel]="jobApplicationDetails.jobApplicationPhaseId"
+        [chipBorderColor]="'warning'"
+      ></app-chip-information-item>
+
+      <app-chip-information-item
+        [icon]="'megaphone-outline'"
+        [chipLabel]="jobApplicationDetails.isActive ? 'Active' : 'No active'"
+        [chipBorderColor]="
+          jobApplicationDetails.isActive ? 'success' : 'danger'
+        "
+      ></app-chip-information-item>
+
+      <!-- comment -->
+      <h3 class="ion-padding-top ion-padding-start">Comment</h3>
+      <p class="ion-padding-start ion-padding-end">
+        {{ jobApplicationDetails.comment }}
+      </p>
+
+      <app-button
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'danger'"
+        (clickOut)="onDeleteJobApplication()"
+        [text]="'APP.DELETE_BTN' | translate"
+      ></app-button>
+    </div>
+  </div>
+</ion-content>

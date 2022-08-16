@@ -12,12 +12,24 @@ export class ApplicationService {
   constructor(private httpService: HttpService) {}
 
   getJobApplications(): Observable<GetJobApplication[]> {
-    const path = 'applications';
+    const path = `applications`;
     return this.httpService.get<GetJobApplication[]>({ path });
   }
 
-  createApplications(body: CreateApplication): Observable<any> {
+  getJobApplicationDetails(
+    applicationId: number
+  ): Observable<GetJobApplication> {
+    const path = `applications/${applicationId}`;
+    return this.httpService.get<GetJobApplication>({ path });
+  }
+
+  createApplication(body: CreateApplication): Observable<any> {
     const path = 'applications';
     return this.httpService.post<any>({ path, body });
+  }
+
+  deleteApplication(applicationId: number): Observable<any> {
+    const path = `applications/${applicationId}`;
+    return this.httpService.delete<any>({ path });
   }
 }
