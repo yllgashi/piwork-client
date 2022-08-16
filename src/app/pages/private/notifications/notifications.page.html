@@ -1,3 +1,12 @@
-<app-header [title]="'notifications'"></app-header>
+<ion-content>
+  <app-loading *ngIf="isLoading"></app-loading>
 
-<ion-content> </ion-content>
+  <app-no-data *ngIf="!isLoading && !notifications"></app-no-data>
+
+  <div *ngIf="!isLoading && notifications">
+    <app-notification-item
+      *ngFor="let n of notifications"
+      [notification]="n"
+    ></app-notification-item>
+  </div>
+</ion-content>

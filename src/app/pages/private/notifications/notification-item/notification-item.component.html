@@ -1,0 +1,12 @@
+<app-item
+  [clickable]="true"
+  (clickOut)="onNotificationClick()"
+  [lines]="'none'"
+>
+  <ion-label>
+    {{ notification.notificationTopicId }}
+    <p class="label-text">{{ notification.message }}</p>
+  </ion-label>
+
+  <ion-note slot="end">{{ notification.insertDate | date }}</ion-note>
+</app-item>
