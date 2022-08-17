@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AlertButton, AlertOptions } from '@ionic/angular';
 import { Notification } from 'src/app/shared/model/notification.model';
+import { LanguagesService } from 'src/app/shared/providers/common/languages.service';
+import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 
 @Component({
   selector: 'app-notification-item',
@@ -9,9 +12,26 @@ import { Notification } from 'src/app/shared/model/notification.model';
 export class NotificationItemComponent implements OnInit {
   @Input('notification') notification: Notification;
 
-  constructor() {}
+  constructor(
+    private dynamicComponentsService: DynamicComponentsService,
+    private languagesService: LanguagesService
+  ) {}
 
   ngOnInit() {}
 
-  onNotificationClick(): void {}
+  onNotificationClick(): void {
+    const { notificationTopicDescription, message } = this.notification;
+    const text = this.languagesService.instant('APP.CANCEL');
+    const buttons: AlertButton[] = [
+      {
+        text,
+      },
+    ];
+    const options: AlertOptions = {
+      header: notificationTopicDescription,
+      subHeader: message,
+      buttons,
+    };
+    this.dynamicComponentsService.showAlert(options);
+  }
 }
