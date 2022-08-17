@@ -1,3 +1,7 @@
-<app-header [title]="'my-account'"></app-header>
+<ion-content>
+  <app-loading *ngIf="isUserDetailsLoading"></app-loading>
 
-<ion-content> </ion-content>
+  <app-no-data *ngIf="!isUserDetailsLoading && !userDetails"></app-no-data>
+
+  <div *ngIf="!isUserDetailsLoading && userDetails"></div>
+</ion-content>
