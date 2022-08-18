@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserDetails } from '../model/user-details.model';
 import { UserExperience } from '../model/user-experience.model';
 import { UserField } from '../model/user-fields.model';
+import { UserJob } from '../model/user-job.model';
 import { UserTechnology } from '../model/user-technology.model';
 
 import { HttpService } from './common/http.service';
@@ -30,5 +31,10 @@ export class AccountService {
   getUserTechnologies(userId: number) {
     const path = `account/${userId}/technologies`;
     return this.httpService.get<UserTechnology[]>({ path });
+  }
+
+  getUserJobs(userId: number) {
+    const path = `account/${userId}/jobs`;
+    return this.httpService.get<UserJob[]>({ path });
   }
 }

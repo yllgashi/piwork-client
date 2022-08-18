@@ -3,5 +3,68 @@
 
   <app-no-data *ngIf="!isUserDetailsLoading && !userDetails"></app-no-data>
 
-  <div *ngIf="!isUserDetailsLoading && userDetails"></div>
+  <div *ngIf="!isUserDetailsLoading && userDetails">
+    <!-- img -->
+    <div class="speaker-background">
+      <img [src]="'http://localhost:3000/files/' + userDetails.profilePic" />
+    </div>
+
+    <div class="about-info">
+      <!-- title -->
+      <h3 class="ion-padding-top ion-padding-start">
+        {{ userDetails.firstName + ' ' + userDetails.lastName}}
+      </h3>
+
+      <!-- description -->
+      <p class="ion-padding-start ion-padding-end">
+        {{ userDetails.description }}
+      </p>
+
+      <!-- technologies -->
+      <h3 class="ion-padding-top ion-padding-start">Technologies</h3>
+      <div class="ion-padding">
+        <ion-chip *ngFor="let t of userTechnologies" color="medium">
+          <ion-avatar>
+            <img [src]="'http://localhost:3000/files/' + t.technologyIcon" />
+          </ion-avatar>
+          <ion-label>{{ t.technologyName }}</ion-label>
+        </ion-chip>
+      </div>
+
+      <!-- fields -->
+      <h3 class="ion-padding-top ion-padding-start">Fields</h3>
+      <div class="ion-padding">
+        <ion-chip *ngFor="let f of userFields" color="medium">
+          <ion-label>{{ f.name }}</ion-label>
+        </ion-chip>
+      </div>
+
+      <!-- jobs -->
+      <h3 class="ion-padding-top ion-padding-start">Tasks</h3>
+      <ion-item detail="false" button="true" *ngFor="let uj of userJobs">
+        <ion-icon name="git-pull-request-outline"></ion-icon>
+        <ion-label>
+          <p>{{ uj.jobTitle }}</p>
+          <p>{{ (uj.employerComment | truncate: [15, '...']) }}</p>
+        </ion-label>
+        <ion-note slot="end">{{uj.isActive ? 'Active' : 'Unactive'}}</ion-note>
+      </ion-item>
+
+      <!-- experience -->
+      <h3 class="ion-padding-top ion-padding-start">Experience</h3>
+
+      <ion-item detail="false" button="true" *ngFor="let ue of userExperiences">
+        <ion-icon name="business-outline"></ion-icon>
+
+        <ion-label>
+          <p>{{ ue.workplaceName }}</p>
+          <p>{{ (ue.description | truncate: [15, '...']) }}</p>
+        </ion-label>
+        <ion-note slot="end"
+          >{{(ue.startDate | date : 'MM.yyyy') + ' - ' + (ue.endDate ?
+          (ue.endDate | date : 'MM.yyyy') : 'Still') }}</ion-note
+        >
+      </ion-item>
+    </div>
+  </div>
 </ion-content>

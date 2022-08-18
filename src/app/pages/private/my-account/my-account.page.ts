@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { UserDetails } from 'src/app/shared/model/user-details.model';
 import { UserExperience } from 'src/app/shared/model/user-experience.model';
 import { UserField } from 'src/app/shared/model/user-fields.model';
+import { UserJob } from 'src/app/shared/model/user-job.model';
 import { UserTechnology } from 'src/app/shared/model/user-technology.model';
 import { User } from 'src/app/shared/model/user.model';
 import { AccountService } from 'src/app/shared/providers/account.service';
@@ -18,11 +19,13 @@ export class MyAccountPage implements OnInit {
   userExperiences: UserExperience[];
   userFields: UserField[];
   userTechnologies: UserTechnology[];
+  userJobs: UserJob[];
   user$: Subscription;
   isUserDetailsLoading: boolean;
   areUserExperiencesLoading: boolean;
   areUserFieldsLoading: boolean;
   areUserTechnologiesLoading: boolean;
+  areUserJobsLoading: boolean;
 
   constructor(
     private accountService: AccountService,
@@ -44,14 +47,16 @@ export class MyAccountPage implements OnInit {
     const { userId } = user;
     if (!userId) return;
     setTimeout(() => this.getUserDetails(userId), 1000);
-    setTimeout(() => this.getUserExperience(userId), 3000);
-    setTimeout(() => this.getUserFields(userId), 5000);
-    setTimeout(() => this.getUserTechnologies(userId), 7000);
+    setTimeout(() => this.getUserExperience(userId), 2000);
+    setTimeout(() => this.getUserFields(userId), 3);
+    setTimeout(() => this.getUserTechnologies(userId), 4000);
+    setTimeout(() => this.getUserJobs(userId), 6000);
 
     // this.getUserDetails(userId);
     // this.getUserExperience(userId);
     // this.getUserFields(userId);
     // this.getUserTechnologies(userId);
+    // this.getUserJobs(userId);
   }
 
   getUserDetails(userId: number) {
@@ -83,6 +88,14 @@ export class MyAccountPage implements OnInit {
     this.accountService.getUserTechnologies(userId).subscribe({
       next: (res) => this.onGetUserTechnologiesRes(res),
       error: (e) => this.onGetUserTechnologiesError(e),
+    });
+  }
+
+  getUserJobs(userId: number) {
+    this.onShowUserJobsLoading();
+    this.accountService.getUserJobs(userId).subscribe({
+      next: (res) => this.onTetUserJobsRes(res),
+      error: (e) => this.onGetUserJobsError(e),
     });
   }
 
@@ -123,6 +136,16 @@ export class MyAccountPage implements OnInit {
   onGetUserTechnologiesError(e: any): void {
     this.onDismissUserTechnologiesLoading();
   }
+
+  onTetUserJobsRes(response: UserJob[]): void {
+    this.userJobs = response;
+    console.log(response);
+    this.onDismissUserJobsLoading();
+  }
+
+  onGetUserJobsError(e: any): void {
+    this.onDismissUserJobsLoading();
+  }
   //#endregion callbacks
 
   //#region loadings
@@ -156,6 +179,14 @@ export class MyAccountPage implements OnInit {
 
   onDismissUserTechnologiesLoading(): void {
     this.areUserTechnologiesLoading = false;
+  }
+
+  onShowUserJobsLoading(): void {
+    this.areUserJobsLoading = true;
+  }
+
+  onDismissUserJobsLoading(): void {
+    this.areUserJobsLoading = false;
   }
   //#endregion loadings
 }
