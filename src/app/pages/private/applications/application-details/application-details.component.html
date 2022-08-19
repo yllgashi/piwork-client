@@ -8,7 +8,8 @@
     <div class="about-header">
       <img
         [src]="
-          'http://localhost:3000/files/' + jobApplicationDetails.jobPicture
+          'http://localhost:3000/files/' +
+          jobApplicationDetails.publisherProfilePic
         "
       />
     </div>
@@ -52,6 +53,7 @@
       </p>
 
       <app-button
+        *ngIf="jobApplicationDetails.jobApplicationPhaseId === 'Waiting'"
         [fill]="'clear'"
         [expand]="'block'"
         [color]="'danger'"
