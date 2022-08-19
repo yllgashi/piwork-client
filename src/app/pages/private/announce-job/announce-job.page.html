@@ -1,3 +1,94 @@
-<app-header [title]="'announce-job'"></app-header>
+<ion-content>
+  <app-loading *ngIf="areTechnologiesLoading"></app-loading>
 
-<ion-content> </ion-content>
+  <app-no-data *ngIf="!areTechnologiesLoading && !technologies"></app-no-data>
+
+  <div *ngIf="!areTechnologiesLoading && technologies">
+    <form [formGroup]="announceJobForm" (ngSubmit)="onSubmit()">
+      <app-input
+        [startIcon]="'shield-checkmark-outline'"
+        [type]="'text'"
+        [label]="'Title'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'Software dev...'"
+        [control]="getControl('title')"
+      >
+      </app-input>
+
+      <app-input
+        [startIcon]="'chatbox-outline'"
+        [type]="'text'"
+        [label]="'Description'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'Looking for...'"
+        [control]="getControl('description')"
+      >
+      </app-input>
+
+      <app-input
+        [startIcon]="'code-slash-outline'"
+        [type]="'text'"
+        [label]="'Source Code Link'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'github.com'"
+        [control]="getControl('sourceCodeLink')"
+      >
+      </app-input>
+
+      <app-input
+        [startIcon]="'hourglass-outline'"
+        [type]="'number'"
+        [label]="'Estimated Days'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'0'"
+        [control]="getControl('estimatedDays')"
+      >
+      </app-input>
+
+      <app-input
+        [startIcon]="'mail-outline'"
+        [type]="'text'"
+        [label]="'Contact Email'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'email@outlook.com'"
+        [control]="getControl('contactEmail')"
+      >
+      </app-input>
+
+      <app-input
+        [startIcon]="'cash-outline'"
+        [type]="'number'"
+        [label]="'Price Amount'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'0' | currency : 'EUR'"
+        [control]="getControl('priceAmount')"
+      >
+      </app-input>
+
+      <ion-list>
+        <ion-item >
+          <ion-icon slot="start" name="hammer-outline"></ion-icon>
+          <ion-select
+            [formControl]="getControl('jobTechnologiesIds')"
+            placeholder="Select technologies"
+            [multiple]="true"
+          >
+            <ion-select-option *ngFor="let t of technologies" [value]="t.id"
+              >{{t.name}}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <app-button
+        *ngIf="!createJobLoading"
+        [type]="'submit'"
+        [text]="'ACCOUNT.APPLY' | translate"
+        [color]="'primary'"
+        [expand]="'block'"
+      >
+      </app-button>
+      <app-loading *ngIf="createJobLoading"></app-loading>
+    </form>
+  </div>
+</ion-content>
