@@ -1,10 +1,12 @@
-<ion-toolbar>
-  <ion-buttons *ngIf="isModal" slot="start">
-    <ion-icon
-      slot="icon-only"
-      name="close-outline"
-      (click)="onDismissModal()"
-    ></ion-icon>
-  </ion-buttons>
-  <ion-title>{{ title }}</ion-title>
-</ion-toolbar>
+<ion-header collapse="fade">
+  <ion-toolbar>
+    <ion-buttons *ngIf="icon" slot="start">
+      <ion-icon
+        slot="icon-only"
+        [name]="icon"
+        (click)="onIconClick()"
+      ></ion-icon>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>

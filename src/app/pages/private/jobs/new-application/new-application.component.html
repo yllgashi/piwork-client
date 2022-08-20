@@ -1,4 +1,9 @@
-<app-header [isModal]="true" [title]="jobTitle"></app-header>
+<app-header
+  [icon]="'close-outline'"
+  [title]="jobTitle"
+  (iconClick)="closeModal()"
+></app-header>
+
 <ion-content>
   <form [formGroup]="newApplicationForm" (ngSubmit)="onSubmit()">
     <app-card>

@@ -4,7 +4,7 @@
   <app-no-data *ngIf="!areTechnologiesLoading && !technologies"></app-no-data>
 
   <div *ngIf="!areTechnologiesLoading && technologies">
-    <form [formGroup]="announceJobForm" (ngSubmit)="onSubmit()">
+    <!-- <form [formGroup]="announceJobForm" (ngSubmit)="onSubmit()">
       <app-input
         [startIcon]="'shield-checkmark-outline'"
         [type]="'text'"
@@ -66,10 +66,10 @@
       </app-input>
 
       <ion-list>
-        <ion-item >
+        <ion-item>
           <ion-icon slot="start" name="hammer-outline"></ion-icon>
           <ion-select
-            [formControl]="getControl('jobTechnologiesIds')"
+            [formControl]="getControl('technologies')"
             placeholder="Select technologies"
             [multiple]="true"
           >
@@ -79,6 +79,171 @@
           </ion-select>
         </ion-item>
       </ion-list>
+
+      <app-button
+        *ngIf="!createJobLoading"
+        [type]="'submit'"
+        [text]="'ACCOUNT.APPLY' | translate"
+        [color]="'primary'"
+        [expand]="'block'"
+      >
+      </app-button>
+      <app-loading *ngIf="createJobLoading"></app-loading>
+    </form> -->
+
+    <!-- note -->
+    <app-job-creation-note></app-job-creation-note>
+
+    <form [formGroup]="announceJobForm" (ngSubmit)="onSubmit()">
+      <!-- title, description -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Basic Information</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <app-input
+            [startIcon]="'shield-checkmark-outline'"
+            [type]="'text'"
+            [label]="'Title'"
+            [labelPosition]="'stacked'"
+            [placeholder]="'Software dev...'"
+            [control]="getControl('title')"
+          >
+          </app-input>
+
+          <app-textarea
+            [startIcon]="'chatbox-outline'"
+            [placeholder]="'Looking for...'"
+            [control]="getControl('description')"
+          >
+          </app-textarea>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- price, estimated time and more -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>More Information</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <app-input
+            [startIcon]="'hourglass-outline'"
+            [type]="'number'"
+            [label]="'Estimated Days'"
+            [labelPosition]="'stacked'"
+            [placeholder]="'0'"
+            [control]="getControl('estimatedDays')"
+          >
+          </app-input>
+
+          <app-input
+            [startIcon]="'cash-outline'"
+            [type]="'number'"
+            [label]="'Price Amount'"
+            [labelPosition]="'stacked'"
+            [placeholder]="'0' | currency : 'EUR'"
+            [control]="getControl('priceAmount')"
+          >
+          </app-input>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- source code -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Code Location</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <app-input
+            [startIcon]="'code-slash-outline'"
+            [type]="'text'"
+            [label]="'Source Code Link'"
+            [labelPosition]="'stacked'"
+            [placeholder]="'github.com'"
+            [control]="getControl('sourceCodeLink')"
+          >
+          </app-input>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- technologies -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Select techologies</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon slot="start" name="hammer-outline"></ion-icon>
+              <ion-select
+                selectedText="Choose"
+                [multiple]="true"
+                (ionChange)="onTechnologiesSelect($event)"
+              >
+                <ion-select-option *ngFor="let t of technologies" [value]="t.id"
+                  >{{t.name}}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+          <div class="ion-padding">
+            <ion-chip *ngFor="let t of choosedTechnologies" color="medium">
+              <ion-avatar>
+                <img [src]="'http://localhost:3000/files/' + t.icon" />
+              </ion-avatar>
+              <ion-label>{{ t.name }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- fields -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Select fields</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon slot="start" name="ribbon-outline"></ion-icon>
+              <ion-select
+                selectedText="Choose"
+                [multiple]="true"
+                (ionChange)="onFieldsSelect($event)"
+              >
+                <ion-select-option *ngFor="let f of fields" [value]="f.id"
+                  >{{f.name}}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+          <div class="ion-padding">
+            <ion-chip *ngFor="let f of choosedFields" color="medium">
+              <ion-label>{{ f.name }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- contact email -->
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Contact Email</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <app-input
+            [startIcon]="'mail-outline'"
+            [type]="'text'"
+            [label]="'Contact Email'"
+            [labelPosition]="'stacked'"
+            [placeholder]="'email@outlook.com'"
+            [control]="getControl('contactEmail')"
+          >
+          </app-input>
+        </ion-card-content>
+      </ion-card>
 
       <app-button
         *ngIf="!createJobLoading"

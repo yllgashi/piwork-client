@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { DynamicComponentsService } from '../../providers/native/dynamic-components.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +7,14 @@ import { DynamicComponentsService } from '../../providers/native/dynamic-compone
 })
 export class HeaderComponent implements OnInit {
   @Input('title') title: string;
-  @Input('isModal') isModal: boolean;
+  @Input('icon') icon: string;
+  @Output() iconClick = new EventEmitter<void>();
 
-  constructor(private dynamicComponentsService: DynamicComponentsService) {}
+  constructor() {}
 
   ngOnInit() {}
 
-  onDismissModal(): void {
-    this.dynamicComponentsService.closeModal();
+  onIconClick(): void {
+    this.iconClick.next();
   }
 }
