@@ -1,7 +1,9 @@
 <ion-content>
   <!-- img -->
   <div class="about-header">
-    <img [src]="'http://localhost:3000/files/' + jobDetails.publisherProfilePic" />
+    <img
+      [src]="'http://localhost:3000/files/' + jobDetails.publisherProfilePic"
+    />
     <app-button></app-button>
   </div>
 
@@ -45,24 +47,15 @@
       (clicked)="onSourceCodeClick()"
     ></app-information-item>
 
-    <!-- technologies -->
-    <h3 class="ion-padding-top ion-padding-start">Technologies</h3>
+    <!-- Skills -->
+    <h3 class="ion-padding-top ion-padding-start">Skills</h3>
 
     <div class="ion-padding">
-      <ion-chip *ngFor="let t of jobDetails.jobTechnologies" color="medium">
+      <ion-chip *ngFor="let s of jobDetails.requiredSkills" color="medium">
         <ion-avatar>
-          <img [src]="'http://localhost:3000/files/' + t.technologyIcon" />
+          <img [src]="'http://localhost:3000/files/' + s.icon" />
         </ion-avatar>
-        <ion-label>{{ t.technologyName }}</ion-label>
-      </ion-chip>
-    </div>
-
-    <!-- fields -->
-    <h3 class="ion-padding-top ion-padding-start">Fields</h3>
-
-    <div class="ion-padding">
-      <ion-chip *ngFor="let f of jobDetails.jobFields" color="medium">
-        <ion-label>{{ f.fieldName }}</ion-label>
+        <ion-label>{{ s.name }}</ion-label>
       </ion-chip>
     </div>
 

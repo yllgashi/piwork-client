@@ -1,16 +1,12 @@
 <ion-content>
-  <app-loading *ngIf="areTechnologiesLoading"></app-loading>
+  <app-loading *ngIf="areSkillsLoading"></app-loading>
 
-  <app-no-data *ngIf="!areTechnologiesLoading && !technologies"></app-no-data>
+  <app-no-data *ngIf="!areSkillsLoading && !skills"></app-no-data>
 
-  <div *ngIf="!areTechnologiesLoading && technologies">
+  <div *ngIf="!areSkillsLoading && skills">
     <!-- note -->
     <app-job-creation-note></app-job-creation-note>
 
-    <app-create-job-form
-      *ngIf="technologies && fields"
-      [technologies]="technologies"
-      [fields]="fields"
-    ></app-create-job-form>
+    <app-create-job-form *ngIf="skills" [skills]="skills"></app-create-job-form>
   </div>
 </ion-content>

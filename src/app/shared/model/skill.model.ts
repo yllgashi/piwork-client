@@ -1,8 +1,6 @@
-export class Technology {
+export class Skill {
   id: number;
   name: string;
   description: string;
   icon: string;
-  fieldId?: number;
-  field?: string;
 }

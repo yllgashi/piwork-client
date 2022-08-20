@@ -1,0 +1,9 @@
+<h3 class="ion-padding-top ion-padding-start">Skills</h3>
+<div class="ion-padding">
+  <ion-chip *ngFor="let s of skills" color="medium">
+    <ion-avatar>
+      <img [src]="'http://localhost:3000/files/' + s.icon" />
+    </ion-avatar>
+    <ion-label>{{ s.name }}</ion-label>
+  </ion-chip>
+</div>

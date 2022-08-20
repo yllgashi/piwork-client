@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { JobCreate } from 'src/app/shared/model/create-job.model';
-import { Field } from 'src/app/shared/model/field.model';
-import { Technology } from 'src/app/shared/model/technology.model';
+import { Skill } from 'src/app/shared/model/skill.model';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 
@@ -12,11 +11,9 @@ import { DynamicComponentsService } from 'src/app/shared/providers/native/dynami
   styleUrls: ['./create-job-form.component.scss'],
 })
 export class CreateJobFormComponent implements OnInit {
-  @Input('technologies') technologies: Technology[];
-  @Input('fields') fields: Field[];
+  @Input('skills') skills: Skill[];
   announceJobForm: FormGroup;
-  choosedTechnologies: Technology[];
-  choosedFields: Field[];
+  choosedSkills: Skill[];
   createJobLoading: boolean;
 
   constructor(
@@ -44,19 +41,11 @@ export class CreateJobFormComponent implements OnInit {
     return this.announceJobForm.get(control) as FormControl;
   }
 
-  onTechnologiesSelect(event): void {
+  onSkillsSelect(event): void {
     const { value } = event.currentTarget;
-    this.choosedTechnologies = value.map((x) => {
-      const technology = this.technologies.find((y) => y.id === x);
-      return technology;
-    });
-  }
-
-  onFieldsSelect(event): void {
-    const { value } = event.currentTarget;
-    this.choosedFields = value.map((x) => {
-      const field = this.fields.find((y) => y.id === x);
-      return field;
+    this.choosedSkills = value.map((x) => {
+      const skill = this.skills.find((y) => y.id === x);
+      return skill;
     });
   }
 
@@ -91,8 +80,7 @@ export class CreateJobFormComponent implements OnInit {
       contactEmail,
       priceAmount,
     } = this.announceJobForm.value;
-    const technologiesIds: number[] = this.choosedTechnologies.map((x) => x.id);
-    const fieldsIds: number[] = this.choosedFields.map((x) => x.id);
+    const skillsIds: number[] = this.choosedSkills.map((x) => x.id);
     const jobCreate: JobCreate = {
       title,
       description,
@@ -100,7 +88,7 @@ export class CreateJobFormComponent implements OnInit {
       estimatedDays: +estimatedDays,
       priceAmount: +priceAmount,
       contactEmail,
-      technologiesIds,
+      skillsIds,
     };
     return jobCreate;
   }

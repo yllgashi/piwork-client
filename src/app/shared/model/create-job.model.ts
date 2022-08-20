@@ -5,5 +5,5 @@ export class JobCreate {
   estimatedDays: number;
   contactEmail: string;
   priceAmount: number;
-  technologiesIds?: number[];
+  skillsIds?: number[];
 }

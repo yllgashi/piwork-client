@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Field } from 'src/app/shared/model/field.model';
-import { Technology } from 'src/app/shared/model/technology.model';
+import { Skill } from 'src/app/shared/model/skill.model';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
-import { TechnologyService } from 'src/app/shared/providers/technology.service';
+import { SkillService } from 'src/app/shared/providers/skill.service';
 
 @Component({
   selector: 'app-announce-job',
@@ -10,74 +9,44 @@ import { TechnologyService } from 'src/app/shared/providers/technology.service';
   styleUrls: ['./announce-job.page.scss'],
 })
 export class AnnounceJobPage implements OnInit {
-  technologies: Technology[];
-  fields: Field[];
-  areTechnologiesLoading: boolean;
-  areFieldsLoading: boolean;
+  skills: Skill[];
+  areSkillsLoading: boolean;
 
   constructor(
-    private technologyService: TechnologyService,
+    private skillService: SkillService,
     private dynamicComponentsService: DynamicComponentsService
   ) {}
 
   ngOnInit() {
-    this.getTechnologies();
-    setTimeout(() => {
-      this.getFields();
-    }, 1000);
+    this.getSkills();
   }
 
-  getTechnologies(): void {
-    this.onShowTechnologiesLoading();
-    this.technologyService.getAllTechnologies().subscribe({
-      next: (res) => this.onGetTechnologiesRes(res),
-      error: (e) => this.onGetTechnologiesError(e),
-    });
-  }
-
-  getFields(): void {
-    this.onShowFieldsLoading();
-    this.technologyService.getAllFields().subscribe({
-      next: (res) => this.onGetFieldsRes(res),
-      error: (e) => this.onGetFieldsError(e),
+  getSkills(): void {
+    this.onShowSkillsLoading();
+    this.skillService.getAllSkills().subscribe({
+      next: (res) => this.onGetSkillsRes(res),
+      error: (e) => this.onGetSkillsError(e),
     });
   }
 
   //#region callbacks
-  onGetTechnologiesRes(response: Technology[]): void {
-    this.technologies = response;
-    this.onDismissTechnologiesLoading();
+  onGetSkillsRes(response: Skill[]): void {
+    this.skills = response;
+    this.onDismissSkillsLoading();
   }
 
-  onGetTechnologiesError(e: string): void {
-    this.onDismissTechnologiesLoading();
-  }
-
-  onGetFieldsRes(response: Field[]): void {
-    this.fields = response;
-    this.onDismissFieldsLoading();
-  }
-
-  onGetFieldsError(e: string): void {
-    this.onDismissFieldsLoading();
+  onGetSkillsError(e: string): void {
+    this.onDismissSkillsLoading();
   }
   //#endregion callbacks
 
   //#region helpers
-  onShowTechnologiesLoading(): void {
-    this.areTechnologiesLoading = true;
+  onShowSkillsLoading(): void {
+    this.areSkillsLoading = true;
   }
 
-  onDismissTechnologiesLoading(): void {
-    this.areTechnologiesLoading = false;
-  }
-
-  onShowFieldsLoading(): void {
-    this.areFieldsLoading = true;
-  }
-
-  onDismissFieldsLoading(): void {
-    this.areFieldsLoading = false;
+  onDismissSkillsLoading(): void {
+    this.areSkillsLoading = false;
   }
 
   onShowError(errorMsg: any): void {

@@ -81,13 +81,13 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- technologies -->
+  <!-- skills -->
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Select techologies</ion-card-title>
+      <ion-card-title>Select Skills</ion-card-title>
       <ion-card-subtitle
-        >Choose technologies which are nesseccary for a job-seeker to know in
-        order to finish this job</ion-card-subtitle
+        >Choose technologies and fields which are nesseccary for a job-seeker to
+        know in order to finish this job</ion-card-subtitle
       >
     </ion-card-header>
     <ion-card-content>
@@ -97,53 +97,21 @@
           <ion-select
             selectedText="Choose"
             [multiple]="true"
-            (ionChange)="onTechnologiesSelect($event)"
+            (ionChange)="onSkillsSelect($event)"
           >
-            <ion-select-option *ngFor="let t of technologies" [value]="t.id">{{
-              t.name
+            <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
+              s.name
             }}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
 
       <div class="ion-padding">
-        <ion-chip *ngFor="let t of choosedTechnologies" color="medium">
+        <ion-chip *ngFor="let s of choosedSkills" color="medium">
           <ion-avatar>
             <img [src]="'http://localhost:3000/files/' + t.icon" />
           </ion-avatar>
-          <ion-label>{{ t.name }}</ion-label>
-        </ion-chip>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- fields -->
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Select fields</ion-card-title>
-      <ion-card-subtitle
-        >Choose fields which this task is related to</ion-card-subtitle
-      >
-    </ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon slot="start" name="ribbon-outline"></ion-icon>
-          <ion-select
-            selectedText="Choose"
-            [multiple]="true"
-            (ionChange)="onFieldsSelect($event)"
-          >
-            <ion-select-option *ngFor="let f of fields" [value]="f.id">{{
-              f.name
-            }}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-
-      <div class="ion-padding">
-        <ion-chip *ngFor="let f of choosedFields" color="medium">
-          <ion-label>{{ f.name }}</ion-label>
+          <ion-label>{{ s.name }}</ion-label>
         </ion-chip>
       </div>
     </ion-card-content>
