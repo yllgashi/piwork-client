@@ -91,25 +91,24 @@
       >
     </ion-card-header>
     <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-icon slot="start" name="hammer-outline"></ion-icon>
-          <ion-select
-            selectedText="Choose"
-            [multiple]="true"
-            (ionChange)="onSkillsSelect($event)"
-          >
-            <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
-              s.name
-            }}</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="hammer-outline"></ion-icon>
+        <ion-label position="stacked">Skills</ion-label>
+        <ion-select
+          selectedText="Choose"
+          multiple="true"
+          (ionChange)="onSkillsSelect($event)"
+        >
+          <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
+            s.name
+          }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
       <div class="ion-padding">
         <ion-chip *ngFor="let s of choosedSkills" color="medium">
           <ion-avatar>
-            <img [src]="'http://localhost:3000/files/' + t.icon" />
+            <img [src]="'http://localhost:3000/files/' + s.icon" />
           </ion-avatar>
           <ion-label>{{ s.name }}</ion-label>
         </ion-chip>

@@ -3,6 +3,9 @@
   (clickOut)="onNotificationClick()"
   [lines]="'none'"
 >
+  <ion-avatar slot="start">
+    <img [src]="'http://localhost:3000/files/' + notification.picture" />
+  </ion-avatar>
   <ion-label>
     {{ notification.notificationTopicDescription }}
     <p class="label-text">{{ notification.message }}</p>
