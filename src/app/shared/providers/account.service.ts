@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDetails } from '../model/user-details.model';
-import { UserExperience } from '../model/user-experience.model';
+import { Experience } from '../model/experience.model';
 import { UserField } from '../model/user-fields.model';
 import { UserJob } from '../model/user-job.model';
 import { UserTechnology } from '../model/user-technology.model';
@@ -20,7 +20,7 @@ export class AccountService {
 
   getUserExperience(userId: number) {
     const path = `account/${userId}/experience`;
-    return this.httpService.get<UserExperience[]>({ path });
+    return this.httpService.get<Experience[]>({ path });
   }
 
   getUserFields(userId: number) {

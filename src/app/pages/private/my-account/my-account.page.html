@@ -1,75 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-searchbar></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
   <app-loading *ngIf="isUserDetailsLoading"></app-loading>
 
   <app-no-data *ngIf="!isUserDetailsLoading && !userDetails"></app-no-data>
 
   <div *ngIf="!isUserDetailsLoading && userDetails">
-    <!-- img -->
-    <div class="speaker-background">
-      <img [src]="'http://localhost:3000/files/' + userDetails.profilePic" />
-    </div>
+    <app-header-picture [picture]="userDetails.profilePic"></app-header-picture>
 
     <div class="about-info">
-      <!-- title -->
-      <h3 class="ion-padding-top ion-padding-start">
-        {{ userDetails.firstName + ' ' + userDetails.lastName}}
-      </h3>
+      <app-name-and-description
+        [firstName]="userDetails.firstName"
+        [lastName]="userDetails.lastName"
+        [description]="userDetails.description"
+      ></app-name-and-description>
 
-      <!-- description -->
-      <p class="ion-padding-start ion-padding-end">
-        {{ userDetails.description }}
-      </p>
+      <app-user-technologies
+        [technologies]="userDetails.technologies"
+      ></app-user-technologies>
 
-      <!-- technologies -->
-      <h3 class="ion-padding-top ion-padding-start">Technologies</h3>
-      <div class="ion-padding">
-        <ion-chip *ngFor="let t of userTechnologies" color="medium">
-          <ion-avatar>
-            <img [src]="'http://localhost:3000/files/' + t.technologyIcon" />
-          </ion-avatar>
-          <ion-label>{{ t.technologyName }}</ion-label>
-        </ion-chip>
-      </div>
-
-      <!-- fields -->
-      <h3 class="ion-padding-top ion-padding-start">Fields</h3>
-      <div class="ion-padding">
-        <ion-chip *ngFor="let f of userFields" color="medium">
-          <ion-label>{{ f.name }}</ion-label>
-        </ion-chip>
-      </div>
+      <app-user-fields [fields]="userDetails.fields"></app-user-fields>
 
       <!-- jobs -->
-      <h3 class="ion-padding-top ion-padding-start">Tasks</h3>
-      <ion-item detail="false" button="true" *ngFor="let uj of userJobs">
-        <ion-icon name="git-pull-request-outline"></ion-icon>
-        <ion-label>
-          <p>{{ uj.jobTitle }}</p>
-          <p>{{ (uj.employerComment | truncate: [15, '...']) }}</p>
-        </ion-label>
-        <ion-note slot="end">{{uj.isActive ? 'Active' : 'Unactive'}}</ion-note>
-      </ion-item>
+      <app-user-tasks [jobs]="userDetails.jobs"></app-user-tasks>
 
       <!-- experience -->
-      <h3 class="ion-padding-top ion-padding-start">Experience</h3>
-
-      <ion-item detail="false" button="true" *ngFor="let ue of userExperiences">
-        <ion-icon name="business-outline"></ion-icon>
-
-        <ion-label>
-          <p>{{ ue.workplaceName }}</p>
-          <p>{{ (ue.description | truncate: [15, '...']) }}</p>
-        </ion-label>
-        <ion-note slot="end"
-          >{{(ue.startDate | date : 'MM.yyyy') + ' - ' + (ue.endDate ?
-          (ue.endDate | date : 'MM.yyyy') : 'Still') }}</ion-note
-        >
-      </ion-item>
+      <app-user-experience
+        [experience]="userDetails.experience"
+      ></app-user-experience>
     </div>
   </div>
 </ion-content>

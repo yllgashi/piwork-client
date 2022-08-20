@@ -1,0 +1,9 @@
+<h3 class="ion-padding-top ion-padding-start">Tasks</h3>
+<ion-item detail="false" button="true" *ngFor="let j of jobs">
+  <ion-icon name="git-pull-request-outline"></ion-icon>
+  <ion-label>
+    <p>{{ j.jobTitle }}</p>
+    <p>{{ j.employerComment | truncate: [15, "..."] }}</p>
+  </ion-label>
+  <ion-note slot="end">{{ j.isActive ? "Active" : "Unactive" }}</ion-note>
+</ion-item>

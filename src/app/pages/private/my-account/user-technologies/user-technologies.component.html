@@ -1,0 +1,9 @@
+<h3 class="ion-padding-top ion-padding-start">Technologies</h3>
+<div class="ion-padding">
+  <ion-chip *ngFor="let t of technologies" color="medium">
+    <ion-avatar>
+      <img [src]="'http://localhost:3000/files/' + t.icon" />
+    </ion-avatar>
+    <ion-label>{{ t.name }}</ion-label>
+  </ion-chip>
+</div>

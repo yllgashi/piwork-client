@@ -1,4 +1,4 @@
-export class UserExperience {
+export class Experience {
   id: number;
   workplaceName: string;
   description: string;
