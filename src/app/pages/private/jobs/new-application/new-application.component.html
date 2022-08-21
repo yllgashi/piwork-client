@@ -5,6 +5,36 @@
 ></app-header>
 
 <ion-content>
+  <app-card>
+    <ion-item body detail="false" lines="none">
+      <ion-icon slot="start" name="person-outline"></ion-icon>
+      <ion-label>
+        <p>First name</p>
+        <p>{{ user.firstName }}</p>
+      </ion-label>
+    </ion-item>
+  </app-card>
+
+  <app-card>
+    <ion-item body detail="false" lines="none">
+      <ion-icon slot="start" name="accessibility-outline"></ion-icon>
+      <ion-label>
+        <p>Last name</p>
+        <p>{{ user.lastName }}</p>
+      </ion-label>
+    </ion-item>
+  </app-card>
+
+  <app-card>
+    <ion-item body detail="false" lines="none">
+      <ion-icon slot="start" name="mail-outline"></ion-icon>
+      <ion-label>
+        <p>Email</p>
+        <p>{{ user.email }}</p>
+      </ion-label>
+    </ion-item>
+  </app-card>
+
   <form [formGroup]="newApplicationForm" (ngSubmit)="onSubmit()">
     <app-card>
       <app-textarea
@@ -14,15 +44,21 @@
         [placeholder]="'Write short description'"
       ></app-textarea>
     </app-card>
+  </form>
+</ion-content>
 
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
     <app-button
       *ngIf="!isLoading"
       [type]="'submit'"
-      [text]="'ACCOUNT.APPLY' | translate"
-      [color]="'primary'"
+      (clickOut)="onSubmit()"
+      [fill]="'clear'"
       [expand]="'block'"
-    >
-    </app-button>
+      [color]="'success'"
+      [text]="'APPLY'"
+    ></app-button>
+
     <app-loading *ngIf="isLoading"></app-loading>
-  </form>
-</ion-content>
+  </ion-toolbar>
+</ion-footer>

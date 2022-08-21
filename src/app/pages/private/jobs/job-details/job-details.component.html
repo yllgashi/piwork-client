@@ -84,7 +84,7 @@
 </ion-content>
 
 <ion-footer *ngIf="jobDetails" class="ion-no-border">
-  <ion-toolbar>
+  <ion-toolbar *ngIf="jobDetails.isActive">
     <app-button
       *accessRole="'Seeker'"
       [fill]="'clear'"
@@ -94,13 +94,13 @@
       [text]="'APPLY'"
     ></app-button>
 
-    <app-button
+    <!-- <app-button
       *accessRole="'Recruiter'"
       [fill]="'clear'"
       [expand]="'block'"
       [color]="'default'"
       (clickOut)="onShowJobApplications()"
       [text]="'SHOW JOB APPLICATIONS'"
-    ></app-button>
+    ></app-button> -->
   </ion-toolbar>
 </ion-footer>
