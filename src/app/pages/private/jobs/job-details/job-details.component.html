@@ -83,14 +83,24 @@
   </div>
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<ion-footer *ngIf="jobDetails" class="ion-no-border">
   <ion-toolbar>
     <app-button
+      *accessRole="'Seeker'"
       [fill]="'clear'"
       [expand]="'block'"
       [color]="'success'"
       (clickOut)="onProceedWithApplication()"
       [text]="'APPLY'"
+    ></app-button>
+
+    <app-button
+      *accessRole="'Recruiter'"
+      [fill]="'clear'"
+      [expand]="'block'"
+      [color]="'default'"
+      (clickOut)="onShowJobApplications()"
+      [text]="'SHOW JOB APPLICATIONS'"
     ></app-button>
   </ion-toolbar>
 </ion-footer>

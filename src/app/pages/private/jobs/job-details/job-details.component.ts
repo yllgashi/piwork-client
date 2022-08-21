@@ -71,6 +71,11 @@ export class JobDetailsComponent implements OnInit {
     });
   }
 
+  onShowJobApplications(): void {
+    const { id } = this.jobDetails;
+    // this.
+  }
+
   //#region helpers
   onShowLoading(): void {
     this.isLoading = true;
