@@ -11,6 +11,8 @@ import { UserService } from 'src/app/shared/providers/user.service';
   styleUrls: ['./private.page.scss'],
 })
 export class PrivatePage implements OnInit {
+  isUserLoading: boolean;
+
   constructor(
     private storageService: StorageService,
     private userService: UserService,
@@ -22,8 +24,10 @@ export class PrivatePage implements OnInit {
   }
 
   initializeUser(): void {
+    this.onShowUserLoading();
     this.fetchAccesstokenFromStorage().subscribe({
       next: (res) => this.onAccesstokenFetch(res),
+      error: (e) => this.onDismissUserLoading(),
     });
   }
 
@@ -42,6 +46,17 @@ export class PrivatePage implements OnInit {
 
   saveUserState(user: User): void {
     this.userService.initializeUser(user);
-    console.log(this.userService.user$.getValue(), "HEREE");
+    this.onDismissUserLoading();
+    console.log(this.userService.user$.getValue(), 'HEREE');
   }
+
+  //#region loadings
+  onShowUserLoading(): void {
+    this.isUserLoading = true;
+  }
+
+  onDismissUserLoading(): void {
+    this.isUserLoading = false;
+  }
+  //#endregion loadings
 }

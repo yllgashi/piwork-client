@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RecruiterGuard } from 'src/app/shared/guards/recruiter.guard';
 import { PrivatePage } from './private.page';
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
           ),
       },
       {
+        canActivate: [RecruiterGuard],
         path: 'announce-job',
         loadChildren: () =>
           import('./announce-job/announce-job.module').then(

@@ -24,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { InformationItemComponent } from './components/information-item/information-item.component';
 import { ChipInformationItemComponent } from './components/chip-information-item/chip-information-item.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { AccessRoleDirective } from './directives/access-role.directive';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     InformationItemComponent,
     ChipInformationItemComponent,
     TruncatePipe,
+    AccessRoleDirective,
   ],
   imports: [
     CommonModule,
@@ -82,6 +84,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     InformationItemComponent,
     ChipInformationItemComponent,
     TruncatePipe,
+    AccessRoleDirective,
   ],
 })
 export class SharedModule {}

@@ -1,4 +1,6 @@
-<ion-tabs>
+<app-loading *ngIf="isUserLoading"></app-loading>
+
+<ion-tabs *ngIf="!isUserLoading">
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="jobs">
       <ion-icon name="reader"></ion-icon>
@@ -8,7 +10,7 @@
       <ion-icon name="list-outline"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="announce-job">
+    <ion-tab-button tab="announce-job" *accessRole="'Recruiter'">
       <ion-icon name="add-circle"></ion-icon>
     </ion-tab-button>
 
