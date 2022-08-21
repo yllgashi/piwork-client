@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertButton, AlertOptions } from '@ionic/angular';
 import { JobCreate } from 'src/app/shared/model/create-job.model';
 import { Skill } from 'src/app/shared/model/skill.model';
+import { LanguagesService } from 'src/app/shared/providers/common/languages.service';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 
@@ -18,7 +21,9 @@ export class CreateJobFormComponent implements OnInit {
 
   constructor(
     private jobService: JobService,
-    private dynamicComponentsService: DynamicComponentsService
+    private dynamicComponentsService: DynamicComponentsService,
+    private languagesService: LanguagesService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -96,10 +101,13 @@ export class CreateJobFormComponent implements OnInit {
   //#region callbacks
   onCreateJobRes(response: any): void {
     this.onDismissCreateJobLoading();
+    this.router.navigate(['/jobs']);
+    this.onShowSuccessAlert();
   }
 
-  onCreateJobError(response: any): void {
+  onCreateJobError(error: string): void {
     this.onDismissCreateJobLoading();
+    this.onShowError(error);
   }
   //#endregion callbacks
 
@@ -116,6 +124,24 @@ export class CreateJobFormComponent implements OnInit {
   //#region helpers
   onShowError(errorMsg: any): void {
     this.dynamicComponentsService.showTranslatedToast(errorMsg);
+  }
+
+  onShowSuccessAlert(): void {
+    const header = 'Success';
+    const subHeader =
+      'Job has been created successfully. Now this job is open for job-seekers.';
+    const text = this.languagesService.instant('APP.CANCEL');
+    const buttons: AlertButton[] = [
+      {
+        text,
+      },
+    ];
+    const options: AlertOptions = {
+      header,
+      subHeader,
+      buttons,
+    };
+    this.dynamicComponentsService.showAlert(options);
   }
   //#endregion helpers
 }

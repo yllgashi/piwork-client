@@ -1,6 +1,9 @@
 <ion-accordion-group>
   <ion-accordion value="first">
-    <ion-item slot="header"> </ion-item>
+    <ion-item slot="header">
+      <ion-icon slot="start" name="search-circle-outline"></ion-icon>
+      <app-label>Search</app-label>
+    </ion-item>
     <div class="ion-padding" slot="content">
       <form [formGroup]="searchJobsForm" (ngSubmit)="onSubmit()">
         <app-input
