@@ -22,14 +22,18 @@
       <app-user-experience
         [experience]="userDetails.experience"
       ></app-user-experience>
-
-      <app-button
-        [fill]="'clear'"
-        [expand]="'block'"
-        [color]="'danger'"
-        (clickOut)="onLogout()"
-        [text]="'LOG OUT'"
-      ></app-button>
     </div>
   </div>
 </ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <app-button
+      [fill]="'clear'"
+      [expand]="'block'"
+      [color]="'danger'"
+      (clickOut)="onLogout()"
+      [text]="'LOG OUT'"
+    ></app-button>
+  </ion-toolbar>
+</ion-footer>
