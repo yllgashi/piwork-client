@@ -8,6 +8,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { JobItemComponent } from './overview/job-item/job-item.component';
 import { NewApplicationComponent } from './new-application/new-application.component';
+import { SearchJobsComponent } from './overview/search-jobs/search-jobs.component';
 
 @NgModule({
   imports: [SharedModule, JobsPageRoutingModule],
@@ -16,7 +17,8 @@ import { NewApplicationComponent } from './new-application/new-application.compo
     OverviewComponent,
     JobItemComponent,
     JobDetailsComponent,
-    NewApplicationComponent
+    NewApplicationComponent,
+    SearchJobsComponent
   ],
 })
 export class JobsPageModule {}

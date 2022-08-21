@@ -1,0 +1,47 @@
+<ion-accordion-group>
+  <ion-accordion value="first">
+    <ion-item slot="header"> </ion-item>
+    <div class="ion-padding" slot="content">
+      <form [formGroup]="searchJobsForm" (ngSubmit)="onSubmit()">
+        <app-input
+          [startIcon]="'shield-checkmark-outline'"
+          [type]="'text'"
+          [label]="'Title'"
+          [labelPosition]="'stacked'"
+          [placeholder]="'Software dev...'"
+          [control]="getControl('title')"
+        >
+        </app-input>
+
+        <ion-item lines="none" *ngIf="skills">
+          <ion-icon slot="start" name="hammer-outline"></ion-icon>
+          <ion-label position="stacked">Skill</ion-label>
+          <ion-select
+            [formControl]="getControl('skillId')"
+            placeholder="Filter by skill"
+          >
+            <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
+              s.name
+            }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- <app-select
+          *ngIf="skills"
+          [icon]="'flash-outline'"
+          [description]="'Choose'"
+          [data]="skills"
+          [control]="getControl('skillId')"
+        ></app-select> -->
+
+        <app-button
+          [type]="'submit'"
+          [text]="'Search'"
+          [color]="'light'"
+          [expand]="'block'"
+        >
+        </app-button>
+      </form>
+    </div>
+  </ion-accordion>
+</ion-accordion-group>

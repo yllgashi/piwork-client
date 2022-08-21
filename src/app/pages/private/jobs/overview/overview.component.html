@@ -4,23 +4,7 @@
   <app-no-data *ngIf="!areJobsLoading && !jobs"></app-no-data>
 
   <div *ngIf="!areJobsLoading && jobs">
-    <ion-accordion-group>
-      <ion-accordion value="first">
-        <ion-item slot="header" color="light">
-          <ion-label>First Accordion</ion-label>
-        </ion-item>
-        <div class="ion-padding" slot="content">
-          <app-input
-            [startIcon]="'shield-checkmark-outline'"
-            [type]="'text'"
-            [label]="'Title'"
-            [labelPosition]="'stacked'"
-            [placeholder]="'Software dev...'"
-          >
-          </app-input>
-        </div>
-      </ion-accordion>
-    </ion-accordion-group>
+    <app-search-jobs (searchJobs$)="onSearchJobs($event)"></app-search-jobs>
 
     <app-job-item *ngFor="let job of jobs" [job]="job"></app-job-item>
   </div>
