@@ -22,6 +22,14 @@
       <app-user-experience
         [experience]="userDetails.experience"
       ></app-user-experience>
+
+      <app-button
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'danger'"
+        (clickOut)="onLogout()"
+        [text]="'LOG OUT'"
+      ></app-button>
     </div>
   </div>
 </ion-content>

@@ -30,7 +30,7 @@ export class AccessRoleDirective implements OnInit {
 
   fetchUserRole(): void {
     this.userService.user$
-      .pipe(map((res) => res.role))
+      .pipe(map((res) => res?.role))
       .subscribe((role) => this.onUserRoleFetch(role));
   }
 
