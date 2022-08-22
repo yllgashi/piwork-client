@@ -61,6 +61,8 @@ export class ApplicationDetailsComponent implements OnInit {
 
   onDeleteJobApplicationError(error: any): void {}
 
+  onApplicantDetailsClick(): void {}
+
   onShowLoading(): void {
     this.isLoading = true;
   }

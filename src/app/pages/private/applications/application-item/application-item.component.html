@@ -20,6 +20,13 @@
     ></app-chip-information-item>
 
     <app-chip-information-item
+      [icon]="'document-attach-outline'"
+      [chipLabel]="
+        application.applicantFirstName + ' ' + application.applicantLastName
+      "
+    ></app-chip-information-item>
+
+    <app-chip-information-item
       [icon]="'megaphone-outline'"
       [chipLabel]="application.isActive ? 'Active' : 'No active'"
       [chipBorderColor]="application.isActive ? 'success' : 'danger'"

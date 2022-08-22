@@ -2,6 +2,6 @@
   <ion-icon [name]="icon" slot="start"></ion-icon>
   <app-chip
     [label]="chipLabel"
-    [borderColor]="chipBorderColor"
+    [borderColor]="chipBorderColor ? chipBorderColor : 'medium'"
   ></app-chip>
 </app-item>
