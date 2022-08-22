@@ -1,18 +1,17 @@
 <h3 class="ion-padding-top ion-padding-start">Experience</h3>
-<div *ngIf="experience?.length > 0">
-  <ion-item detail="false" button="true" *ngFor="let ue of experience">
-    <ion-icon name="business-outline"></ion-icon>
 
-    <ion-label>
-      <p>{{ ue.workplaceName }}</p>
-      <p>{{ ue.description | truncate: [15, "..."] }}</p>
-    </ion-label>
-    <ion-note slot="end">{{
-      (ue.startDate | date: "MM.yyyy") +
-        " - " +
-        (ue.endDate ? (ue.endDate | date: "MM.yyyy") : "Still")
-    }}</ion-note>
-  </ion-item>
+<div *ngIf="experience?.length > 0">
+  <app-text-information-item
+    *ngFor="let ue of experience"
+    [icon]="'business-outline'"
+    [title]="ue.workplaceName"
+    [subtitle]="ue.description | truncate: [15, '...']"
+    [rightNote]="
+      (ue.startDate | date: 'MM.yyyy') +
+      ' - ' +
+      (ue.endDate ? (ue.endDate | date: 'MM.yyyy') : 'Still')
+    "
+  ></app-text-information-item>
 </div>
 
 <app-no-data *ngIf="experience?.length < 1"></app-no-data>

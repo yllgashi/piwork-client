@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { Subscription } from 'rxjs';
 import { UserDetails } from 'src/app/shared/model/user-details.model';
 import { User } from 'src/app/shared/model/user.model';
 import { AccountService } from 'src/app/shared/providers/account.service';
+import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { StorageService } from 'src/app/shared/providers/native/storage.service';
 import { UserService } from 'src/app/shared/providers/user.service';
 
@@ -14,29 +14,45 @@ import { UserService } from 'src/app/shared/providers/user.service';
   styleUrls: ['./my-account.page.scss'],
 })
 export class MyAccountPage implements OnInit {
+  @Input('userId') userId: number;
   userDetails: UserDetails;
-  user$: Subscription;
   isUserDetailsLoading: boolean;
 
   constructor(
+    private route: ActivatedRoute,
     private accountService: AccountService,
     private userService: UserService,
     private storageService: StorageService,
-    private navController: NavController
+    private navController: NavController,
+    private dynamicComponentsService: DynamicComponentsService
   ) {}
 
   ngOnInit() {
-    this.getUser();
+    this.checkForUserIdParam();
   }
 
-  getUser(): void {
-    this.onShowUserDetailsLoading();
-    this.user$ = this.userService.user$.subscribe((res) =>
-      this.onUserFetch(res)
-    );
+  checkForUserIdParam(): void {
+    this.route.params.subscribe((params) => this.onParamsFetch(params));
+  }
+
+  onParamsFetch(params): void {
+    const { userId } = params;
+    if (userId) this.getUserDetails(userId);
+    else this.getCurrentUserDetails();
+  }
+
+  isCurrentUser(): boolean {
+    // if userId is provided, it means it is being called for different account
+    return this.userId ? false : true;
+  }
+
+  getCurrentUserDetails(): void {
+    const { userId } = this.userService.user$.getValue();
+    this.getUserDetails(userId);
   }
 
   getUserDetails(userId: number) {
+    this.onShowUserDetailsLoading();
     this.accountService.getUserDetails(userId).subscribe({
       next: (res) => this.onGetUserDetailsRes(res),
       error: (e) => this.onGetUserDetailsError(e),
@@ -60,6 +76,10 @@ export class MyAccountPage implements OnInit {
 
   navigateToPublicModule(): void {
     this.navController.navigateRoot(['/account']);
+  }
+
+  closeModal(): void {
+    this.dynamicComponentsService.closeModal();
   }
 
   //#region callbacks

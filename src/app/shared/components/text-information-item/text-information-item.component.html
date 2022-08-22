@@ -1,0 +1,10 @@
+<ion-item detail="false" lines="none" button="true" (click)="onItemClick()">
+  <ion-icon slot="start" [name]="icon"></ion-icon>
+  <ion-label>
+    <p>
+      {{ title }}
+    </p>
+    <p>{{ subtitle }}</p>
+  </ion-label>
+  <ion-note *ngIf="rightNote" slot="end">{{ rightNote }}</ion-note>
+</ion-item>

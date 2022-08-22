@@ -47,24 +47,17 @@
       ></app-chip-information-item>
 
       <!-- application information -->
-      <h3 class="ion-padding-top ion-padding-start">Applicant Information</h3>
-      <ion-item
-        detail="false"
-        button="true"
-        (click)="onApplicantDetailsClick()"
-      >
-        <ion-icon name="document-attach-outline"></ion-icon>
-        <ion-label>
-          <p>
-            {{
-              jobApplicationDetails.applicantFirstName +
-                " " +
-                jobApplicationDetails.applicantLastName
-            }}
-          </p>
-          <p>Click to show account details</p>
-        </ion-label>
-      </ion-item>
+      <h3 *accessRole="'Recruiter'" class="ion-padding-top ion-padding-start">Applicant Information</h3>
+      <app-text-information-item *accessRole="'Recruiter'"
+        [icon]="'document-attach-outline'"
+        [title]="
+          jobApplicationDetails.applicantFirstName +
+          ' ' +
+          jobApplicationDetails.applicantLastName
+        "
+        [subtitle]="'Click to show account details'"
+        (itemClick$)="onApplicantDetailsClick()"
+      ></app-text-information-item>
 
       <!-- comment -->
       <h3 class="ion-padding-top ion-padding-start">Comment</h3>

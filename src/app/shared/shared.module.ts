@@ -25,6 +25,7 @@ import { InformationItemComponent } from './components/information-item/informat
 import { ChipInformationItemComponent } from './components/chip-information-item/chip-information-item.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { AccessRoleDirective } from './directives/access-role.directive';
+import { TextInformationItemComponent } from './components/text-information-item/text-information-item.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AccessRoleDirective } from './directives/access-role.directive';
     ChipInformationItemComponent,
     TruncatePipe,
     AccessRoleDirective,
+    TextInformationItemComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +87,7 @@ import { AccessRoleDirective } from './directives/access-role.directive';
     ChipInformationItemComponent,
     TruncatePipe,
     AccessRoleDirective,
+    TextInformationItemComponent,
   ],
 })
 export class SharedModule {}

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GetJobApplication } from 'src/app/shared/model/get-job-application.model';
 import { ApplicationService } from 'src/app/shared/providers/application.service';
+import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { MyAccountPage } from '../../my-account/my-account.page';
 
 @Component({
   selector: 'app-application-details',
@@ -14,7 +16,8 @@ export class ApplicationDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private dynamicComponentsService: DynamicComponentsService
   ) {}
 
   ngOnInit() {
@@ -40,6 +43,16 @@ export class ApplicationDetailsComponent implements OnInit {
     });
   }
 
+  onApplicantDetailsClick(): void {
+    const { applicantUserId } = this.jobApplicationDetails;
+    this.dynamicComponentsService.showModal({
+      component: MyAccountPage,
+      componentProps: {
+        userId: applicantUserId,
+      },
+    });
+  }
+
   onGetApplicationDetailsRes(response: GetJobApplication): void {
     this.onDismissLoading();
     this.jobApplicationDetails = response;
@@ -60,8 +73,6 @@ export class ApplicationDetailsComponent implements OnInit {
   onDeleteJobApplicationRes(result: any): void {}
 
   onDeleteJobApplicationError(error: any): void {}
-
-  onApplicantDetailsClick(): void {}
 
   onShowLoading(): void {
     this.isLoading = true;

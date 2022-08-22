@@ -1,3 +1,10 @@
+<app-header
+  *ngIf="!isCurrentUser()"
+  [icon]="'close-outline'"
+  [title]="userDetails.firstName + ' ' + userDetails.lastName"
+  (iconClick)="closeModal()"
+></app-header>
+
 <ion-content>
   <app-loading *ngIf="isUserDetailsLoading"></app-loading>
 
@@ -26,7 +33,7 @@
   </div>
 </ion-content>
 
-<ion-footer class="ion-no-border">
+<ion-footer *ngIf="isCurrentUser()" class="ion-no-border">
   <ion-toolbar>
     <app-button
       [fill]="'clear'"
