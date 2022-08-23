@@ -1,0 +1,36 @@
+<app-header
+  [icon]="'close-outline'"
+  [title]="'Add new skill'"
+  (iconClick)="closeModal()"
+></app-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-card *ngIf="skills">
+      <ion-card-header>
+        <ion-card-title>Skills</ion-card-title>
+        <ion-card-subtitle
+          >Select skill to insert in your card account</ion-card-subtitle
+        >
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-icon slot="start" name="hammer-outline"></ion-icon>
+          <ion-label position="stacked">Skill</ion-label>
+          <ion-select [formControl]="getControl('skillId')">
+            <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
+              s.name
+            }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <app-button
+      [type]="'submit'"
+      [expand]="'block'"
+      [color]="'light'"
+      [text]="'CREATE'"
+    ></app-button>
+  </form>
+</ion-content>

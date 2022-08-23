@@ -9,6 +9,7 @@ import { UserExperienceComponent } from './user-experience/user-experience.compo
 import { UserTasksComponent } from './user-tasks/user-tasks.component';
 import { UserSkillsComponent } from './user-skills/user-skills.component';
 import { AddUserExperienceComponent } from './user-experience/add-user-experience/add-user-experience.component';
+import { AddUserSkillComponent } from './user-skills/add-user-skill/add-user-skill.component';
 
 @NgModule({
   imports: [SharedModule, MyAccountPageRoutingModule],
@@ -19,7 +20,8 @@ import { AddUserExperienceComponent } from './user-experience/add-user-experienc
     UserExperienceComponent,
     UserTasksComponent,
     UserSkillsComponent,
-    AddUserExperienceComponent
+    AddUserExperienceComponent,
+    AddUserSkillComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

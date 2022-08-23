@@ -4,6 +4,7 @@ import { Experience } from '../model/experience.model';
 import { UserJob } from '../model/user-job.model';
 
 import { HttpService } from './common/http.service';
+import { CreateSkill } from '../model/create-skill.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,10 @@ export class AccountService {
   getUserJobs(userId: number) {
     const path = `account/${userId}/jobs`;
     return this.httpService.get<UserJob[]>({ path });
+  }
+
+  createUserSkill(body: CreateSkill) {
+    const path = `account/skills`;
+    return this.httpService.post<any>({ path, body });
   }
 }

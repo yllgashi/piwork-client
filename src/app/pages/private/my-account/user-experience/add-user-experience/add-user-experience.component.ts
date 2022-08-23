@@ -54,7 +54,6 @@ export class AddUserExperienceComponent implements OnInit {
   }
 
   createUserExperience(experience: Experience): void {
-    debugger;
     this.accountService.createUserExperience(experience).subscribe({
       next: (res) => this.onCreateUserExperienceRes(res),
       error: (e) => this.onCreateUserExperienceError(e),
