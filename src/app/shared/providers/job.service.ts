@@ -19,6 +19,11 @@ export class JobService {
     return this.httpService.get<Job[]>({ path });
   }
 
+  getAnnouncedJobs(): Observable<Job[]> {
+    const path = 'jobs/announced';
+    return this.httpService.get<Job[]>({ path });
+  }
+
   getJobDetails(id: string): Observable<JobDetails> {
     const path = `jobs/${id}`;
     return this.httpService.get<JobDetails>({ path });

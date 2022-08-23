@@ -3,6 +3,7 @@ import { Job } from 'src/app/shared/model/job.model';
 import { SearchJob } from 'src/app/shared/model/search-job.model';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { UserService } from 'src/app/shared/providers/user.service';
 
 @Component({
   selector: 'app-overview',
@@ -14,12 +15,27 @@ export class OverviewComponent implements OnInit {
   jobs: Job[];
 
   constructor(
+    private userService: UserService,
     private jobService: JobService,
     private dynamicComponentsService: DynamicComponentsService
   ) {}
 
   ngOnInit() {
-    this.getAllJobs();
+    this.getJobs();
+  }
+
+  getJobs(): void {
+    const userRole: string = this.userService.user$.getValue().role;
+    if (userRole == 'Recruiter') this.getAnnouncedJobs();
+    else this.getAllJobs();
+  }
+
+  getAnnouncedJobs(): void {
+    this.onShowLoading();
+    this.jobService.getAnnouncedJobs().subscribe({
+      next: (res) => this.onAllJobsFetch(res),
+      error: (e) => this.onErrorAllJobsFetch(e),
+    });
   }
 
   getAllJobs(): void {

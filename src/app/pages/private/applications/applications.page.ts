@@ -24,7 +24,6 @@ export class ApplicationsPage implements OnInit {
   }
 
   getApplications(): void {
-    debugger;
     const userRole: string = this.userService.user$.getValue().role;
     if (userRole == 'Recruiter') this.getAnnouncedAppications();
     else this.getAllApplications();
