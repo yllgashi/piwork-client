@@ -16,6 +16,11 @@ export class ApplicationService {
     return this.httpService.get<GetJobApplication[]>({ path });
   }
 
+  getAnnouncedJobs(): Observable<GetJobApplication[]> {
+    const path = `applications/announced`;
+    return this.httpService.get<GetJobApplication[]>({ path });
+  }
+
   getJobApplicationDetails(
     applicationId: number
   ): Observable<GetJobApplication> {
