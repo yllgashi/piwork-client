@@ -20,7 +20,10 @@
         [description]="userDetails.description"
       ></app-name-and-description>
 
-      <app-user-skills [skills]="userDetails.skills"></app-user-skills>
+      <app-user-skills
+        [skills]="userDetails.skills"
+        [isCurrentUser]="isCurrentUser()"
+      ></app-user-skills>
 
       <!-- jobs -->
       <app-user-tasks [jobs]="userDetails.jobs"></app-user-tasks>
@@ -28,6 +31,7 @@
       <!-- experience -->
       <app-user-experience
         [experience]="userDetails.experience"
+        [isCurrentUser]="isCurrentUser()"
       ></app-user-experience>
     </div>
   </div>

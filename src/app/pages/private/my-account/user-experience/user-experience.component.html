@@ -15,3 +15,12 @@
 </div>
 
 <app-no-data *ngIf="experience?.length < 1"></app-no-data>
+
+<app-button
+  *ngIf="isCurrentUser"
+  [fill]="'clear'"
+  [expand]="'block'"
+  [color]="'medium'"
+  (clickOut)="onAddUserExperience()"
+  [text]="'ADD EXPERIENCE'"
+></app-button>

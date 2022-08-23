@@ -8,6 +8,7 @@ import { Skill } from 'src/app/shared/model/skill.model';
 })
 export class UserSkillsComponent implements OnInit {
   @Input('skills') skills: Skill[];
+  @Input('isCurrentUser') isCurrentUser: boolean;
 
   constructor() {}
 

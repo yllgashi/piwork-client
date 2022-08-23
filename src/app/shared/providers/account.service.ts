@@ -21,6 +21,11 @@ export class AccountService {
     return this.httpService.get<Experience[]>({ path });
   }
 
+  createUserExperience(body: Experience) {
+    const path = 'account/experience';
+    return this.httpService.post<any>({ path, body });
+  }
+
   getUserJobs(userId: number) {
     const path = `account/${userId}/jobs`;
     return this.httpService.get<UserJob[]>({ path });

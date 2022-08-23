@@ -1,5 +1,5 @@
 export class Experience {
-  id: number;
+  id?: number;
   workplaceName: string;
   description: string;
   startDate: Date;

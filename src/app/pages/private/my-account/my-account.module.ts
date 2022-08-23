@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { MyAccountPageRoutingModule } from './my-account-routing.module';
 import { MyAccountPage } from './my-account.page';
@@ -8,6 +8,7 @@ import { NameAndDescriptionComponent } from './name-and-description/name-and-des
 import { UserExperienceComponent } from './user-experience/user-experience.component';
 import { UserTasksComponent } from './user-tasks/user-tasks.component';
 import { UserSkillsComponent } from './user-skills/user-skills.component';
+import { AddUserExperienceComponent } from './user-experience/add-user-experience/add-user-experience.component';
 
 @NgModule({
   imports: [SharedModule, MyAccountPageRoutingModule],
@@ -18,6 +19,8 @@ import { UserSkillsComponent } from './user-skills/user-skills.component';
     UserExperienceComponent,
     UserTasksComponent,
     UserSkillsComponent,
+    AddUserExperienceComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MyAccountPageModule {}
