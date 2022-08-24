@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Register } from 'src/app/shared/model/register.model';
+import { Role } from 'src/app/shared/model/role.model';
 import { AuthService } from 'src/app/shared/providers/auth.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { StorageService } from 'src/app/shared/providers/native/storage.service';
@@ -11,6 +12,7 @@ import { StorageService } from 'src/app/shared/providers/native/storage.service'
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
+  roles: Role[];
   registerForm: FormGroup;
   isLoading: boolean;
 
@@ -21,7 +23,15 @@ export class RegisterFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initializeRoles();
     this.initializeForm();
+  }
+
+  initializeRoles(): void {
+    this.roles = [
+      { id: 1, name: 'Recruiter' },
+      { id: 2, name: 'Seeker' },
+    ];
   }
 
   initializeForm(): void {
@@ -81,6 +91,7 @@ export class RegisterFormComponent implements OnInit {
   onLoginFormSuccess(response: any) {
     const { access_token } = response;
     this.saveAccesstokenInStorage(access_token);
+    this.onDismissLoading();
   }
 
   saveAccesstokenInStorage(accessToken: string): void {
@@ -91,7 +102,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   navigateToPrivateModule(): void {
-    this.dynamicComponentsService.navigateRoot('/overview');
+    this.dynamicComponentsService.navigateRoot('/jobs');
   }
 
   //#region helpers

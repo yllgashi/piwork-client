@@ -36,4 +36,9 @@ export class AccountService {
     const path = `account/skills`;
     return this.httpService.post<any>({ path, body });
   }
+
+  changeUserDescription(description: string) {
+    const path = `account/change-description`;
+    return this.httpService.put<any>({ path, body: { description } });
+  }
 }

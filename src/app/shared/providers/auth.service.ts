@@ -15,8 +15,8 @@ export class AuthService {
     return this.httpService.post<any>({ path, body: login });
   }
 
-  register(register: Register): Observable<any> {
+  register(body: Register): Observable<any> {
     const path = 'auth/register';
-    return this.httpService.post<any>({ path, body: register });
+    return this.httpService.post<any>({ path, body });
   }
 }

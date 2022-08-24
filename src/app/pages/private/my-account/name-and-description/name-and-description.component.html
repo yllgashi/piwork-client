@@ -5,3 +5,12 @@
 <p class="ion-padding-start ion-padding-end">
   {{ description }}
 </p>
+
+<app-button
+  *ngIf="isCurrentUser"
+  [fill]="'clear'"
+  [expand]="'block'"
+  [color]="'medium'"
+  (clickOut)="onChangeDescription()"
+  [text]="'Change description'"
+></app-button>

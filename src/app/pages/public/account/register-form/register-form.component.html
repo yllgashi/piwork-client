@@ -47,17 +47,18 @@
     [placeholder]="'ACCOUNT.DESCRIPTION' | translate"
   ></app-textarea>
 
-  <app-input
-    [startIcon]="'game-controller-outline'"
-    [type]="'number'"
-    [label]="'ACCOUNT.ROLE' | translate"
-    [labelPosition]="'stacked'"
-    [placeholder]="'1 or 2'"
-    [control]="getControl('roleId')"
-  >
-  </app-input>
+  <ion-item lines="none" *ngIf="roles">
+    <ion-icon slot="start" name="game-controller-outline"></ion-icon>
+    <ion-label position="stacked">Role</ion-label>
+    <ion-select [formControl]="getControl('roleId')" placeholder="Role of user">
+      <ion-select-option *ngFor="let r of roles" [value]="r.id">{{
+        r.name
+      }}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
   <app-button
+    [type]="'submit'"
     [disabled]="registerForm.invalid"
     *ngIf="!isLoading"
     [text]="'ACCOUNT.REGISTER' | translate"

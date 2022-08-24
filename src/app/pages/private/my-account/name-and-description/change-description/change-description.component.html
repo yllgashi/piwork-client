@@ -1,0 +1,33 @@
+<app-header
+  [icon]="'close-outline'"
+  [title]="'Add new experience'"
+  (iconClick)="closeModal()"
+></app-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-card
+      [cardHeader]="true"
+      [cardContent]="true"
+      [cardTitle]="'Experience description'"
+      [cardSubtitle]="
+        'In this section, write a small description about yourself'
+      "
+    >
+      <app-textarea
+        card-content
+        [startIcon]="'chatbox-outline'"
+        [placeholder]="'Your role'"
+        [control]="getControl('description')"
+      >
+      </app-textarea>
+    </app-card>
+
+    <app-button
+      [type]="'submit'"
+      [expand]="'block'"
+      [color]="'light'"
+      [text]="'CREATE'"
+    ></app-button>
+  </form>
+</ion-content>
