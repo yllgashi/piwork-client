@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/model/user.model';
 import { JwtService } from 'src/app/shared/providers/common/jwt.service';
 import { StorageService } from 'src/app/shared/providers/native/storage.service';
@@ -20,25 +19,31 @@ export class PrivatePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.initializeUser();
+    this.fetchTokensAndInitializeUser();
   }
 
-  initializeUser(): void {
+  fetchTokensAndInitializeUser(): void {
     this.onShowUserLoading();
-    this.fetchAccesstokenFromStorage().subscribe({
-      next: (res) => this.onAccesstokenFetch(res),
-      error: (e) => this.onDismissUserLoading(),
+    this.fetchAccesstokenFromStorage();
+  }
+
+  fetchAccesstokenFromStorage(): void {
+    this.storageService.get('accessToken').subscribe({
+      next: (res) => this.onFetchAccesstokenFromStorageRes(res),
+      error: (e) => this.onFetchAccesstokenFromStorageError(e),
     });
   }
 
-  fetchAccesstokenFromStorage(): Observable<string> {
-    return this.storageService.get('accessToken');
-  }
-
-  onAccesstokenFetch(accessToken: string): void {
+  //#region callbacks
+  onFetchAccesstokenFromStorageRes(accessToken: string): void {
     const decodedUser: User = this.decodeUserFromAccesstoken(accessToken);
     this.saveUserState(decodedUser);
   }
+
+  onFetchAccesstokenFromStorageError(errorMsg: string): void {
+    this.onDismissUserLoading();
+  }
+  //#endregion callbacks
 
   decodeUserFromAccesstoken(accessToken: string): User {
     return this.jwtService.decodeUserFromToken(accessToken);
@@ -47,7 +52,6 @@ export class PrivatePage implements OnInit {
   saveUserState(user: User): void {
     this.userService.initializeUser(user);
     this.onDismissUserLoading();
-    console.log(this.userService.user$.getValue(), 'HEREE');
   }
 
   //#region loadings

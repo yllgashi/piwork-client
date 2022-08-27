@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SelectModel } from 'src/app/shared/components/ion-components/select/select.model';
 import { CreateSkill } from 'src/app/shared/model/create-skill.model';
 import { Skill } from 'src/app/shared/model/skill.model';
 import { AccountService } from 'src/app/shared/providers/account.service';
@@ -13,7 +14,7 @@ import { SkillService } from 'src/app/shared/providers/skill.service';
 })
 export class AddUserSkillComponent implements OnInit {
   form: FormGroup;
-  skills: Skill[];
+  skills: SelectModel[];
   isLoading: boolean;
 
   constructor(
@@ -27,6 +28,7 @@ export class AddUserSkillComponent implements OnInit {
     this.getAllSkills();
   }
 
+  //#region form
   initializeForm(): void {
     this.form = new FormGroup({
       skillId: new FormControl(null, Validators.required),
@@ -36,6 +38,8 @@ export class AddUserSkillComponent implements OnInit {
   getControl(control: string): FormControl {
     return this.form.get(control) as FormControl;
   }
+
+  //#endregion form
 
   getAllSkills(): void {
     this.skillService.getAllSkills().subscribe({
@@ -49,14 +53,6 @@ export class AddUserSkillComponent implements OnInit {
     this.createUserSkill(skill);
   }
 
-  createSkillModel(): CreateSkill {
-    const { skillId } = this.form.value;
-    const skill: CreateSkill = {
-      skillId,
-    };
-    return skill;
-  }
-
   createUserSkill(skill: CreateSkill): void {
     this.accountService.createUserSkill(skill).subscribe({
       next: (res) => this.onCreateUserSkillRes(res),
@@ -66,7 +62,7 @@ export class AddUserSkillComponent implements OnInit {
 
   //#region callbacks
   onGetAllSkillsRes(response: Skill[]): void {
-    this.skills = response;
+    this.skills = response.map((e) => new SelectModel(e.id, e.name));
   }
 
   onCreateUserSkillRes(response: any): void {
@@ -80,6 +76,14 @@ export class AddUserSkillComponent implements OnInit {
   //#endregion callbacks
 
   //#region helpers
+  createSkillModel(): CreateSkill {
+    const { skillId } = this.form.value;
+    const skill: CreateSkill = {
+      skillId,
+    };
+    return skill;
+  }
+
   closeModal(): void {
     this.dynamicComponentsService.closeModal();
   }

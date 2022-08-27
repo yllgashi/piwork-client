@@ -21,10 +21,10 @@ export class OverviewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getJobs();
+    this.getJobsBasedOnRole();
   }
 
-  getJobs(): void {
+  getJobsBasedOnRole(): void {
     const userRole: string = this.userService.user$.getValue().role;
     if (userRole == 'Recruiter') this.getAnnouncedJobs();
     else this.getAllJobs();
@@ -67,6 +67,10 @@ export class OverviewComponent implements OnInit {
   //#endregion callbacks
 
   //#region helpers
+
+  //#endregion helpers
+
+  //#region loadings
   onShowLoading(): void {
     this.areJobsLoading = true;
   }
@@ -74,5 +78,5 @@ export class OverviewComponent implements OnInit {
   onDismissLoading(): void {
     this.areJobsLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }

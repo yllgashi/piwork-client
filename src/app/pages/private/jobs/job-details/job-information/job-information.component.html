@@ -1,0 +1,67 @@
+<div class="about-info">
+  <!-- title -->
+  <h3 class="ion-padding-top ion-padding-start">{{ title }}</h3>
+
+  <!-- description -->
+  <p class="ion-padding-start ion-padding-end">
+    {{ description }}
+  </p>
+
+  <!-- isActive & estimated days & price amount -->
+  <h3 class="ion-padding-top ion-padding-start">Details</h3>
+
+  <app-chip-information-item
+    [icon]="'megaphone-outline'"
+    [chipLabel]="isActive ? 'Active' : 'No active'"
+    [chipBorderColor]="isActive ? 'success' : 'danger'"
+  ></app-chip-information-item>
+
+  <app-chip-information-item
+    [icon]="'hourglass-outline'"
+    [chipLabel]="estimatedDays + ' days'"
+    [chipBorderColor]="'medium'"
+  ></app-chip-information-item>
+
+  <app-chip-information-item
+    [icon]="'cash-outline'"
+    [chipLabel]="priceAmount.toFixed(2) | currency: 'EUR'"
+    [chipBorderColor]="'medium'"
+  ></app-chip-information-item>
+
+  <!-- source code -->
+  <h3 class="ion-padding-top ion-padding-start">Source code</h3>
+
+  <app-information-item
+    [text]="sourceCodeLink"
+    [icon]="'code-slash-outline'"
+    [clickable]="true"
+    (clicked)="onSourceCodeClick()"
+  ></app-information-item>
+
+  <!-- Skills -->
+  <h3 class="ion-padding-top ion-padding-start">Skills</h3>
+
+  <div class="ion-padding">
+    <ion-chip *ngFor="let s of requiredSkills" color="medium">
+      <ion-avatar>
+        <img [src]="'http://localhost:3000/files/' + s.icon" />
+      </ion-avatar>
+      <ion-label>{{ s.name }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- publisher information -->
+  <h3 class="ion-padding-top ion-padding-start">Publisher information</h3>
+
+  <ion-item detail="false" button="true" (click)="onPublisherClick()">
+    <ion-avatar slot="start">
+      <img [src]="'http://localhost:3000/files/' + 'users/1.png'" />
+    </ion-avatar>
+    <ion-label>
+      <p>
+        {{ publishedByUserFirstName + " " + publishedByUserLastName }}
+      </p>
+      <p>{{ contactEmail }}</p>
+    </ion-label>
+  </ion-item>
+</div>

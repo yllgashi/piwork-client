@@ -5,35 +5,23 @@
 ></app-header>
 
 <ion-content>
-  <app-card>
-    <ion-item body detail="false" lines="none">
-      <ion-icon slot="start" name="person-outline"></ion-icon>
-      <ion-label>
-        <p>First name</p>
-        <p>{{ user.firstName }}</p>
-      </ion-label>
-    </ion-item>
-  </app-card>
+  <app-text-information-item
+    [icon]="'person-outline'"
+    [title]="'First name'"
+    [subtitle]="user.firstName"
+  ></app-text-information-item>
 
-  <app-card>
-    <ion-item body detail="false" lines="none">
-      <ion-icon slot="start" name="accessibility-outline"></ion-icon>
-      <ion-label>
-        <p>Last name</p>
-        <p>{{ user.lastName }}</p>
-      </ion-label>
-    </ion-item>
-  </app-card>
+  <app-text-information-item
+    [icon]="'accessibility-outline'"
+    [title]="'Last name'"
+    [subtitle]="user.lastName"
+  ></app-text-information-item>
 
-  <app-card>
-    <ion-item body detail="false" lines="none">
-      <ion-icon slot="start" name="mail-outline"></ion-icon>
-      <ion-label>
-        <p>Email</p>
-        <p>{{ user.email }}</p>
-      </ion-label>
-    </ion-item>
-  </app-card>
+  <app-text-information-item
+    [icon]="'mail-outline'"
+    [title]="'Email'"
+    [subtitle]="user.email"
+  ></app-text-information-item>
 
   <form [formGroup]="newApplicationForm" (ngSubmit)="onSubmit()">
     <app-card>

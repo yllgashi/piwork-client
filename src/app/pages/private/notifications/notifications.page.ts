@@ -24,6 +24,7 @@ export class NotificationsPage implements OnInit {
     });
   }
 
+  //#region callbacks
   onGetNotificationsRes(response: Notification[]): void {
     this.onDismissLoading();
     this.notifications = response;
@@ -32,6 +33,7 @@ export class NotificationsPage implements OnInit {
   onGetNotificationsError(error: string): void {
     this.onDismissLoading();
   }
+  //#endregion callbacks
 
   //#region helpers
   onShowLoading(): void {

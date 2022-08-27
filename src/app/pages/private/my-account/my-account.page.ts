@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { UserDetails } from 'src/app/shared/model/user-details.model';
-import { User } from 'src/app/shared/model/user.model';
 import { AccountService } from 'src/app/shared/providers/account.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { StorageService } from 'src/app/shared/providers/native/storage.service';
@@ -14,7 +13,7 @@ import { UserService } from 'src/app/shared/providers/user.service';
   styleUrls: ['./my-account.page.scss'],
 })
 export class MyAccountPage implements OnInit {
-  @Input('userId') userId: number;
+  @Input('userId') userId: number; // if userId is provided, it means it IS NOT current user account
   userDetails: UserDetails;
   isUserDetailsLoading: boolean;
 
@@ -31,6 +30,11 @@ export class MyAccountPage implements OnInit {
     this.checkForUserIdParam();
   }
 
+  // if userId is provided, it means it is being called for different account
+  isCurrentUser(): boolean {
+    return this.userId ? false : true;
+  }
+
   checkForUserIdParam(): void {
     this.route.params.subscribe((params) => this.onParamsFetch(params));
   }
@@ -39,11 +43,6 @@ export class MyAccountPage implements OnInit {
     const { userId } = params;
     if (userId) this.getUserDetails(userId);
     else this.getCurrentUserDetails();
-  }
-
-  isCurrentUser(): boolean {
-    // if userId is provided, it means it is being called for different account
-    return this.userId ? false : true;
   }
 
   getCurrentUserDetails(): void {
@@ -59,6 +58,19 @@ export class MyAccountPage implements OnInit {
     });
   }
 
+  //#region callbacks
+  onGetUserDetailsRes(res: UserDetails): void {
+    this.userDetails = res;
+    this.onDismissUserDetailsLoading();
+  }
+
+  onGetUserDetailsError(e: any): void {
+    this.onDismissUserDetailsLoading();
+  }
+
+  //#endregion callbacks
+
+  //#region logout
   onLogout(): void {
     this.removeUserState();
     this.removeDataInStorage();
@@ -77,30 +89,13 @@ export class MyAccountPage implements OnInit {
   navigateToPublicModule(): void {
     this.navController.navigateRoot(['/account']);
   }
+  //#endregion logout
 
+  //#region helpers
   closeModal(): void {
     this.dynamicComponentsService.closeModal();
   }
-
-  //#region callbacks
-  onGetUserDetailsRes(res: UserDetails): void {
-    this.userDetails = res;
-    this.onDismissUserDetailsLoading();
-  }
-
-  onGetUserDetailsError(e: any): void {
-    this.onDismissUserDetailsLoading();
-  }
-
-  onUserFetch(user: User): void {
-    if (!user) {
-      this.onDismissUserDetailsLoading();
-      return;
-    }
-    const { userId } = user;
-    this.getUserDetails(userId);
-  }
-  //#endregion callbacks
+  //#endregion helpers
 
   //#region loadings
   onShowUserDetailsLoading(): void {

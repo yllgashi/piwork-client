@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
 import { JobDetails } from 'src/app/shared/model/job-details.model';
+import { BrowserService } from 'src/app/shared/providers/browser.service';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { NewApplicationComponent } from '../new-application/new-application.component';
@@ -19,24 +18,21 @@ export class JobDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private jobService: JobService,
-    private dynamicComponentsService: DynamicComponentsService
+    private dynamicComponentsService: DynamicComponentsService,
+    private browserService: BrowserService
   ) {}
 
   ngOnInit() {
-    this.getQueryParams()
-      .pipe(tap((id) => this.getJobDetails(id)))
-      .subscribe();
+    this.getParamsAndShowJobDetails();
   }
 
-  getQueryParams(): Observable<string> {
-    return this.route.params.pipe(
-      map((params) => this.onQueryParamsFetch(params))
-    );
+  getParamsAndShowJobDetails(): void {
+    this.route.params.subscribe((params) => this.onParamsFetch(params));
   }
 
-  onQueryParamsFetch(params): string {
+  onParamsFetch(params): void {
     const { id } = params;
-    return id;
+    this.getJobDetails(id);
   }
 
   getJobDetails(id: string): void {
@@ -47,6 +43,7 @@ export class JobDetailsComponent implements OnInit {
     });
   }
 
+  //#region callbacks
   onJobDetailsFetch(res: JobDetails): void {
     this.jobDetails = res;
     this.onDismissLoading();
@@ -55,10 +52,11 @@ export class JobDetailsComponent implements OnInit {
   onJobDetailsFetchError(e: any): void {
     this.onDismissLoading();
   }
+  //#endregion callbacks
 
-  onSourceCodeClick(): void {}
-
-  onPublisherClick(): void {}
+  onShowJobApplications(): void {
+    const { id } = this.jobDetails;
+  }
 
   onProceedWithApplication(): void {
     const { id, title } = this.jobDetails;
@@ -71,12 +69,7 @@ export class JobDetailsComponent implements OnInit {
     });
   }
 
-  onShowJobApplications(): void {
-    const { id } = this.jobDetails;
-    // this.
-  }
-
-  //#region helpers
+  //#region loadings
   onShowLoading(): void {
     this.isLoading = true;
   }
@@ -84,5 +77,5 @@ export class JobDetailsComponent implements OnInit {
   onDismissLoading(): void {
     this.isLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }

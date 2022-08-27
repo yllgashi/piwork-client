@@ -21,6 +21,7 @@ export class ChangeDescriptionComponent implements OnInit {
     this.initializeForm();
   }
 
+  //#region form
   initializeForm(): void {
     this.form = new FormGroup({
       description: new FormControl(null, Validators.required),
@@ -30,14 +31,15 @@ export class ChangeDescriptionComponent implements OnInit {
   getControl(control: string): FormControl {
     return this.form.get(control) as FormControl;
   }
+  //#endregion form
 
   onSubmit(): void {
-    this.onShowLoading();
-    const description: string = this.form.value.description;
+    const description: string = this.fetchDescriptionFromForm();
     this.changeDescription(description);
   }
 
   changeDescription(description: string): void {
+    this.onShowLoading();
     this.accountService.changeUserDescription(description).subscribe({
       next: (res) => this.onChangeDescriptionRes(res),
       error: (e) => this.onChangeDescriptionError(e),
@@ -56,6 +58,10 @@ export class ChangeDescriptionComponent implements OnInit {
   //#endregion callbacks
 
   //#region helpers
+  fetchDescriptionFromForm(): string {
+    return this.form.value.description;
+  }
+
   closeModal(): void {
     this.dynamicComponentsService.closeModal();
   }

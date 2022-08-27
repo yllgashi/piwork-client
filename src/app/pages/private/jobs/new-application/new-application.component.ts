@@ -33,21 +33,12 @@ export class NewApplicationComponent implements OnInit {
     this.user = this.userService.user$.getValue();
   }
 
+  //#region form
   initializeForm(): void {
     this.newApplicationForm = new FormGroup({
       jobId: new FormControl(this.jobId, Validators.required),
       comment: new FormControl(null, Validators.required),
     });
-  }
-
-  getControl(control: string): FormControl {
-    return this.newApplicationForm.get(control) as FormControl;
-  }
-
-  onSubmit(): void {
-    const isValid = this.isFormValid();
-    if (!isValid) return;
-    this.onCreateApplication();
   }
 
   isFormValid(): boolean {
@@ -56,21 +47,37 @@ export class NewApplicationComponent implements OnInit {
     return validForm;
   }
 
-  onCreateApplication(): void {
-    this.onShowLoading();
+  getControl(control: string): FormControl {
+    return this.newApplicationForm.get(control) as FormControl;
+  }
+  //#endregion form
+
+  onSubmit(): void {
+    const isValid = this.isFormValid();
+    if (!isValid) return;
     const application: CreateApplication = this.mapApplicationFromForm();
+    this.onCreateApplication(application);
+  }
+
+  onCreateApplication(application: CreateApplication): void {
+    this.onShowLoading();
     this.applicationService.createApplication(application).subscribe({
-      next: (_) => this.onCreateApplicationResponse(_),
-      error: (e) => this.onShowError(e),
+      next: (_) => this.onCreateApplicationRes(_),
+      error: (e) => this.onCreateApplicationError(e),
     });
   }
 
-  onCreateApplicationResponse(response: any): void {
-    this.dynamicComponentsService.showAlert({
-      header: 'Success',
-    });
+  //#region callbacks
+  onCreateApplicationRes(response: any): void {
+    this.showSuccessAlert();
     this.closeModal();
   }
+
+  onCreateApplicationError(errorMsg: string): void {
+    this.onDismissLoading();
+    this.onShowError(errorMsg);
+  }
+  //#endregion callbacks
 
   //#region helpers
   mapApplicationFromForm(): CreateApplication {
@@ -82,15 +89,22 @@ export class NewApplicationComponent implements OnInit {
     return application;
   }
 
+  showSuccessAlert(): void {
+    this.dynamicComponentsService.showAlert({
+      header: 'Success',
+    });
+  }
+
   closeModal(): void {
     this.dynamicComponentsService.closeModal();
   }
 
   onShowError(errorMsg: any): void {
-    this.onDismissLoading();
     this.dynamicComponentsService.showTranslatedToast(errorMsg);
   }
+  //#endregion helpers
 
+  //#region loadings
   onShowLoading(): void {
     this.isLoading = true;
   }
@@ -98,5 +112,5 @@ export class NewApplicationComponent implements OnInit {
   onDismissLoading(): void {
     this.isLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }

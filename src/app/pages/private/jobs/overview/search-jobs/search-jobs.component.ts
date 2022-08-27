@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SelectModel } from 'src/app/shared/components/ion-components/select/select.model';
 import { SearchJob } from 'src/app/shared/model/search-job.model';
 import { Skill } from 'src/app/shared/model/skill.model';
 import { SkillService } from 'src/app/shared/providers/skill.service';
@@ -12,7 +13,7 @@ import { SkillService } from 'src/app/shared/providers/skill.service';
 export class SearchJobsComponent implements OnInit {
   @Output() searchJobs$ = new EventEmitter<SearchJob>();
   searchJobsForm: FormGroup;
-  skills: Skill[];
+  skills: SelectModel[];
   areSkillsLoading: boolean;
 
   constructor(private skillService: SkillService) {}
@@ -22,6 +23,7 @@ export class SearchJobsComponent implements OnInit {
     this.getSkills();
   }
 
+  //#region form
   initializeForm(): void {
     this.searchJobsForm = new FormGroup({
       title: new FormControl(null),
@@ -32,6 +34,7 @@ export class SearchJobsComponent implements OnInit {
   getControl(control: string): FormControl {
     return this.searchJobsForm.get(control) as FormControl;
   }
+  //#endregion form
 
   getSkills(): void {
     this.onShowSkillsLoading();
@@ -42,21 +45,18 @@ export class SearchJobsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const { title, skillId } = this.searchJobsForm.value;
+    const { title, skillId } = this.getFormValues();
     this.onSearchJobs(title, +skillId);
   }
 
   onSearchJobs(title: string, skillId: number): void {
-    const filter: SearchJob = {
-      skillId,
-      title,
-    };
+    const filter: SearchJob = this.initializeSearchJobModel(title, skillId);
     this.searchJobs$.next(filter);
   }
 
   //#region callbacks
   onGetSkillsRes(response: Skill[]): void {
-    this.skills = response;
+    this.skills = response.map((e) => new SelectModel(e.id, e.name));
     this.onDismissSkillsLoading();
   }
 
@@ -64,6 +64,20 @@ export class SearchJobsComponent implements OnInit {
     this.onDismissSkillsLoading();
   }
   //#endregion callbacks
+
+  //#region helpers
+  getFormValues(): any {
+    return this.searchJobsForm.value;
+  }
+
+  initializeSearchJobModel(title: string, skillId: number): SearchJob {
+    const model: SearchJob = {
+      skillId,
+      title,
+    };
+    return model;
+  }
+  //#endregion helpers
 
   //#region loadings
   onShowSkillsLoading(): void {

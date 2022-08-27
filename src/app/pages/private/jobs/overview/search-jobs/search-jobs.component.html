@@ -16,26 +16,13 @@
         >
         </app-input>
 
-        <ion-item lines="none" *ngIf="skills">
-          <ion-icon slot="start" name="hammer-outline"></ion-icon>
-          <ion-label position="stacked">Skill</ion-label>
-          <ion-select
-            [formControl]="getControl('skillId')"
-            placeholder="Filter by skill"
-          >
-            <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
-              s.name
-            }}</ion-select-option>
-          </ion-select>
-        </ion-item>
-
-        <!-- <app-select
+        <app-select
           *ngIf="skills"
-          [icon]="'flash-outline'"
-          [description]="'Choose'"
+          [icon]="'hammer-outline'"
+          [description]="'Skill'"
           [data]="skills"
           [control]="getControl('skillId')"
-        ></app-select> -->
+        ></app-select>
 
         <app-button
           [type]="'submit'"

@@ -22,6 +22,7 @@ export class AddUserExperienceComponent implements OnInit {
     this.initializeForm();
   }
 
+  //#region form
   initializeForm(): void {
     this.form = new FormGroup({
       workplaceName: new FormControl(null, Validators.required),
@@ -34,23 +35,13 @@ export class AddUserExperienceComponent implements OnInit {
   getControl(control: string): FormControl {
     return this.form.get(control) as FormControl;
   }
+  //#endregion form
 
   onSubmit(): void {
     this.initializeDefaultDates();
     this.onShowLoading();
     const experience: Experience = this.createExperienceModel();
     this.createUserExperience(experience);
-  }
-
-  createExperienceModel(): Experience {
-    const { workplaceName, description, startDate, endDate } = this.form.value;
-    const experience: Experience = {
-      workplaceName,
-      description,
-      startDate,
-      endDate,
-    };
-    return experience;
   }
 
   createUserExperience(experience: Experience): void {
@@ -72,13 +63,24 @@ export class AddUserExperienceComponent implements OnInit {
   //#endregion callbacks
 
   //#region helpers
-  closeModal(): void {
-    this.dynamicComponentsService.closeModal();
+  createExperienceModel(): Experience {
+    const { workplaceName, description, startDate, endDate } = this.form.value;
+    const experience: Experience = {
+      workplaceName,
+      description,
+      startDate,
+      endDate,
+    };
+    return experience;
   }
 
   initializeDefaultDates(): void {
     const today: Date = new Date();
     this.form.controls.startDate.setValue(today);
+  }
+
+  closeModal(): void {
+    this.dynamicComponentsService.closeModal();
   }
   //#endregion helpers
 

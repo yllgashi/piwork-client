@@ -9,6 +9,8 @@ import { JobDetailsComponent } from './job-details/job-details.component';
 import { JobItemComponent } from './overview/job-item/job-item.component';
 import { NewApplicationComponent } from './new-application/new-application.component';
 import { SearchJobsComponent } from './overview/search-jobs/search-jobs.component';
+import { HeaderPictureComponent } from './job-details/header-picture/header-picture.component';
+import { JobInformationComponent } from './job-details/job-information/job-information.component';
 
 @NgModule({
   imports: [SharedModule, JobsPageRoutingModule],
@@ -18,7 +20,9 @@ import { SearchJobsComponent } from './overview/search-jobs/search-jobs.componen
     JobItemComponent,
     JobDetailsComponent,
     NewApplicationComponent,
-    SearchJobsComponent
+    SearchJobsComponent,
+    HeaderPictureComponent,
+    JobInformationComponent
   ],
 })
 export class JobsPageModule {}
