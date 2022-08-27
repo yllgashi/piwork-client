@@ -54,12 +54,6 @@ export class CreateJobFormComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    const isValid = this.isFormValid();
-    if (!isValid) return;
-    this.onCreateJob();
-  }
-
   isFormValid(): boolean {
     const validForm: boolean = this.announceJobForm.valid;
     if (!validForm) this.onShowError('ERROR.ERR_10');
@@ -67,15 +61,35 @@ export class CreateJobFormComponent implements OnInit {
   }
   //#endregion form
 
-  onCreateJob(): void {
-    this.onShowCreateJobLoading();
+  onSubmit(): void {
+    const isValid = this.isFormValid();
+    if (!isValid) return;
     const job: JobCreate = this.mapJobModel();
+    this.onCreateJob(job);
+  }
+
+  onCreateJob(job: JobCreate): void {
+    this.onShowCreateJobLoading();
     this.jobService.createJob(job).subscribe({
       next: (res) => this.onCreateJobRes(res),
       error: (e) => this.onCreateJobError(e),
     });
   }
 
+  //#region callbacks
+  onCreateJobRes(response: any): void {
+    this.onDismissCreateJobLoading();
+    this.router.navigate(['/jobs']);
+    this.onShowSuccessAlert();
+  }
+
+  onCreateJobError(error: string): void {
+    this.onDismissCreateJobLoading();
+    this.onShowError(error);
+  }
+  //#endregion callbacks
+
+  //#region helpers
   mapJobModel(): JobCreate {
     const {
       title,
@@ -98,30 +112,6 @@ export class CreateJobFormComponent implements OnInit {
     return jobCreate;
   }
 
-  //#region callbacks
-  onCreateJobRes(response: any): void {
-    this.onDismissCreateJobLoading();
-    this.router.navigate(['/jobs']);
-    this.onShowSuccessAlert();
-  }
-
-  onCreateJobError(error: string): void {
-    this.onDismissCreateJobLoading();
-    this.onShowError(error);
-  }
-  //#endregion callbacks
-
-  //#region loadings
-  onShowCreateJobLoading(): void {
-    this.createJobLoading = true;
-  }
-
-  onDismissCreateJobLoading(): void {
-    this.createJobLoading = false;
-  }
-  //#endregion loadings
-
-  //#region helpers
   onShowError(errorMsg: any): void {
     this.dynamicComponentsService.showTranslatedToast(errorMsg);
   }
@@ -144,4 +134,14 @@ export class CreateJobFormComponent implements OnInit {
     this.dynamicComponentsService.showAlert(options);
   }
   //#endregion helpers
+
+  //#region loadings
+  onShowCreateJobLoading(): void {
+    this.createJobLoading = true;
+  }
+
+  onDismissCreateJobLoading(): void {
+    this.createJobLoading = false;
+  }
+  //#endregion loadings
 }

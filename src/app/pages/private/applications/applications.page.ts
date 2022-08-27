@@ -20,10 +20,10 @@ export class ApplicationsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getApplications();
+    this.getApplicationsBasedOnRole();
   }
 
-  getApplications(): void {
+  getApplicationsBasedOnRole(): void {
     const userRole: string = this.userService.user$.getValue().role;
     if (userRole == 'Recruiter') this.getAnnouncedAppications();
     else this.getAllApplications();
@@ -45,6 +45,7 @@ export class ApplicationsPage implements OnInit {
     });
   }
 
+  //#region callbacks
   onAllApplicationsFetch(jobs: GetJobApplication[]): void {
     this.onDismissLoading();
     this.applications = jobs;
@@ -54,8 +55,13 @@ export class ApplicationsPage implements OnInit {
     this.onDismissLoading();
     this.dynamicComponentsService.showTranslatedToast(errorMsg);
   }
+  //#endregion callbacks
 
   //#region helpers
+
+  //#endregion helpers
+
+  //#region loadings
   onShowLoading(): void {
     this.areApplicationsLoading = true;
   }
@@ -63,5 +69,5 @@ export class ApplicationsPage implements OnInit {
   onDismissLoading(): void {
     this.areApplicationsLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }

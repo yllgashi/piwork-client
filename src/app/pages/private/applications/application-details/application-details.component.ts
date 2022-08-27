@@ -21,10 +21,10 @@ export class ApplicationDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getParams();
+    this.fetchParamsAndGetApplicationDetails();
   }
 
-  getParams(): void {
+  fetchParamsAndGetApplicationDetails(): void {
     this.route.params.subscribe({
       next: (params) => this.onParamsFetch(params),
     });
@@ -43,6 +43,14 @@ export class ApplicationDetailsComponent implements OnInit {
     });
   }
 
+  onDeleteJobApplication(): void {
+    const { id } = this.jobApplicationDetails;
+    this.applicationService.deleteApplication(id).subscribe({
+      next: (res) => this.onDeleteJobApplicationRes(res),
+      error: (e) => this.onDeleteJobApplicationError(e),
+    });
+  }
+
   onApplicantDetailsClick(): void {
     const { applicantUserId } = this.jobApplicationDetails;
     this.dynamicComponentsService.showModal({
@@ -53,6 +61,7 @@ export class ApplicationDetailsComponent implements OnInit {
     });
   }
 
+  //#region callbacks
   onGetApplicationDetailsRes(response: GetJobApplication): void {
     this.onDismissLoading();
     this.jobApplicationDetails = response;
@@ -62,18 +71,12 @@ export class ApplicationDetailsComponent implements OnInit {
     this.onDismissLoading();
   }
 
-  onDeleteJobApplication(): void {
-    const { id } = this.jobApplicationDetails;
-    this.applicationService.deleteApplication(id).subscribe({
-      next: (res) => this.onDeleteJobApplicationRes(res),
-      error: (e) => this.onDeleteJobApplicationError(e),
-    });
-  }
-
   onDeleteJobApplicationRes(result: any): void {}
 
   onDeleteJobApplicationError(error: any): void {}
+  //#endregion callbacks
 
+  //#region loadings
   onShowLoading(): void {
     this.isLoading = true;
   }
@@ -81,4 +84,5 @@ export class ApplicationDetailsComponent implements OnInit {
   onDismissLoading(): void {
     this.isLoading = false;
   }
+  //#endregion loadings
 }

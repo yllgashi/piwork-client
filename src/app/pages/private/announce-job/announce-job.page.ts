@@ -41,6 +41,12 @@ export class AnnounceJobPage implements OnInit {
   //#endregion callbacks
 
   //#region helpers
+  onShowError(errorMsg: any): void {
+    this.dynamicComponentsService.showTranslatedToast(errorMsg);
+  }
+  //#endregion helpers
+
+  //#region loadings
   onShowSkillsLoading(): void {
     this.areSkillsLoading = true;
   }
@@ -48,9 +54,5 @@ export class AnnounceJobPage implements OnInit {
   onDismissSkillsLoading(): void {
     this.areSkillsLoading = false;
   }
-
-  onShowError(errorMsg: any): void {
-    this.dynamicComponentsService.showTranslatedToast(errorMsg);
-  }
-  //#endregion helpers
+  //#endregion loadings
 }
