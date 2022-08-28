@@ -20,7 +20,9 @@ export class OverviewComponent implements OnInit {
     private dynamicComponentsService: DynamicComponentsService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter(): void {
     this.getJobsBasedOnRole();
   }
 

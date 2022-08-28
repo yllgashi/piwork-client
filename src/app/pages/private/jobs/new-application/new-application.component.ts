@@ -25,8 +25,11 @@ export class NewApplicationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.fetchUser();
     this.initializeForm();
+  }
+
+  ionViewDidEnter(): void {
+    this.fetchUser();
   }
 
   fetchUser(): void {

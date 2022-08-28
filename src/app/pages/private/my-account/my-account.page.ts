@@ -26,7 +26,9 @@ export class MyAccountPage implements OnInit {
     private dynamicComponentsService: DynamicComponentsService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter(): void {
     this.checkForUserIdParam();
   }
 

@@ -19,7 +19,9 @@ export class ApplicationsPage implements OnInit {
     private dynamicComponentsService: DynamicComponentsService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter(): void {
     this.getApplicationsBasedOnRole();
   }
 

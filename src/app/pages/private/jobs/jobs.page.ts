@@ -9,6 +9,4 @@ export class JobsPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-
-  ionViewWillLeave() {}
 }

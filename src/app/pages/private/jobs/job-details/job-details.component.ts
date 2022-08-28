@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { JobDetails } from 'src/app/shared/model/job-details.model';
-import { BrowserService } from 'src/app/shared/providers/browser.service';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { NewApplicationComponent } from '../new-application/new-application.component';
@@ -18,11 +17,12 @@ export class JobDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private jobService: JobService,
-    private dynamicComponentsService: DynamicComponentsService,
-    private browserService: BrowserService
+    private dynamicComponentsService: DynamicComponentsService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter(): void {
     this.getParamsAndShowJobDetails();
   }
 

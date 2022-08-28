@@ -13,7 +13,9 @@ export class NotificationsPage implements OnInit {
 
   constructor(private notificationService: NotificationService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter(): void {
     this.getNotifications();
   }
 

@@ -17,7 +17,9 @@ export class AnnounceJobPage implements OnInit {
     private dynamicComponentsService: DynamicComponentsService
   ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewDidEnter(): void {
     this.getSkills();
   }
 
