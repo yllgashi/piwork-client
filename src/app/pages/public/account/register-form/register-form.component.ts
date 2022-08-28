@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SelectModel } from 'src/app/shared/components/ion-components/select/select.model';
 import { Register } from 'src/app/shared/model/register.model';
-import { Role } from 'src/app/shared/model/role.model';
 import { AuthService } from 'src/app/shared/providers/auth.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { StorageService } from 'src/app/shared/providers/native/storage.service';
@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/shared/providers/native/storage.service'
   styleUrls: ['./register-form.component.scss'],
 })
 export class RegisterFormComponent implements OnInit {
-  roles: Role[];
+  roles: SelectModel[];
   registerForm: FormGroup;
   isLoading: boolean;
 
@@ -27,10 +27,11 @@ export class RegisterFormComponent implements OnInit {
     this.initializeForm();
   }
 
+  //#region form
   initializeRoles(): void {
     this.roles = [
-      { id: 1, name: 'Recruiter' },
-      { id: 2, name: 'Seeker' },
+      new SelectModel(1, 'Recruiter'),
+      new SelectModel(2, 'Seeker'),
     ];
   }
 
@@ -49,31 +50,54 @@ export class RegisterFormComponent implements OnInit {
     });
   }
 
-  getControl(control: string): FormControl {
-    return this.registerForm.get(control) as FormControl;
-  }
-
-  onSubmit(): void {
-    const isValid = this.isFormValid();
-    if (!isValid) return;
-    this.onLogin();
-  }
-
   isFormValid(): boolean {
     const validForm: boolean = this.registerForm.valid;
     if (!validForm) this.onShowError('ERROR.ERR_10');
     return validForm;
   }
 
-  onLogin(): void {
-    this.onShowLoading();
+  getControl(control: string): FormControl {
+    return this.registerForm.get(control) as FormControl;
+  }
+  //#endregion form
+
+  onSubmit(): void {
+    const isValid = this.isFormValid();
+    if (!isValid) return;
     const register: Register = this.mapUserFromForm();
+    this.onLogin(register);
+  }
+
+  onLogin(register: Register): void {
+    this.onShowLoading();
     this.authService.register(register).subscribe({
-      next: (res) => this.onLoginFormSuccess(res),
-      error: (e) => this.onShowError(e),
+      next: (res) => this.onLoginRes(res),
+      error: (e) => this.onLoginError(e),
     });
   }
 
+  //#region callbacks
+  onLoginRes(response: any) {
+    const { access_token } = response;
+    this.saveAccesstokenInStorage(access_token);
+    this.onDismissLoading();
+  }
+
+  onLoginError(errorMsg: string) {
+    this.onDismissLoading();
+    this.onShowError(errorMsg);
+  }
+
+  //#endregion callbacks
+
+  saveAccesstokenInStorage(accessToken: string): void {
+    this.storageService.set('accessToken', accessToken).subscribe({
+      next: (res) => this.navigateToPrivateModule(),
+      error: (e) => this.navigateToPrivateModule(),
+    });
+  }
+
+  //#region helpers
   mapUserFromForm(): Register {
     const { firstName, lastName, email, password, description, roleId } =
       this.registerForm.value;
@@ -88,29 +112,17 @@ export class RegisterFormComponent implements OnInit {
     return register;
   }
 
-  onLoginFormSuccess(response: any) {
-    const { access_token } = response;
-    this.saveAccesstokenInStorage(access_token);
-    this.onDismissLoading();
-  }
-
-  saveAccesstokenInStorage(accessToken: string): void {
-    this.storageService.set('accessToken', accessToken).subscribe({
-      next: (res) => this.navigateToPrivateModule(),
-      error: (e) => this.navigateToPrivateModule(),
-    });
-  }
-
   navigateToPrivateModule(): void {
     this.dynamicComponentsService.navigateRoot('/jobs');
   }
 
-  //#region helpers
   onShowError(errorMsg: any): void {
     this.onDismissLoading();
     this.dynamicComponentsService.showTranslatedToast(errorMsg);
   }
+  //#endregion helpers
 
+  //#region loadings
   onShowLoading(): void {
     this.isLoading = true;
   }
@@ -118,5 +130,5 @@ export class RegisterFormComponent implements OnInit {
   onDismissLoading(): void {
     this.isLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }

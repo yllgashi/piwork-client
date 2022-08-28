@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JobDetails } from 'src/app/shared/model/job-details.model';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { ApplicationsPage } from '../../applications/applications.page';
 import { NewApplicationComponent } from '../new-application/new-application.component';
 
 @Component({
@@ -55,7 +56,14 @@ export class JobDetailsComponent implements OnInit {
   //#endregion callbacks
 
   onShowJobApplications(): void {
-    const { id } = this.jobDetails;
+    const { id, title } = this.jobDetails;
+    this.dynamicComponentsService.showModal({
+      component: ApplicationsPage,
+      componentProps: {
+        jobId: id,
+        jobTitle: title,
+      },
+    });
   }
 
   onProceedWithApplication(): void {

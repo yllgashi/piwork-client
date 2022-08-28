@@ -24,6 +24,7 @@ export class LoginFormComponent implements OnInit {
     this.initializeForm();
   }
 
+  //#region form
   initializeForm(): void {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -35,35 +36,43 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  getControl(control: string): FormControl {
-    return this.loginForm.get(control) as FormControl;
-  }
-
-  onSubmit(): void {
-    const isValid = this.isFormValid();
-    if (!isValid) return;
-    this.onLogin();
-  }
-
   isFormValid(): boolean {
     const validForm: boolean = this.loginForm.valid;
     if (!validForm) this.onShowError('ERROR.ERR_10');
     return validForm;
   }
 
-  onLogin(): void {
-    this.onShowLoading();
+  getControl(control: string): FormControl {
+    return this.loginForm.get(control) as FormControl;
+  }
+  //#endregion form
+
+  onSubmit(): void {
+    const isValid = this.isFormValid();
+    if (!isValid) return;
     const login: Login = this.loginForm.value;
+    this.onLogin(login);
+  }
+
+  onLogin(login: Login): void {
+    this.onShowLoading();
     this.authService.login(login).subscribe({
-      next: (res) => this.onLoginFormSuccess(res),
-      error: (e) => this.onShowError(e),
+      next: (res) => this.onLoginRes(res),
+      error: (e) => this.onLoginError(e),
     });
   }
 
-  onLoginFormSuccess(response: any) {
+  //#region callbacks
+  onLoginRes(response: any) {
     const { access_token } = response;
     this.saveAccesstokenInStorage(access_token);
   }
+
+  onLoginError(errorMsg: string): void {
+    this.onDismissLoading();
+    this.onShowError(errorMsg);
+  }
+  //#endregion callbacks
 
   saveAccesstokenInStorage(accessToken: string): void {
     this.storageService.set('accessToken', accessToken).subscribe({
@@ -72,16 +81,17 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  navigateToPrivateModule(): void {
-    this.dynamicComponentsService.navigateRoot('/jobs');
-  }
-
   //#region helpers
   onShowError(errorMsg: any): void {
-    this.onDismissLoading();
     this.dynamicComponentsService.showTranslatedToast(errorMsg);
   }
 
+  navigateToPrivateModule(): void {
+    this.dynamicComponentsService.navigateRoot('/jobs');
+  }
+  //#endregion helpers
+
+  //#region loadings
   onShowLoading(): void {
     this.isLoading = true;
   }
@@ -89,5 +99,5 @@ export class LoginFormComponent implements OnInit {
   onDismissLoading(): void {
     this.isLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }

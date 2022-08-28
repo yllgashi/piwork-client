@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GetJobApplication } from 'src/app/shared/model/get-job-application.model';
 import { ApplicationService } from 'src/app/shared/providers/application.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
@@ -10,6 +10,8 @@ import { UserService } from 'src/app/shared/providers/user.service';
   styleUrls: ['./applications.page.scss'],
 })
 export class ApplicationsPage implements OnInit {
+  @Input('jobId') jobId: number; // if jobId is provided, then it is called as a modal
+  @Input('jobTitle') jobTitle: string;  // if jobTitle is provided, then it is called as a modal
   applications: GetJobApplication[];
   areApplicationsLoading: boolean;
 
@@ -22,7 +24,16 @@ export class ApplicationsPage implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter(): void {
-    this.getApplicationsBasedOnRole();
+    this.checkForJobIdAndGetApplications();
+  }
+
+  areApplicationsOfOnlyOneJob(): boolean {
+    return !!this.jobId;
+  }
+
+  checkForJobIdAndGetApplications(): void {
+    if (this.jobId) this.getApplicationsByJobId(this.jobId);
+    else this.getApplicationsBasedOnRole();
   }
 
   getApplicationsBasedOnRole(): void {
@@ -31,9 +42,17 @@ export class ApplicationsPage implements OnInit {
     else this.getAllApplications();
   }
 
+  getApplicationsByJobId(jobId: number): void {
+    this.onShowLoading();
+    this.applicationService.getApplicationsByJobId(jobId).subscribe({
+      next: (res) => this.onAllApplicationsFetch(res),
+      error: (e) => this.onAllApplicationsError(e),
+    });
+  }
+
   getAnnouncedAppications(): void {
     this.onShowLoading();
-    this.applicationService.getAnnouncedJobs().subscribe({
+    this.applicationService.getAnnouncedApplications().subscribe({
       next: (res) => this.onAllApplicationsFetch(res),
       error: (e) => this.onAllApplicationsError(e),
     });
@@ -60,7 +79,9 @@ export class ApplicationsPage implements OnInit {
   //#endregion callbacks
 
   //#region helpers
-
+  closeModal(): void {
+    this.dynamicComponentsService.closeModal();
+  }
   //#endregion helpers
 
   //#region loadings
