@@ -47,8 +47,11 @@
       ></app-chip-information-item>
 
       <!-- application information -->
-      <h3 *accessRole="'Recruiter'" class="ion-padding-top ion-padding-start">Applicant Information</h3>
-      <app-text-information-item *accessRole="'Recruiter'"
+      <h3 *accessRole="'Recruiter'" class="ion-padding-top ion-padding-start">
+        Applicant Information
+      </h3>
+      <app-text-information-item
+        *accessRole="'Recruiter'"
         [icon]="'document-attach-outline'"
         [title]="
           jobApplicationDetails.applicantFirstName +
@@ -66,12 +69,21 @@
       </p>
 
       <app-button
-        *ngIf="jobApplicationDetails.jobApplicationPhaseId === 'Waiting'"
+        *accessRole="'Seeker'"
         [fill]="'clear'"
         [expand]="'block'"
         [color]="'danger'"
         (clickOut)="onDeleteJobApplication()"
         [text]="'APP.DELETE_BTN' | translate"
+      ></app-button>
+
+      <app-button
+        *accessRole="'Recruiter'"
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'danger'"
+        (clickOut)="onChooseWinner()"
+        [text]="'Choose winner'"
       ></app-button>
     </div>
   </div>

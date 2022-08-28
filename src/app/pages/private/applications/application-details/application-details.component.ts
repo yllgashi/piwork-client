@@ -37,6 +37,8 @@ export class ApplicationDetailsComponent implements OnInit {
     this.getApplicationDetails(+id);
   }
 
+  onChooseWinner(): void {}
+
   getApplicationDetails(applicationId: number): void {
     this.onShowLoading();
     this.applicationService.getJobApplicationDetails(applicationId).subscribe({
