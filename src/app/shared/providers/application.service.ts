@@ -42,4 +42,9 @@ export class ApplicationService {
     const path = `applications/${applicationId}`;
     return this.httpService.delete<any>({ path });
   }
+
+  selectWinnerApplication(applicationId: number): Observable<any> {
+    const path = `applications/select-winner-application/${applicationId}`;
+    return this.httpService.post<any>({ path });
+  }
 }

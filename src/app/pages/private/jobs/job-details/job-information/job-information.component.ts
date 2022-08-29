@@ -17,6 +17,7 @@ export class JobInformationComponent implements OnInit {
   @Input('requiredSkills') requiredSkills: any;
   @Input('publishedByUserFirstName') publishedByUserFirstName: string;
   @Input('publishedByUserLastName') publishedByUserLastName: string;
+  @Input('publisherPicture') publisherPicture: string;
   @Input('contactEmail') contactEmail: string;
 
   constructor(private browserService: BrowserService) {}

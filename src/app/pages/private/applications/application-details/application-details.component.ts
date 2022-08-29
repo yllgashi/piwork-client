@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertButton, AlertOptions } from '@ionic/angular';
 import { GetJobApplication } from 'src/app/shared/model/get-job-application.model';
 import { ApplicationService } from 'src/app/shared/providers/application.service';
+import { LanguagesService } from 'src/app/shared/providers/common/languages.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
 import { MyAccountPage } from '../../my-account/my-account.page';
 
@@ -17,7 +19,9 @@ export class ApplicationDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private applicationService: ApplicationService,
-    private dynamicComponentsService: DynamicComponentsService
+    private dynamicComponentsService: DynamicComponentsService,
+    private languagesService: LanguagesService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -36,8 +40,6 @@ export class ApplicationDetailsComponent implements OnInit {
     const { id } = params;
     this.getApplicationDetails(+id);
   }
-
-  onChooseWinner(): void {}
 
   getApplicationDetails(applicationId: number): void {
     this.onShowLoading();
@@ -65,6 +67,14 @@ export class ApplicationDetailsComponent implements OnInit {
     });
   }
 
+  onSelectWinnerApplication(): void {
+    const { id } = this.jobApplicationDetails;
+    this.applicationService.selectWinnerApplication(id).subscribe({
+      next: (res) => this.onSelectWinnerApplicationRes(res),
+      error: (e) => this.onSelectWinnerApplicationError(e),
+    });
+  }
+
   //#region callbacks
   onGetApplicationDetailsRes(response: GetJobApplication): void {
     this.onDismissLoading();
@@ -78,7 +88,40 @@ export class ApplicationDetailsComponent implements OnInit {
   onDeleteJobApplicationRes(result: any): void {}
 
   onDeleteJobApplicationError(error: any): void {}
+
+  onSelectWinnerApplicationRes(response: any): void {
+    this.navigateToJobs();
+    this.showSuccessWinnerApplicationSelectAlert();
+  }
+
+  onSelectWinnerApplicationError(error: any): void {
+    this.onDismissLoading();
+  }
   //#endregion callbacks
+
+  //#region helpers
+  navigateToJobs(): void {
+    this.router.navigate(['/jobs']);
+  }
+
+  showSuccessWinnerApplicationSelectAlert(): void {
+    const header = 'Success';
+    const subHeader =
+      'Application has been succesfully selected as job winner. This applicant will be notified.';
+    const text = this.languagesService.instant('APP.CANCEL');
+    const buttons: AlertButton[] = [
+      {
+        text,
+      },
+    ];
+    const options: AlertOptions = {
+      header,
+      subHeader,
+      buttons,
+    };
+    this.dynamicComponentsService.showAlert(options);
+  }
+  //#endregion helpers
 
   //#region loadings
   onShowLoading(): void {
