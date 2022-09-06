@@ -26,14 +26,24 @@
 
 <ion-footer *ngIf="jobDetails" class="ion-no-border">
   <ion-toolbar *ngIf="jobDetails.isActive">
-    <app-button
-      *accessRole="'Seeker'"
-      [fill]="'clear'"
-      [expand]="'block'"
-      [color]="'success'"
-      (clickOut)="onProceedWithApplication()"
-      [text]="'APPLY'"
-    ></app-button>
+    <div *accessRole="'Seeker'">
+      <app-button
+        *ngIf="!jobDetails.hasUserApplied"
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'success'"
+        (clickOut)="onProceedWithApplication()"
+        [text]="'APPLY'"
+      ></app-button>
+      <app-button
+        *ngIf="jobDetails.hasUserApplied"
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'success'"
+        [disabled]="true"
+        [text]="'ALREADY APPLIED'"
+      ></app-button>
+    </div>
 
     <app-button
       *accessRole="'Recruiter'"

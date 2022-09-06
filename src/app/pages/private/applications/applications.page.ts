@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/providers/user.service';
 })
 export class ApplicationsPage implements OnInit {
   @Input('jobId') jobId: number; // if jobId is provided, then it is called as a modal
-  @Input('jobTitle') jobTitle: string;  // if jobTitle is provided, then it is called as a modal
+  @Input('jobTitle') jobTitle: string; // if jobTitle is provided, then it is called as a modal
   applications: GetJobApplication[];
   areApplicationsLoading: boolean;
 
@@ -67,15 +67,18 @@ export class ApplicationsPage implements OnInit {
   }
 
   //#region callbacks
-  onAllApplicationsFetch(jobs: GetJobApplication[]): void {
+  onAllApplicationsFetch(applications: GetJobApplication[]): void {
     this.onDismissLoading();
-    this.applications = jobs;
+    this.applications = applications;
   }
 
   onAllApplicationsError(errorMsg: string): void {
     this.onDismissLoading();
-    this.dynamicComponentsService.showTranslatedToast(errorMsg);
+    this.onShowError(errorMsg);
   }
+  //#endregion callbacks
+
+  onShowError(errorMsg) {}
   //#endregion callbacks
 
   //#region helpers

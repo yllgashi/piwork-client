@@ -69,7 +69,7 @@ export class CreateJobFormComponent implements OnInit {
   }
 
   onCreateJob(job: JobCreate): void {
-    this.onShowCreateJobLoading();
+    this.onShowLoading();
     this.jobService.createJob(job).subscribe({
       next: (res) => this.onCreateJobRes(res),
       error: (e) => this.onCreateJobError(e),
@@ -78,13 +78,13 @@ export class CreateJobFormComponent implements OnInit {
 
   //#region callbacks
   onCreateJobRes(response: any): void {
-    this.onDismissCreateJobLoading();
+    this.onDismissLoading();
     this.router.navigate(['/jobs']);
     this.onShowSuccessAlert();
   }
 
   onCreateJobError(error: string): void {
-    this.onDismissCreateJobLoading();
+    this.onDismissLoading();
     this.onShowError(error);
   }
   //#endregion callbacks
@@ -136,11 +136,11 @@ export class CreateJobFormComponent implements OnInit {
   //#endregion helpers
 
   //#region loadings
-  onShowCreateJobLoading(): void {
+  onShowLoading(): void {
     this.createJobLoading = true;
   }
 
-  onDismissCreateJobLoading(): void {
+  onDismissLoading(): void {
     this.createJobLoading = false;
   }
   //#endregion loadings
