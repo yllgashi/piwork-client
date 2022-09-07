@@ -80,6 +80,7 @@ export class ApplicationDetailsComponent implements OnInit {
   onDeleteJobApplicationError(error: any): void {}
 
   onSelectWinnerApplicationRes(response: any): void {
+    this.closeModal();
     this.navigateToJobs();
     this.showSuccessWinnerApplicationSelectAlert();
   }
@@ -92,6 +93,10 @@ export class ApplicationDetailsComponent implements OnInit {
   //#region helpers
   get fileBaseUrl(): string {
     return environment.filesUrl;
+  }
+
+  closeModal(): void {
+    this.dynamicComponentsService.closeModal();
   }
 
   navigateToJobs(): void {

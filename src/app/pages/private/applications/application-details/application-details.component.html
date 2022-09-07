@@ -63,7 +63,8 @@
         {{ jobApplicationDetails.comment }}
       </p>
 
-      <app-button
+      <div *ngIf="jobApplicationDetails.isActive">
+        <app-button
         *accessRole="'Seeker'"
         [fill]="'clear'"
         [expand]="'block'"
@@ -80,6 +81,7 @@
         (clickOut)="onSelectWinnerApplication()"
         [text]="'Choose winner'"
       ></app-button>
+      </div>
     </div>
   </div>
 </ion-content>
