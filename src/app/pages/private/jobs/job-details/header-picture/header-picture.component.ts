@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header-picture',
@@ -8,8 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderPictureComponent implements OnInit {
   @Input('picture') picture: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
+  }
 }

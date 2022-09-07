@@ -5,6 +5,7 @@ import { GetJobApplication } from 'src/app/shared/model/get-job-application.mode
 import { ApplicationService } from 'src/app/shared/providers/application.service';
 import { LanguagesService } from 'src/app/shared/providers/common/languages.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { environment } from 'src/environments/environment';
 import { MyAccountPage } from '../../my-account/my-account.page';
 
 @Component({
@@ -28,6 +29,10 @@ export class ApplicationDetailsComponent implements OnInit {
 
   ionViewDidEnter(): void {
     this.fetchParamsAndGetApplicationDetails();
+  }
+
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
   }
 
   fetchParamsAndGetApplicationDetails(): void {

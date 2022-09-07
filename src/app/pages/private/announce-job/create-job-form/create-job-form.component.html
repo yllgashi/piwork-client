@@ -102,7 +102,7 @@
       <div class="ion-padding">
         <ion-chip *ngFor="let s of choosedSkills" color="medium">
           <ion-avatar>
-            <img [src]="'http://localhost:3000/files/' + s.icon" />
+            <img [src]="fileBaseUrl + s.icon" />
           </ion-avatar>
           <ion-label>{{ s.name }}</ion-label>
         </ion-chip>

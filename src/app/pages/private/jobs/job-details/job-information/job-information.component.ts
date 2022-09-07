@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BrowserService } from 'src/app/shared/providers/browser.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-job-information',
@@ -26,6 +27,10 @@ export class JobInformationComponent implements OnInit {
 
   onSourceCodeClick(): void {
     this.browserService.open(this.sourceCodeLink).subscribe();
+  }
+
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
   }
 
   onPublisherClick(): void {}

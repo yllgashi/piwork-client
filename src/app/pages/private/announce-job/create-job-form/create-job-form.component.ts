@@ -7,6 +7,7 @@ import { Skill } from 'src/app/shared/model/skill.model';
 import { LanguagesService } from 'src/app/shared/providers/common/languages.service';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-create-job-form',
@@ -28,6 +29,10 @@ export class CreateJobFormComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
+  }
+
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
   }
 
   //#region form

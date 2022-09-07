@@ -3,6 +3,7 @@ import { AlertButton, AlertOptions } from '@ionic/angular';
 import { Notification } from 'src/app/shared/model/notification.model';
 import { LanguagesService } from 'src/app/shared/providers/common/languages.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-notification-item',
@@ -18,6 +19,10 @@ export class NotificationItemComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
+  }
 
   onNotificationClick(): void {
     const { notificationTopicDescription, message } = this.notification;

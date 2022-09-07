@@ -44,7 +44,7 @@
   <div class="ion-padding">
     <ion-chip *ngFor="let s of requiredSkills" color="medium">
       <ion-avatar>
-        <img [src]="'http://localhost:3000/files/' + s.icon" />
+        <img [src]="fileBaseUrl + s.icon" />
       </ion-avatar>
       <ion-label>{{ s.name }}</ion-label>
     </ion-chip>
@@ -55,7 +55,7 @@
 
   <ion-item detail="false" button="true" (click)="onPublisherClick()">
     <ion-avatar slot="start">
-      <img [src]="'http://localhost:3000/files/' + publisherPicture" />
+      <img [src]="fileBaseUrl + publisherPicture" />
     </ion-avatar>
     <ion-label>
       <p>

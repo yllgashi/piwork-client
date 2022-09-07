@@ -37,7 +37,7 @@ export class NotificationsPage implements OnInit {
   }
   //#endregion callbacks
 
-  //#region helpers
+  //#region loadings
   onShowLoading(): void {
     this.isLoading = true;
   }
@@ -45,5 +45,5 @@ export class NotificationsPage implements OnInit {
   onDismissLoading(): void {
     this.isLoading = false;
   }
-  //#endregion helpers
+  //#endregion loadings
 }
