@@ -6,12 +6,7 @@
   <div *ngIf="!isLoading && jobApplicationDetails">
     <!-- img -->
     <div class="about-header">
-      <img
-        [src]="
-          'http://localhost:3000/files/' +
-          jobApplicationDetails.publisherProfilePic
-        "
-      />
+      <img [src]="fileBaseUrl + jobApplicationDetails.publisherProfilePic" />
     </div>
 
     <div class="about-info">

@@ -6,11 +6,11 @@
 ></app-header>
 
 <ion-content>
-  <app-loading *ngIf="isUserDetailsLoading"></app-loading>
+  <app-loading *ngIf="isLoading"></app-loading>
 
-  <app-no-data *ngIf="!isUserDetailsLoading && !userDetails"></app-no-data>
+  <app-no-data *ngIf="!isLoading && !userDetails"></app-no-data>
 
-  <div *ngIf="!isUserDetailsLoading && userDetails">
+  <div *ngIf="!isLoading && userDetails">
     <app-header-picture [picture]="userDetails.profilePic"></app-header-picture>
 
     <div class="about-info">

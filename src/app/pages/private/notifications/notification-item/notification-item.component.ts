@@ -20,10 +20,6 @@ export class NotificationItemComponent implements OnInit {
 
   ngOnInit() {}
 
-  get fileBaseUrl(): string {
-    return environment.filesUrl;
-  }
-
   onNotificationClick(): void {
     const { notificationTopicDescription, message } = this.notification;
     const text = this.languagesService.instant('APP.CANCEL');
@@ -39,4 +35,10 @@ export class NotificationItemComponent implements OnInit {
     };
     this.dynamicComponentsService.showAlert(options);
   }
+
+  //#region helpers
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
+  }
+  //#endregion helpers
 }

@@ -31,10 +31,6 @@ export class CreateJobFormComponent implements OnInit {
     this.initializeForm();
   }
 
-  get fileBaseUrl(): string {
-    return environment.filesUrl;
-  }
-
   //#region form
   initializeForm(): void {
     this.announceJobForm = new FormGroup({
@@ -95,6 +91,10 @@ export class CreateJobFormComponent implements OnInit {
   //#endregion callbacks
 
   //#region helpers
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
+  }
+
   mapJobModel(): JobCreate {
     const {
       title,

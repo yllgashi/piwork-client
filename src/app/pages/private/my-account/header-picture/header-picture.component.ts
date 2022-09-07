@@ -13,7 +13,9 @@ export class HeaderPictureComponent implements OnInit {
 
   ngOnInit() {}
 
+  //#region helpers
   get fileBaseUrl(): string {
     return environment.filesUrl;
   }
+  //#endregion helpers
 }

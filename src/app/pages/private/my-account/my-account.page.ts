@@ -15,7 +15,7 @@ import { UserService } from 'src/app/shared/providers/user.service';
 export class MyAccountPage implements OnInit {
   @Input('userId') userId: number; // if userId is provided, it means it IS NOT current user account
   userDetails: UserDetails;
-  isUserDetailsLoading: boolean;
+  isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,6 +62,7 @@ export class MyAccountPage implements OnInit {
 
   //#region callbacks
   onGetUserDetailsRes(res: UserDetails): void {
+    console.log('here')
     this.userDetails = res;
     this.onDismissUserDetailsLoading();
   }
@@ -101,11 +102,11 @@ export class MyAccountPage implements OnInit {
 
   //#region loadings
   onShowUserDetailsLoading(): void {
-    this.isUserDetailsLoading = true;
+    this.isLoading = true;
   }
 
   onDismissUserDetailsLoading(): void {
-    this.isUserDetailsLoading = false;
+    this.isLoading = false;
   }
   //#endregion loadings
 }

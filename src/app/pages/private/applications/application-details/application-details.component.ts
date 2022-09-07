@@ -31,10 +31,6 @@ export class ApplicationDetailsComponent implements OnInit {
     this.fetchParamsAndGetApplicationDetails();
   }
 
-  get fileBaseUrl(): string {
-    return environment.filesUrl;
-  }
-
   fetchParamsAndGetApplicationDetails(): void {
     this.route.params.subscribe({
       next: (params) => this.onParamsFetch(params),
@@ -105,6 +101,10 @@ export class ApplicationDetailsComponent implements OnInit {
   //#endregion callbacks
 
   //#region helpers
+  get fileBaseUrl(): string {
+    return environment.filesUrl;
+  }
+
   navigateToJobs(): void {
     this.router.navigate(['/jobs']);
   }
