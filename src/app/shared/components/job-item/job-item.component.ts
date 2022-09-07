@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Job } from '../../model/job.model';
 
 @Component({
@@ -9,8 +9,13 @@ import { Job } from '../../model/job.model';
 export class JobItemComponent implements OnInit {
   @Input('job') job: Job;
   @Input('routerLink') routerLink: string;
+  @Output() jobItemClick = new EventEmitter<void>();
 
   constructor() {}
 
   ngOnInit() {}
+
+  onJobItemClick(): void {
+    this.jobItemClick.next();
+  }
 }

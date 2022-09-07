@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { GetJobApplication } from 'src/app/shared/model/get-job-application.model';
+import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
+import { ApplicationDetailsComponent } from '../application-details/application-details.component';
 
 @Component({
   selector: 'app-application-item',
@@ -10,12 +12,16 @@ import { GetJobApplication } from 'src/app/shared/model/get-job-application.mode
 export class ApplicationItemComponent implements OnInit {
   @Input('application') application: GetJobApplication;
 
-  constructor(private router: Router) {}
+  constructor(private dcService: DynamicComponentsService) {}
 
   ngOnInit() {}
 
-  onShowDetails(): void {
-    const { id } = this.application;
-    this.router.navigate([`/applications/${id}`]);
+  onShowApplicationDetails(applicationId: number): void {
+    this.dcService.showModal({
+      component: ApplicationDetailsComponent,
+      componentProps: {
+        applicationId: applicationId,
+      },
+    });
   }
 }

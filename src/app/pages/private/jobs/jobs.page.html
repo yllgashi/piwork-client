@@ -1,1 +1,15 @@
-<ion-router-outlet id="jobs"></ion-router-outlet>
+<ion-content>
+  <app-loading *ngIf="areJobsLoading"></app-loading>
+
+  <app-no-data *ngIf="!areJobsLoading && !jobs"></app-no-data>
+
+  <div *ngIf="!areJobsLoading && jobs">
+    <app-search-jobs (searchJobs$)="onSearchJobs($event)"></app-search-jobs>
+
+    <app-job-item
+      *ngFor="let job of jobs"
+      [job]="job"
+      (jobItemClick)="onShowJobDetails(job.id)"
+    ></app-job-item>
+  </div>
+</ion-content>

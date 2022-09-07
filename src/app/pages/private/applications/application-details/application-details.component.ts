@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertButton, AlertOptions } from '@ionic/angular';
 import { GetJobApplication } from 'src/app/shared/model/get-job-application.model';
@@ -14,11 +14,11 @@ import { MyAccountPage } from '../../my-account/my-account.page';
   styleUrls: ['./application-details.component.scss'],
 })
 export class ApplicationDetailsComponent implements OnInit {
+  @Input('applicationId') applicationId: number;
   jobApplicationDetails: GetJobApplication;
   isLoading: boolean;
 
   constructor(
-    private route: ActivatedRoute,
     private applicationService: ApplicationService,
     private dynamicComponentsService: DynamicComponentsService,
     private languagesService: LanguagesService,
@@ -28,18 +28,7 @@ export class ApplicationDetailsComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter(): void {
-    this.fetchParamsAndGetApplicationDetails();
-  }
-
-  fetchParamsAndGetApplicationDetails(): void {
-    this.route.params.subscribe({
-      next: (params) => this.onParamsFetch(params),
-    });
-  }
-
-  onParamsFetch(params): void {
-    const { id } = params;
-    this.getApplicationDetails(+id);
+    this.getApplicationDetails(this.applicationId);
   }
 
   getApplicationDetails(applicationId: number): void {

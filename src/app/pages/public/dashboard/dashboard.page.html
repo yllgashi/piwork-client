@@ -7,7 +7,7 @@
     <app-job-item
       *ngFor="let job of jobs"
       [job]="job"
-      [routerLink]="'/account'"
+      (jobItemClick)="navigateToAccountPage()"
     ></app-job-item>
   </div>
 </ion-content>

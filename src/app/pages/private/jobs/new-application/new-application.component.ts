@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CreateApplication } from 'src/app/shared/model/create-application.model';
 import { User } from 'src/app/shared/model/user.model';
 import { ApplicationService } from 'src/app/shared/providers/application.service';
@@ -19,6 +20,7 @@ export class NewApplicationComponent implements OnInit {
   isLoading: boolean;
 
   constructor(
+    private router: Router,
     private userService: UserService,
     private applicationService: ApplicationService,
     private dynamicComponentsService: DynamicComponentsService
@@ -74,6 +76,8 @@ export class NewApplicationComponent implements OnInit {
   onCreateApplicationRes(response: any): void {
     this.showSuccessAlert();
     this.closeModal();
+    this.closeModal();
+    this.router.navigate(['/applications']);
   }
 
   onCreateApplicationError(errorMsg: string): void {

@@ -3,7 +3,7 @@
   [cardContent]="true"
   [cardTitle]="job.title"
   [cardSubtitle]="job.priceAmount.toFixed(2) | currency: 'EUR'"
-  [routerLink]="routerLink"
+  (click)="onJobItemClick()"
 >
   <div card-content>
     <app-information-item

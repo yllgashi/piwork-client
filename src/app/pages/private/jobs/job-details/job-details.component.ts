@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { JobDetails } from 'src/app/shared/model/job-details.model';
 import { JobService } from 'src/app/shared/providers/job.service';
 import { DynamicComponentsService } from 'src/app/shared/providers/native/dynamic-components.service';
@@ -12,11 +11,11 @@ import { NewApplicationComponent } from '../new-application/new-application.comp
   styleUrls: ['./job-details.component.scss'],
 })
 export class JobDetailsComponent implements OnInit {
+  @Input('jobId') jobId: number;
   jobDetails: JobDetails;
   isLoading: boolean;
 
   constructor(
-    private route: ActivatedRoute,
     private jobService: JobService,
     private dynamicComponentsService: DynamicComponentsService
   ) {}
@@ -24,19 +23,10 @@ export class JobDetailsComponent implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter(): void {
-    this.getParamsAndShowJobDetails();
+    this.getJobDetails(this.jobId);
   }
 
-  getParamsAndShowJobDetails(): void {
-    this.route.params.subscribe((params) => this.onParamsFetch(params));
-  }
-
-  onParamsFetch(params): void {
-    const { id } = params;
-    this.getJobDetails(id);
-  }
-
-  getJobDetails(id: string): void {
+  getJobDetails(id: number): void {
     this.onShowLoading();
     this.jobService.getJobDetails(id).subscribe({
       next: (res) => this.onJobDetailsFetch(res),
