@@ -6,6 +6,10 @@
   <div *ngIf="!areJobsLoading && jobs">
     <app-search-jobs (searchJobs$)="onSearchJobs($event)"></app-search-jobs>
 
-    <app-job-item *ngFor="let job of jobs" [job]="job"></app-job-item>
+    <app-job-item
+      *ngFor="let job of jobs"
+      [job]="job"
+      [routerLink]="'/jobs/' + job.id.toString()"
+    ></app-job-item>
   </div>
 </ion-content>

@@ -6,7 +6,6 @@ import { JobsPage } from './jobs.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { OverviewComponent } from './overview/overview.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
-import { JobItemComponent } from './overview/job-item/job-item.component';
 import { NewApplicationComponent } from './new-application/new-application.component';
 import { SearchJobsComponent } from './overview/search-jobs/search-jobs.component';
 import { HeaderPictureComponent } from './job-details/header-picture/header-picture.component';
@@ -17,12 +16,12 @@ import { JobInformationComponent } from './job-details/job-information/job-infor
   declarations: [
     JobsPage,
     OverviewComponent,
-    JobItemComponent,
+
     JobDetailsComponent,
     NewApplicationComponent,
     SearchJobsComponent,
     HeaderPictureComponent,
-    JobInformationComponent
+    JobInformationComponent,
   ],
 })
 export class JobsPageModule {}

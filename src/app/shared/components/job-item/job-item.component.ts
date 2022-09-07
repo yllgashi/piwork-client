@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Job } from 'src/app/shared/model/job.model';
+import { Job } from '../../model/job.model';
 
 @Component({
   selector: 'app-job-item',
@@ -8,6 +8,7 @@ import { Job } from 'src/app/shared/model/job.model';
 })
 export class JobItemComponent implements OnInit {
   @Input('job') job: Job;
+  @Input('routerLink') routerLink: string;
 
   constructor() {}
 

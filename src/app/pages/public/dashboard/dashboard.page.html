@@ -1,0 +1,25 @@
+<ion-content class="register-container">
+  <app-loading *ngIf="areJobsLoading"></app-loading>
+
+  <app-no-data *ngIf="!areJobsLoading && !jobs"></app-no-data>
+
+  <div *ngIf="!areJobsLoading && jobs">
+    <app-job-item
+      *ngFor="let job of jobs"
+      [job]="job"
+      [routerLink]="'/account'"
+    ></app-job-item>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <app-button
+      [fill]="'clear'"
+      [expand]="'block'"
+      [color]="'default'"
+      (clickOut)="navigateToAccountPage()"
+      [text]="'LOGIN / REGISTER'"
+    ></app-button>
+  </ion-toolbar>
+</ion-footer>

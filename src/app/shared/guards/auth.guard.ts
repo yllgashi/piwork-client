@@ -44,6 +44,6 @@ export class AuthGuard implements CanActivate {
 
   onError(): Observable<any> {
     this.storageService.clear().subscribe();
-    return of(this.router.navigateByUrl('/account'));
+    return of(this.router.navigateByUrl('/dashboard'));
   }
 }
