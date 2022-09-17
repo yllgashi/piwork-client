@@ -1,0 +1,26 @@
+<h3 class="ion-padding-top ion-padding-start">Experience</h3>
+
+<div *ngIf="experience?.length > 0">
+  <app-text-information-item
+    *ngFor="let ue of experience"
+    [icon]="'business-outline'"
+    [title]="ue.workplaceName"
+    [subtitle]="ue.description | truncate: [15, '...']"
+    [rightNote]="
+      (ue.startDate | date: 'MM.yyyy') +
+      ' - ' +
+      (ue.endDate ? (ue.endDate | date: 'MM.yyyy') : 'Still')
+    "
+  ></app-text-information-item>
+</div>
+
+<app-no-data *ngIf="experience?.length < 1"></app-no-data>
+
+<app-button
+  *ngIf="isCurrentUser"
+  [fill]="'clear'"
+  [expand]="'block'"
+  [color]="'medium'"
+  (clickOut)="onAddUserExperience()"
+  [text]="'ADD EXPERIENCE'"
+></app-button>

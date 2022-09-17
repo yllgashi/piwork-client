@@ -1,0 +1,20 @@
+<h3 class="ion-padding-top ion-padding-start">Skills</h3>
+<div *ngIf="skills?.length > 0" class="ion-padding">
+  <ion-chip *ngFor="let s of skills" color="medium">
+    <ion-avatar>
+      <img [src]="fileBaseUrl + s.icon" />
+    </ion-avatar>
+    <ion-label>{{ s.name }}</ion-label>
+  </ion-chip>
+</div>
+
+<app-no-data *ngIf="skills?.length < 1"></app-no-data>
+
+<app-button
+  *ngIf="isCurrentUser"
+  [fill]="'clear'"
+  [expand]="'block'"
+  [color]="'medium'"
+  (clickOut)="onAddUserSkill()"
+  [text]="'ADD SKILL'"
+></app-button>

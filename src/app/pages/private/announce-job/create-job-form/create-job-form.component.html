@@ -1,0 +1,143 @@
+<form [formGroup]="announceJobForm" (ngSubmit)="onSubmit()">
+  <!-- title, description -->
+  <app-card
+    [cardHeader]="true"
+    [cardTitle]="'Basic Information'"
+    [cardSubtitle]="'In this section, write a job title and small description'"
+    [cardContent]="true"
+  >
+    <div card-content>
+      <app-input
+        [startIcon]="'shield-checkmark-outline'"
+        [type]="'text'"
+        [label]="'Title'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'Software dev...'"
+        [control]="getControl('title')"
+      >
+      </app-input>
+
+      <app-textarea
+        [startIcon]="'chatbox-outline'"
+        [placeholder]="'Looking for...'"
+        [control]="getControl('description')"
+      >
+      </app-textarea></div
+  ></app-card>
+
+  <!-- price, estimated time and more -->
+  <app-card
+    [cardHeader]="true"
+    [cardTitle]="'More Information'"
+    [cardSubtitle]="
+      'Write information about task estimation days and task price amount'
+    "
+    [cardContent]="true"
+  >
+    <div card-content>
+      <app-input
+        [startIcon]="'hourglass-outline'"
+        [type]="'number'"
+        [label]="'Estimated Days'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'0'"
+        [control]="getControl('estimatedDays')"
+      >
+      </app-input>
+
+      <app-input
+        [startIcon]="'cash-outline'"
+        [type]="'number'"
+        [label]="'Price Amount'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'0' | currency: 'EUR'"
+        [control]="getControl('priceAmount')"
+      >
+      </app-input>
+    </div>
+  </app-card>
+
+  <!-- source code -->
+  <app-card
+    [cardHeader]="true"
+    [cardTitle]="'Code Location'"
+    [cardSubtitle]="'Write link in which a job-seeker can view code'"
+    [cardContent]="true"
+  >
+    <app-input
+      card-content
+      [startIcon]="'code-slash-outline'"
+      [type]="'text'"
+      [label]="'Source Code Link'"
+      [labelPosition]="'stacked'"
+      [placeholder]="'github.com'"
+      [control]="getControl('sourceCodeLink')"
+    >
+    </app-input>
+  </app-card>
+
+  <!-- skills -->
+  <app-card
+    [cardHeader]="true"
+    [cardTitle]="'Select Skills'"
+    [cardSubtitle]="
+      'Choose technologies and fields which are nesseccary for a job-seeker to know in order to finish this job'
+    "
+    [cardContent]="true"
+  >
+    <div card-content>
+      <ion-item lines="none">
+        <ion-icon slot="start" name="hammer-outline"></ion-icon>
+        <ion-label position="stacked">Skills</ion-label>
+        <ion-select
+          selectedText="Choose"
+          multiple="true"
+          (ionChange)="onSkillsSelect($event)"
+        >
+          <ion-select-option *ngFor="let s of skills" [value]="s.id">{{
+            s.name
+          }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="ion-padding">
+        <ion-chip *ngFor="let s of choosedSkills" color="medium">
+          <ion-avatar>
+            <img [src]="fileBaseUrl + s.icon" />
+          </ion-avatar>
+          <ion-label>{{ s.name }}</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+  </app-card>
+
+  <!-- contact email -->
+  <app-card
+    [cardHeader]="true"
+    [cardTitle]="'Contact Email'"
+    [cardSubtitle]="
+      'Write email in which job-seeker can contact in order to gain more information about task'
+    "
+    [cardContent]="true"
+  >
+    <app-input
+      card-content
+      [startIcon]="'mail-outline'"
+      [type]="'text'"
+      [label]="'Contact Email'"
+      [labelPosition]="'stacked'"
+      [placeholder]="'email@outlook.com'"
+      [control]="getControl('contactEmail')"
+    >
+    </app-input>
+  </app-card>
+
+  <app-button
+    *ngIf="!createJobLoading"
+    [type]="'submit'"
+    [text]="'ACCOUNT.APPLY' | translate"
+    [color]="'primary'"
+    [expand]="'block'"
+  >
+  </app-button>
+  <app-loading *ngIf="createJobLoading"></app-loading>
+</form>

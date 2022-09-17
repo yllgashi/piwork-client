@@ -1,0 +1,6 @@
+<ion-footer class="ion-no-border">
+  <ion-toolbar class="footer-container">
+    <app-label class="label" *ngIf="text">{{ text }}</app-label>
+    <ng-content select="[body]"></ng-content>
+  </ion-toolbar>
+</ion-footer>

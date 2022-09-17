@@ -1,0 +1,31 @@
+<ion-item lines="none">
+  <!-- start icon -->
+  <ion-icon *ngIf="startIcon" [name]="startIcon" slot="start"></ion-icon>
+  <!-- floating label text -->
+  <ion-label
+    *ngIf="label"
+    [position]="labelPosition ? labelPosition : 'floating'"
+    >{{ label }}</ion-label
+  >
+  <!-- input with formControl -->
+  <ion-input
+    *ngIf="control"
+    [formControl]="control"
+    [type]="type ? type : ''"
+    [value]="value ? value : ''"
+    [placeholder]="placeholder ? placeholder : ''"
+    (keyup)="outputInputText($event)"
+  ></ion-input>
+
+  <!-- input without formControl -->
+  <ion-input
+    *ngIf="!control"
+    [type]="type ? type : ''"
+    [value]="value ? value : ''"
+    [placeholder]="placeholder ? placeholder : ''"
+    (keyup)="outputInputText($event)"
+  ></ion-input>
+
+  <!-- end icon -->
+  <ion-icon *ngIf="endIcon" [name]="endIcon" slot="end" (click)="onEndIconClick()"></ion-icon>
+</ion-item>

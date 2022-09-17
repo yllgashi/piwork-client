@@ -1,0 +1,19 @@
+<app-header
+  *ngIf="areApplicationsOfOnlyOneJob()"
+  [icon]="'close-outline'"
+  [title]="jobTitle"
+  (iconClick)="closeModal()"
+></app-header>
+
+<ion-content>
+  <app-loading *ngIf="areApplicationsLoading"></app-loading>
+
+  <app-no-data *ngIf="!areApplicationsLoading && !applications"></app-no-data>
+
+  <div *ngIf="!areApplicationsLoading && applications">
+    <app-application-item
+      *ngFor="let a of applications"
+      [application]="a"
+    ></app-application-item>
+  </div>
+</ion-content>

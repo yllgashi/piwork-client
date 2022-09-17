@@ -1,0 +1,12 @@
+<ion-item lines="none">
+  <ion-icon *ngIf="startIcon" [name]="startIcon" slot="start"></ion-icon>
+  <ion-textarea
+    [formControl]="control"
+    [placeholder]="placeholder"
+    (keyup)="outputInputText($event)"
+    rows="6"
+    s
+    cols="20"
+    maxlength="1000"
+  ></ion-textarea>
+</ion-item>

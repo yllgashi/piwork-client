@@ -1,0 +1,32 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <app-input
+    [startIcon]="'mail-outline'"
+    [type]="'email'"
+    [label]="'ACCOUNT.EMAIL' | translate"
+    [labelPosition]="'stacked'"
+    [placeholder]="'email@email.com'"
+    [control]="getControl('email')"
+  >
+  </app-input>
+
+  <app-input
+    [startIcon]="'shield-checkmark-outline'"
+    [type]="'password'"
+    [label]="'ACCOUNT.PASSWORD' | translate"
+    [labelPosition]="'stacked'"
+    [placeholder]="'************'"
+    [control]="getControl('password')"
+  >
+  </app-input>
+
+  <app-button
+    [disabled]="loginForm.invalid"
+    *ngIf="!isLoading"
+    [type]="'submit'"
+    [text]="'ACCOUNT.LOGIN' | translate"
+    [color]="'primary'"
+    [expand]="'block'"
+  >
+  </app-button>
+  <app-loading *ngIf="isLoading"></app-loading>
+</form>

@@ -1,0 +1,23 @@
+<ion-button
+  [type]="type ? type : 'button'"
+  [disabled]="disabled"
+  [color]="color"
+  [expand]="expand ? expand : ''"
+  (click)="onClick()"
+  [size]="size ? size : ''"
+  [fill]="fill ? fill : 'solid'"
+  [shape]="shape ? shape : ''"
+>
+  <ion-icon
+    *ngIf="startIcon"
+    slot="start"
+    [name]="startIcon ? startIcon : ''"
+  ></ion-icon>
+  {{ text }}
+  <ion-icon
+    *ngIf="endIcon"
+    slot="end"
+    [name]="endIcon ? endIcon : ''"
+  ></ion-icon>
+</ion-button>
+<!-- [color]="color ? color : ''" -->

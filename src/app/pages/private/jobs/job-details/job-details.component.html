@@ -1,0 +1,57 @@
+<ion-content>
+  <app-loading *ngIf="isLoading"></app-loading>
+
+  <div *ngIf="jobDetails">
+    <app-header-picture
+      [picture]="jobDetails.publisherProfilePic"
+    ></app-header-picture>
+
+    <app-job-information
+      [jobId]="jobDetails.id"
+      [title]="jobDetails.title"
+      [description]="jobDetails.description"
+      [isActive]="jobDetails.isActive"
+      [estimatedDays]="jobDetails.estimatedDays"
+      [priceAmount]="jobDetails.priceAmount"
+      [sourceCodeLink]="jobDetails.sourceCodeLink"
+      [requiredSkills]="jobDetails.requiredSkills"
+      [publishedByUserFirstName]="jobDetails.publishedByUserFirstName"
+      [publishedByUserLastName]="jobDetails.publishedByUserLastName"
+      [publisherPicture]="jobDetails.publisherProfilePic"
+      [contactEmail]="jobDetails.contactEmail"
+    >
+    </app-job-information>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="jobDetails" class="ion-no-border">
+  <ion-toolbar *ngIf="jobDetails.isActive">
+    <div *accessRole="'Seeker'">
+      <app-button
+        *ngIf="!jobDetails.hasUserApplied"
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'success'"
+        (clickOut)="onProceedWithApplication()"
+        [text]="'APPLY'"
+      ></app-button>
+      <app-button
+        *ngIf="jobDetails.hasUserApplied"
+        [fill]="'clear'"
+        [expand]="'block'"
+        [color]="'success'"
+        [disabled]="true"
+        [text]="'ALREADY APPLIED'"
+      ></app-button>
+    </div>
+
+    <app-button
+      *accessRole="'Recruiter'"
+      [fill]="'clear'"
+      [expand]="'block'"
+      [color]="'default'"
+      (clickOut)="onShowJobApplications()"
+      [text]="'SHOW JOB APPLICATIONS'"
+    ></app-button>
+  </ion-toolbar>
+</ion-footer>

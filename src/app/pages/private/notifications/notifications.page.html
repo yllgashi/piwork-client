@@ -1,0 +1,12 @@
+<ion-content>
+  <app-loading *ngIf="isLoading"></app-loading>
+
+  <app-no-data *ngIf="!isLoading && notifications?.length < 1"></app-no-data>
+
+  <div *ngIf="!isLoading && notifications">
+    <app-notification-item
+      *ngFor="let n of notifications"
+      [notification]="n"
+    ></app-notification-item>
+  </div>
+</ion-content>

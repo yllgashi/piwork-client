@@ -1,0 +1,15 @@
+<app-item
+  [clickable]="true"
+  (clickOut)="onNotificationClick()"
+  [lines]="'none'"
+>
+  <ion-avatar slot="start">
+    <img [src]="fileBaseUrl + notification.picture" />
+  </ion-avatar>
+  <ion-label>
+    {{ notification.notificationTopicDescription }}
+    <p class="label-text">{{ notification.message }}</p>
+  </ion-label>
+
+  <ion-note slot="end">{{ notification.insertDate | date }}</ion-note>
+</app-item>

@@ -1,0 +1,51 @@
+<app-header
+  [icon]="'close-outline'"
+  [title]="'Add new experience'"
+  (iconClick)="closeModal()"
+></app-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-card
+      [cardHeader]="true"
+      [cardTitle]="'Workplace experience'"
+      [cardSubtitle]="'In this section, write workplace name'"
+      [cardContent]="true"
+    >
+      <app-input
+        card-content
+        [startIcon]="'shield-checkmark-outline'"
+        [type]="'text'"
+        [label]="'Workplace'"
+        [labelPosition]="'stacked'"
+        [placeholder]="'Pi work company'"
+        [control]="getControl('workplaceName')"
+      >
+      </app-input
+    ></app-card>
+
+    <app-card
+      [cardHeader]="true"
+      [cardTitle]="'Experience description'"
+      [cardSubtitle]="
+        'In this section, write a small description about your role in this workplace'
+      "
+      [cardContent]="true"
+    >
+      <app-textarea
+        card-content
+        [startIcon]="'chatbox-outline'"
+        [placeholder]="'Your role'"
+        [control]="getControl('description')"
+      >
+      </app-textarea>
+    </app-card>
+
+    <app-button
+      [type]="'submit'"
+      [expand]="'block'"
+      [color]="'light'"
+      [text]="'CREATE'"
+    ></app-button>
+  </form>
+</ion-content>

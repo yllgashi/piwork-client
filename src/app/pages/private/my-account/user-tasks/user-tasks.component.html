@@ -1,0 +1,14 @@
+<h3 class="ion-padding-top ion-padding-start">Tasks</h3>
+
+<div *ngIf="jobs?.length > 0">
+  <app-text-information-item
+    *ngFor="let j of jobs"
+    [icon]="'git-pull-request-outline'"
+    [title]="j.jobTitle"
+    [subtitle]="j.employerComment | truncate: [15, '...']"
+    [rightNote]="j.isActive ? 'Active' : 'Unactive'"
+    (itemClick$)="onShowDetails(j)"
+  ></app-text-information-item>
+</div>
+
+<app-no-data *ngIf="jobs?.length < 1"></app-no-data>

@@ -1,0 +1,22 @@
+<ion-content class="register-container">
+  <div class="form-container">
+    <app-login-form *ngIf="authenticationMethod === 'login'"></app-login-form>
+
+    <app-register-form
+      *ngIf="authenticationMethod === 'register'"
+    ></app-register-form>
+
+    <app-button
+      [type]="'button'"
+      [text]="
+        authenticationMethod === 'login'
+          ? ('ACCOUNT.REGISTER_INSTEAD' | translate)
+          : ('ACCOUNT.LOGIN_INSTEAD' | translate)
+      "
+      [color]="'light'"
+      [expand]="'block'"
+      (clickOut)="onChangeAuthenticationMethod()"
+    >
+    </app-button>
+  </div>
+</ion-content>

@@ -1,0 +1,51 @@
+<app-header
+  *ngIf="!isCurrentUser()"
+  [icon]="'close-outline'"
+  [title]="userDetails.firstName + ' ' + userDetails.lastName"
+  (iconClick)="closeModal()"
+></app-header>
+
+<ion-content>
+  <app-loading *ngIf="isLoading"></app-loading>
+
+  <app-no-data *ngIf="!isLoading && !userDetails"></app-no-data>
+
+  <div *ngIf="!isLoading && userDetails">
+    <app-header-picture [picture]="userDetails.profilePic"></app-header-picture>
+
+    <div class="about-info">
+      <app-name-and-description
+        [firstName]="userDetails.firstName"
+        [lastName]="userDetails.lastName"
+        [description]="userDetails.description"
+        [isCurrentUser]="isCurrentUser()"
+      ></app-name-and-description>
+
+      <app-user-skills
+        [skills]="userDetails.skills"
+        [isCurrentUser]="isCurrentUser()"
+      ></app-user-skills>
+
+      <!-- jobs -->
+      <app-user-tasks [jobs]="userDetails.jobs"></app-user-tasks>
+
+      <!-- experience -->
+      <app-user-experience
+        [experience]="userDetails.experience"
+        [isCurrentUser]="isCurrentUser()"
+      ></app-user-experience>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer *ngIf="isCurrentUser()" class="ion-no-border">
+  <ion-toolbar>
+    <app-button
+      [fill]="'clear'"
+      [expand]="'block'"
+      [color]="'danger'"
+      (clickOut)="onLogout()"
+      [text]="'LOG OUT'"
+    ></app-button>
+  </ion-toolbar>
+</ion-footer>

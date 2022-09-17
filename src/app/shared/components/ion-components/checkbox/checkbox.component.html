@@ -1,0 +1,8 @@
+<ion-checkbox *ngIf="!control" (ionChange)="onCheckOrUncheck(!checked)">
+</ion-checkbox>
+
+<ion-checkbox *ngIf="control" [formControl]="control"></ion-checkbox>
+
+<!-- note -->
+<!-- (ionChange)="onCheckOrUncheck(checked ? false : true)" -->
+<!-- this will return opoosite of current value (beacause checked first time is undefined) -->

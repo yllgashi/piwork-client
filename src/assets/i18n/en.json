@@ -1,0 +1,33 @@
+{
+    "APP": {
+        "TITLE": "Pi Work",
+        "SUBMIT": "SUBMIT",
+        "CANCEL": "Cancel",
+        "DELETE": "Delete",
+        "ADD": "Add"
+    },
+    "ACCOUNT": {
+        "LOGIN": "Login",
+        "REGISTER": "Register",
+        "LOGIN_INSTEAD": "Login instead",
+        "REGISTER_INSTEAD": "Register instead",
+        "EMAIL": "Email",
+        "FIRST_NAME": "First name",
+        "LAST_NAME": "Last name",
+        "PASSWORD": "Password",
+        "DESCRIPTION": "Description",
+        "ROLE": "RoleID"
+    },
+    "ERROR": {
+        "ERR_01":"Something went wrong",
+        "ERR_02":"Failed to delete item",
+        "ERR_03":"Technology is already registered for this user",
+        "ERR_04":"User already exists",
+        "ERR_05":"User does not exists",
+        "ERR_06":"Job does not exists",
+        "ERR_07":"An error occurred while inserting this job",
+        "ERR_08":"Incorrect password",
+        "ERR_09":"No data found",
+        "ERR_10": "Input fields are invalid!"
+    }
+}
