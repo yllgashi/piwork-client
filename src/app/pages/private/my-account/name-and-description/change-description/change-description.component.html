@@ -9,10 +9,8 @@
     <app-card
       [cardHeader]="true"
       [cardContent]="true"
-      [cardTitle]="'Experience description'"
-      [cardSubtitle]="
-        'In this section, write a small description about yourself'
-      "
+      [cardTitle]="'MYACCOUNT.DESCRIPTION_TITLE' | translate"
+      [cardSubtitle]="'MYACCOUNT.DESCRIPTION_DESC' | translate"
     >
       <app-textarea
         card-content
@@ -27,7 +25,7 @@
       [type]="'submit'"
       [expand]="'block'"
       [color]="'light'"
-      [text]="'CREATE'"
+      [text]="'MYACCOUNT.CHANGE_DESCRIPTION_BTN' | translate"
     ></app-button>
   </form>
 </ion-content>

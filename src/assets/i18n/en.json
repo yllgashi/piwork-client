@@ -2,9 +2,14 @@
     "APP": {
         "TITLE": "Pi Work",
         "SUBMIT": "SUBMIT",
-        "CANCEL": "Cancel",
-        "DELETE": "Delete",
-        "ADD": "Add"
+        "CANCEL": "CANCEL",
+        "DELETE": "DELETE",
+        "ADD": "ADD",
+        "JOBS_MODULE": "Jobs",
+        "APPLICATIONS_MODULE": "Applications",
+        "ANNOUCE_MODULE": "Announce",
+        "NOTIFICATIONS_MODULE": "Notifications",
+        "MYACCOUNT_MODULE": "My account"
     },
     "ACCOUNT": {
         "LOGIN": "Login",
@@ -16,7 +21,62 @@
         "LAST_NAME": "Last name",
         "PASSWORD": "Password",
         "DESCRIPTION": "Description",
-        "ROLE": "RoleID"
+        "ROLE": "RoleID",
+        "LOGIN_REGISTER_BTN": "LOGIN / REGISTER"
+    },
+    "MYACCOUNT": {
+        "LOGOUT_BTN": "LOG OUT",
+        "ADD_SKILLS_BTN": "ADD SKILLS",
+        "ADD_USER_SKILLS_HEADER_TITLE": "Add New Skill",
+        "ADD_SKILS_DESCRIPTION": "Select skill to insert in your card account",
+        "SKILLS": "Skills",
+        "ADD_EXPERIENCE_BTN": "ADD EXPERIENCE",
+        "ADD_EXPERIENCE_TITLE": "Add Experience",
+        "WORKPLACE": "Workplace",
+        "WORKPLACE_EXPERIENCE_TITLE": "Workplace experience",
+        "WORKPLACE_EXPERIENCE_DESC": "In this section, write workplace name",
+        "EXPERIENCE_DESC_TITLE": "Experience description",
+        "EXPERIENCE_DESC_DESC": "In this section, write a small description about your role in this workplace",
+        "CHANGE_DESCRIPTION_BTN": "CHANGE DESCRIPTION",
+        "DESCRIPTION_TITLE": "Short description",
+        "DESCRIPTION_DESC": "In this section, write a small description about yourself"
+    },
+    "JOBS": {
+        "SEARCH": "Search",
+        "SEARCH_JOBS_BTN": "SEARCH JOBS",
+        "WRITE_SHORT_DESC": "Write short description",
+        "APPLY_BTN": "APPLY",
+        "ALREADY_APPLIED_BTN": "ALREADY APPLIED",
+        "SHOW_APPLICATIONS_BTN": "SHOW JOB APPLICATIONS"
+    },
+    "APPLICATIONS": {
+        "APPLICATION_DETAILS_TITLE": "Application Details",
+        "APPLICANT_INFO": "Applicant Information",
+        "SHOW_ACCOUNT_INFO_BTN": "Click to show account details",
+        "COMMENT": "Comment",
+        "DELETE_JOB_APPLICATION_BTN": "DELETE JOB APPLICATION",
+        "SELECT_BEST_CANDIDATE": "SELECT BEST CANDIDATE",
+        "EMPLOYER_COMMENT": "Employer comment",
+        "ADD_EMPLOYER_COMMENT_BTN": "ADD EMPLOYER COMMENT"
+    },
+    "ANNOUNCE_JOB": {
+        "JOB_CREATION_NOTE": "After job creation, it will be listed to all job seekers around the world.",
+        "BASIC_INFORMATION_TITLE": "Basic Information",
+        "BASIC_INFORMATION_DESC": "In this section, write a job title and small description",
+        "TITLE": "Title",
+        "MORE_INFORMATION_TITLE": "More Information",
+        "MORE_INFORMATION_DESC": "Write information about task estimation days and task price amount",
+        "ESTIMATED_DAYS": "Estimated days",
+        "PRICE_AMOUNT": "Price Amount",
+        "CODE_LOCATION_TITLE": "Code Location",
+        "CODE_LOCATION_DESC": "Write link in which a job-seeker can view code",
+        "SOURCE_CODE_LINK": "Source Code Link'",
+        "SKILLS_INFO_TITLE": "Skills information",
+        "SKILLS_INFO_DESC": "Choose technologies and fields which are nesseccary for a job-seeker to know in order to finish this job",
+        "CONTACT_EMAIL_TITLE": "Contact Email",
+        "CONTACT_EMAIL_DESC": "Write email in which job-seeker can contact in order to gain more information about task",
+        "CONTACT_EMAIL_LABEL": "Contact Email",
+        "ANNOUNCE_JOB_BTN": "ANNOUNCE JOB"
     },
     "ERROR": {
         "ERR_01":"Something went wrong",

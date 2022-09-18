@@ -2,7 +2,7 @@
   <ion-accordion value="first">
     <ion-item slot="header">
       <ion-icon slot="start" name="search-circle-outline"></ion-icon>
-      <app-label>Search</app-label>
+      <app-label>{{ "JOBS.SEARCH" | translate }}</app-label>
     </ion-item>
     <div class="ion-padding" slot="content">
       <form [formGroup]="searchJobsForm" (ngSubmit)="onSubmit()">
@@ -26,7 +26,7 @@
 
         <app-button
           [type]="'submit'"
-          [text]="'Search'"
+          [text]="'JOBS.SEARCH_JOBS_BTN' | translate"
           [color]="'light'"
           [expand]="'block'"
         >

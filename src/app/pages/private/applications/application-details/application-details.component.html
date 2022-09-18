@@ -21,7 +21,9 @@
       </p>
 
       <!-- phase & is active & insertDate -->
-      <h3 class="ion-padding-top ion-padding-start">Application Details</h3>
+      <h3 class="ion-padding-top ion-padding-start">
+        {{ "APPLICATIONS.APPLICATION_DETAILS_TITLE" | translate }}
+      </h3>
       <app-information-item
         [text]="jobApplicationDetails.insertDate | date"
         [icon]="'calendar-outline'"
@@ -43,7 +45,7 @@
 
       <!-- application information -->
       <h3 *accessRole="'Recruiter'" class="ion-padding-top ion-padding-start">
-        Applicant Information
+        {{ "APPLICATIONS.APPLICANT_INFO" | translate }}
       </h3>
       <app-text-information-item
         *accessRole="'Recruiter'"
@@ -53,12 +55,14 @@
           ' ' +
           jobApplicationDetails.applicantLastName
         "
-        [subtitle]="'Click to show account details'"
+        [subtitle]="'APPLICATIONS.SHOW_ACCOUNT_INFO_BTN' | translate"
         (itemClick$)="onApplicantDetailsClick()"
       ></app-text-information-item>
 
       <!-- comment -->
-      <h3 class="ion-padding-top ion-padding-start">Comment</h3>
+      <h3 class="ion-padding-top ion-padding-start">
+        {{ "APPLICATIONS.COMMENT" | translate }}
+      </h3>
       <p class="ion-padding-start ion-padding-end">
         {{ jobApplicationDetails.comment }}
       </p>
@@ -70,7 +74,7 @@
           [expand]="'block'"
           [color]="'danger'"
           (clickOut)="onDeleteJobApplication()"
-          [text]="'Delete job application'"
+          [text]="'APPLICATIONS.DELETE_JOB_APPLICATION_BTN' | translate"
         ></app-button>
 
         <app-button
@@ -79,7 +83,7 @@
           [expand]="'block'"
           [color]="'primary'"
           (clickOut)="onSelectWinnerApplication()"
-          [text]="'Choose winner'"
+          [text]="'APPLICATIONS.SELECT_BEST_CANDIDATE' | translate"
         ></app-button>
       </div>
 
@@ -87,7 +91,7 @@
         <app-input
           *accessRole="'Recruiter'"
           [type]="'text'"
-          [label]="'Employer comment'"
+          [label]="'APPLICATIONS.EMPLOYER_COMMENT' | translate"
           [labelPosition]="'stacked'"
           [placeholder]="'He/she is an excelent dev..'"
           (inputedTextOut)="employerComment = $event"
@@ -100,7 +104,7 @@
           [expand]="'block'"
           [color]="'primary'"
           (clickOut)="onAddEmployerComment()"
-          [text]="'Add employer comment'"
+          [text]="'APPLICATIONS.ADD_EMPLOYER_COMMENT_BTN' | translate"
         ></app-button>
       </div>
     </div>

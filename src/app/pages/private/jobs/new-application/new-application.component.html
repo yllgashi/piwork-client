@@ -8,19 +8,19 @@
   <div *ngIf="user">
     <app-text-information-item
       [icon]="'person-outline'"
-      [title]="'First name'"
+      [title]="'ACCOUNT.FIRST_NAME' | translate"
       [subtitle]="user.firstName"
     ></app-text-information-item>
 
     <app-text-information-item
       [icon]="'accessibility-outline'"
-      [title]="'Last name'"
+      [title]="'ACCOUNT.LAST_NAME' | translate"
       [subtitle]="user.lastName"
     ></app-text-information-item>
 
     <app-text-information-item
       [icon]="'mail-outline'"
-      [title]="'Email'"
+      [title]="'ACCOUNT.EMAIL' | translate"
       [subtitle]="user.email"
     ></app-text-information-item>
 
@@ -30,7 +30,7 @@
           body
           [startIcon]="'chatbox-outline'"
           [control]="getControl('comment')"
-          [placeholder]="'Write short description'"
+          [placeholder]="'JOBS.WRITE_SHORT_DESC' | translate"
         ></app-textarea>
       </app-card>
     </form>
@@ -46,7 +46,7 @@
       [fill]="'clear'"
       [expand]="'block'"
       [color]="'success'"
-      [text]="'APPLY'"
+      [text]="'JOBS.APPLY_BTN' | translate"
     ></app-button>
 
     <app-loading *ngIf="isLoading"></app-loading>

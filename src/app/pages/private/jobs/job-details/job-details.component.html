@@ -33,7 +33,7 @@
         [expand]="'block'"
         [color]="'success'"
         (clickOut)="onProceedWithApplication()"
-        [text]="'APPLY'"
+        [text]="'JOBS.APPLY_BTN' | translate"
       ></app-button>
       <app-button
         *ngIf="jobDetails.hasUserApplied"
@@ -41,7 +41,7 @@
         [expand]="'block'"
         [color]="'success'"
         [disabled]="true"
-        [text]="'ALREADY APPLIED'"
+        [text]="'JOBS.ALREADY_APPLIED_BTN' | translate"
       ></app-button>
     </div>
 
@@ -51,7 +51,7 @@
       [expand]="'block'"
       [color]="'default'"
       (clickOut)="onShowJobApplications()"
-      [text]="'SHOW JOB APPLICATIONS'"
+      [text]="'JOBS.SHOW_APPLICATIONS_BTN' | translate"
     ></app-button>
   </ion-toolbar>
 </ion-footer>

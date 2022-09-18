@@ -1,6 +1,6 @@
 <app-header
   [icon]="'close-outline'"
-  [title]="'Add new experience'"
+  [title]="'MYACCOUNT.ADD_EXPERIENCE_TITLE' | translate"
   (iconClick)="closeModal()"
 ></app-header>
 
@@ -8,15 +8,15 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <app-card
       [cardHeader]="true"
-      [cardTitle]="'Workplace experience'"
-      [cardSubtitle]="'In this section, write workplace name'"
+      [cardTitle]="'MYACCOUNT.WORKPLACE_EXPERIENCE_TITLE' | translate"
+      [cardSubtitle]="'MYACCOUNT.WORKPLACE_EXPERIENCE_DESC' | translate"
       [cardContent]="true"
     >
       <app-input
         card-content
         [startIcon]="'shield-checkmark-outline'"
         [type]="'text'"
-        [label]="'Workplace'"
+        [label]="'MYACCOUNT.WORKPLACE' | translate"
         [labelPosition]="'stacked'"
         [placeholder]="'Pi work company'"
         [control]="getControl('workplaceName')"
@@ -26,10 +26,8 @@
 
     <app-card
       [cardHeader]="true"
-      [cardTitle]="'Experience description'"
-      [cardSubtitle]="
-        'In this section, write a small description about your role in this workplace'
-      "
+      [cardTitle]="'MYACCOUNT.EXPERIENCE_DESC_TITLE' | translate"
+      [cardSubtitle]="'MYACCOUNT.EXPERIENCE_DESC_DESC' | translate"
       [cardContent]="true"
     >
       <app-textarea
@@ -45,7 +43,7 @@
       [type]="'submit'"
       [expand]="'block'"
       [color]="'light'"
-      [text]="'CREATE'"
+      [text]="'MYACCOUNT.ADD_EXPERIENCE_BTN' | translate"
     ></app-button>
   </form>
 </ion-content>
