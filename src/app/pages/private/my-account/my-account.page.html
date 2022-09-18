@@ -1,5 +1,5 @@
 <app-header
-  *ngIf="!isCurrentUser()"
+  *ngIf="!isCurrentUser() && userDetails"
   [icon]="'close-outline'"
   [title]="userDetails.firstName + ' ' + userDetails.lastName"
   (iconClick)="closeModal()"

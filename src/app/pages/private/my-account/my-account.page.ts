@@ -62,7 +62,6 @@ export class MyAccountPage implements OnInit {
 
   //#region callbacks
   onGetUserDetailsRes(res: UserDetails): void {
-    console.log('here')
     this.userDetails = res;
     this.onDismissUserDetailsLoading();
   }

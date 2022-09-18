@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AlertButton, AlertOptions } from '@ionic/angular';
 import { GetJobApplication } from 'src/app/shared/model/get-job-application.model';
 import { ApplicationService } from 'src/app/shared/providers/application.service';
@@ -16,6 +16,7 @@ import { MyAccountPage } from '../../my-account/my-account.page';
 export class ApplicationDetailsComponent implements OnInit {
   @Input('applicationId') applicationId: number;
   jobApplicationDetails: GetJobApplication;
+  employerComment: string;
   isLoading: boolean;
 
   constructor(
@@ -65,6 +66,16 @@ export class ApplicationDetailsComponent implements OnInit {
     });
   }
 
+  onAddEmployerComment(): void {
+    const { id } = this.jobApplicationDetails;
+    this.applicationService
+      .onAddEmployerComment(id, this.employerComment)
+      .subscribe({
+        next: (res) => this.onAddEmployerCommentRes(),
+        error: (e) => this.onAddEmployerCommentError(),
+      });
+  }
+
   //#region callbacks
   onGetApplicationDetailsRes(response: GetJobApplication): void {
     this.onDismissLoading();
@@ -88,6 +99,12 @@ export class ApplicationDetailsComponent implements OnInit {
   onSelectWinnerApplicationError(error: any): void {
     this.onDismissLoading();
   }
+
+  onAddEmployerCommentRes(): void {
+    this.onshowSuccessEmployerCommentInsertAlert();
+  }
+
+  onAddEmployerCommentError(): void {}
   //#endregion callbacks
 
   //#region helpers
@@ -107,6 +124,23 @@ export class ApplicationDetailsComponent implements OnInit {
     const header = 'Success';
     const subHeader =
       'Application has been succesfully selected as job winner. This applicant will be notified.';
+    const text = this.languagesService.instant('APP.CANCEL');
+    const buttons: AlertButton[] = [
+      {
+        text,
+      },
+    ];
+    const options: AlertOptions = {
+      header,
+      subHeader,
+      buttons,
+    };
+    this.dynamicComponentsService.showAlert(options);
+  }
+
+  onshowSuccessEmployerCommentInsertAlert(): void {
+    const header = 'Success';
+    const subHeader = 'Comment has registered successfully.';
     const text = this.languagesService.instant('APP.CANCEL');
     const buttons: AlertButton[] = [
       {

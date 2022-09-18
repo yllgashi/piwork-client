@@ -5,34 +5,36 @@
 ></app-header>
 
 <ion-content>
-  <app-text-information-item
-    [icon]="'person-outline'"
-    [title]="'First name'"
-    [subtitle]="user.firstName"
-  ></app-text-information-item>
+  <div *ngIf="user">
+    <app-text-information-item
+      [icon]="'person-outline'"
+      [title]="'First name'"
+      [subtitle]="user.firstName"
+    ></app-text-information-item>
 
-  <app-text-information-item
-    [icon]="'accessibility-outline'"
-    [title]="'Last name'"
-    [subtitle]="user.lastName"
-  ></app-text-information-item>
+    <app-text-information-item
+      [icon]="'accessibility-outline'"
+      [title]="'Last name'"
+      [subtitle]="user.lastName"
+    ></app-text-information-item>
 
-  <app-text-information-item
-    [icon]="'mail-outline'"
-    [title]="'Email'"
-    [subtitle]="user.email"
-  ></app-text-information-item>
+    <app-text-information-item
+      [icon]="'mail-outline'"
+      [title]="'Email'"
+      [subtitle]="user.email"
+    ></app-text-information-item>
 
-  <form [formGroup]="newApplicationForm" (ngSubmit)="onSubmit()">
-    <app-card>
-      <app-textarea
-        body
-        [startIcon]="'chatbox-outline'"
-        [control]="getControl('comment')"
-        [placeholder]="'Write short description'"
-      ></app-textarea>
-    </app-card>
-  </form>
+    <form [formGroup]="newApplicationForm" (ngSubmit)="onSubmit()">
+      <app-card>
+        <app-textarea
+          body
+          [startIcon]="'chatbox-outline'"
+          [control]="getControl('comment')"
+          [placeholder]="'Write short description'"
+        ></app-textarea>
+      </app-card>
+    </form>
+  </div>
 </ion-content>
 
 <ion-footer class="ion-no-border">

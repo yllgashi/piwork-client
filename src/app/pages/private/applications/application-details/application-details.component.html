@@ -65,22 +65,43 @@
 
       <div *ngIf="jobApplicationDetails.isActive">
         <app-button
-        *accessRole="'Seeker'"
-        [fill]="'clear'"
-        [expand]="'block'"
-        [color]="'danger'"
-        (clickOut)="onDeleteJobApplication()"
-        [text]="'APP.DELETE_BTN' | translate"
-      ></app-button>
+          *accessRole="'Seeker'"
+          [fill]="'clear'"
+          [expand]="'block'"
+          [color]="'danger'"
+          (clickOut)="onDeleteJobApplication()"
+          [text]="'Delete job application'"
+        ></app-button>
 
-      <app-button
-        *accessRole="'Recruiter'"
-        [fill]="'clear'"
-        [expand]="'block'"
-        [color]="'primary'"
-        (clickOut)="onSelectWinnerApplication()"
-        [text]="'Choose winner'"
-      ></app-button>
+        <app-button
+          *accessRole="'Recruiter'"
+          [fill]="'clear'"
+          [expand]="'block'"
+          [color]="'primary'"
+          (clickOut)="onSelectWinnerApplication()"
+          [text]="'Choose winner'"
+        ></app-button>
+      </div>
+
+      <div *ngIf="!jobApplicationDetails.isActive">
+        <app-input
+          *accessRole="'Recruiter'"
+          [type]="'text'"
+          [label]="'Employer comment'"
+          [labelPosition]="'stacked'"
+          [placeholder]="'He/she is an excelent dev..'"
+          (inputedTextOut)="employerComment = $event"
+        >
+        </app-input>
+
+        <app-button
+          *accessRole="'Recruiter'"
+          [fill]="'clear'"
+          [expand]="'block'"
+          [color]="'primary'"
+          (clickOut)="onAddEmployerComment()"
+          [text]="'Add employer comment'"
+        ></app-button>
       </div>
     </div>
   </div>

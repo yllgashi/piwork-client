@@ -47,4 +47,13 @@ export class ApplicationService {
     const path = `applications/select-winner-application/${applicationId}`;
     return this.httpService.post<any>({ path });
   }
+
+  onAddEmployerComment(
+    applicationId: number,
+    comment: string
+  ): Observable<any> {
+    const path = `applications/employer-comment/${applicationId}`;
+    const body = { comment };
+    return this.httpService.post<any>({ path, body });
+  }
 }
