@@ -1,69 +1,77 @@
 <form card-content [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <app-input
-    [startIcon]="'person-outline'"
-    [type]="'text'"
-    [label]="'ACCOUNT.FIRST_NAME' | translate"
-    [labelPosition]="'stacked'"
-    [placeholder]="'John'"
-    [control]="getControl('firstName')"
-  >
-  </app-input>
+  <app-card [cardContent]="true">
+    <div card-content>
+      <app-input
+        [startIcon]="'person-outline'"
+        [type]="'text'"
+        [label]="'ACCOUNT.FIRST_NAME' | translate"
+        [labelPosition]="'stacked'"
+        [placeholder]="'John'"
+        [control]="getControl('firstName')"
+      >
+      </app-input>
 
-  <app-input
-    [startIcon]="'accessibility-outline'"
-    [type]="'text'"
-    [label]="'ACCOUNT.LAST_NAME' | translate"
-    [labelPosition]="'stacked'"
-    [placeholder]="'Doe'"
-    [control]="getControl('lastName')"
-  >
-  </app-input>
+      <app-input
+        [startIcon]="'accessibility-outline'"
+        [type]="'text'"
+        [label]="'ACCOUNT.LAST_NAME' | translate"
+        [labelPosition]="'stacked'"
+        [placeholder]="'Doe'"
+        [control]="getControl('lastName')"
+      >
+      </app-input>
 
-  <app-input
-    [startIcon]="'mail-outline'"
-    [type]="'email'"
-    [label]="'ACCOUNT.EMAIL' | translate"
-    [labelPosition]="'stacked'"
-    [placeholder]="'email@email.com'"
-    [control]="getControl('email')"
-  >
-  </app-input>
+      <app-input
+        [startIcon]="'mail-outline'"
+        [type]="'email'"
+        [label]="'ACCOUNT.EMAIL' | translate"
+        [labelPosition]="'stacked'"
+        [placeholder]="'email@email.com'"
+        [control]="getControl('email')"
+      >
+      </app-input>
 
-  <app-input
-    [startIcon]="'shield-checkmark-outline'"
-    [type]="'password'"
-    [label]="'ACCOUNT.PASSWORD' | translate"
-    [labelPosition]="'stacked'"
-    [placeholder]="'************'"
-    [control]="getControl('password')"
-  >
-  </app-input>
+      <app-input
+        [startIcon]="'shield-checkmark-outline'"
+        [type]="'password'"
+        [label]="'ACCOUNT.PASSWORD' | translate"
+        [labelPosition]="'stacked'"
+        [placeholder]="'************'"
+        [control]="getControl('password')"
+      >
+      </app-input>
 
-  <app-textarea
-    card-content
-    [startIcon]="'chatbox-outline'"
-    [control]="getControl('description')"
-    [placeholder]="'Description'"
-    [placeholder]="'ACCOUNT.DESCRIPTION' | translate"
-  ></app-textarea>
+      <app-select
+        *ngIf="roles"
+        [icon]="'game-controller-outline'"
+        [description]="'Role'"
+        [data]="roles"
+        [control]="getControl('roleId')"
+      ></app-select>
 
-  <app-select
-    *ngIf="roles"
-    [icon]="'game-controller-outline'"
-    [description]="'Role'"
-    [data]="roles"
-    [control]="getControl('roleId')"
-  ></app-select>
+      <app-textarea
+        card-content
+        [startIcon]="'chatbox-outline'"
+        [control]="getControl('description')"
+        [placeholder]="'Description'"
+        [placeholder]="'ACCOUNT.DESCRIPTION' | translate"
+      ></app-textarea>
+    </div>
+  </app-card>
 
-  <app-button
-    [type]="'submit'"
-    [disabled]="registerForm.invalid"
-    *ngIf="!isLoading"
-    [text]="'ACCOUNT.REGISTER' | translate"
-    [text]="'Register'"
-    [color]="'primary'"
-    [expand]="'block'"
-  >
-  </app-button>
-  <app-loading *ngIf="isLoading"></app-loading>
+  <app-card>
+    <div body>
+      <app-button
+        [type]="'submit'"
+        [disabled]="registerForm.invalid"
+        *ngIf="!isLoading"
+        [text]="'ACCOUNT.REGISTER' | translate"
+        [text]="'Register'"
+        [color]="'primary'"
+        [expand]="'block'"
+      >
+      </app-button>
+      <app-loading *ngIf="isLoading"></app-loading>
+    </div>
+  </app-card>
 </form>

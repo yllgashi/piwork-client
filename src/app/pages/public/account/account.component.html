@@ -1,12 +1,17 @@
 <ion-content class="register-container">
-  <div class="form-container">
-    <app-login-form *ngIf="authenticationMethod === 'login'"></app-login-form>
+  <div class="login-logo">
+    <img src="../../../../assets/images/loginRegister.png" alt="Ionic logo" />
+  </div>
 
-    <app-register-form
-      *ngIf="authenticationMethod === 'register'"
-    ></app-register-form>
+  <app-login-form *ngIf="authenticationMethod === 'login'"></app-login-form>
 
+  <app-register-form
+    *ngIf="authenticationMethod === 'register'"
+  ></app-register-form>
+
+  <app-card>
     <app-button
+      body
       [type]="'button'"
       [text]="
         authenticationMethod === 'login'
@@ -18,5 +23,5 @@
       (clickOut)="onChangeAuthenticationMethod()"
     >
     </app-button>
-  </div>
+  </app-card>
 </ion-content>
