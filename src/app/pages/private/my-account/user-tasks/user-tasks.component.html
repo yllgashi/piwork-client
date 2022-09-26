@@ -6,7 +6,7 @@
     [icon]="'git-pull-request-outline'"
     [title]="j.jobTitle"
     [subtitle]="j.employerComment | truncate: [15, '...']"
-    [rightNote]="j.isActive ? 'Active' : 'Unactive'"
+    [rightNote]="j.isActive ? 'Active' : 'Inactive'"
     (itemClick$)="onShowDetails(j)"
   ></app-text-information-item>
 </div>
